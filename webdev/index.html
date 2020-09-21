@@ -1,125 +1,270 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
-  <title>WEBDEV</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"/>
-  <link href="style.css" rel="stylesheet" type="text/css" />
-  <link rel="shortcut icon" href="#" />  
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"> 
-</head>
-<body>
-  <div class="wrapper">
-    <header>
-      <nav>
-        <ul class="navigation">
-          <li><a href="#">About</a></li>
-          <li><a href="#">Syllabus</a></li>
-          <li><svg class="logo"></svg></li>
-          <li><a href="#">Projects</a></li>
-          <li><a href="#">FAQ</a></li>
-        </ul>
-      </nav>
-      <div class="header-cont">
-        <h1 class="title">Your life is webdev</h1>
-        <p>Whatever the approach to development may be, 
-        the final program must satisfy some fundamental properties</p>
-        <button><span>get started</span></button>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, maximum-scale=1.0"
+    />
+    <title>WEBDEV</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="#" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="visually-hidden">webdev</h1>
+        <nav class="navigation__header">
+          <ul class="navigation">
+            <li><a href="#">About</a></li>
+            <li><a href="#">Syllabus</a></li>
+            <li class="logo">
+              <a href="#">
+                <svg
+                  width="44"
+                  height="45"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 44 45"
+                >
+                  <use xlink:href="assets/sprite.svg#logo" />
+                </svg>
+              </a>
+            </li>
+            <li><a href="#">Projects</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </nav>
+        <div class="header-content">
+          <h2>Your life is webdev</h2>
+          <p>
+            Whatever the approach to development may be, the final <br />
+            program must satisfy some fundamental properties
+          </p>
+          <button type="button" class="button" onclick="document.location='#'"><span>get started</span></button>
+        </div>
         <div class="socials">
-          <svg class="icon"></svg>
-          <svg class="icon"></svg>
-          <svg class="icon"></svg>
-          <svg class="icon"></svg>
+          <a href="#">
+            <svg
+              class="icon"
+              width="20"
+              height="20"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+            >
+              <use xlink:href="assets/sprite.svg#mail" />
+            </svg>
+          </a>
+          <a href="#">
+            <svg
+              class="icon"
+              width="20"
+              height="20"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+            >
+              <use xlink:href="assets/sprite.svg#facebook" x="7" y="5" />
+              <use xlink:href="assets/sprite.svg#ellipse" />
+            </svg>
+          </a>
+          <a href="#">
+            <svg
+              class="icon"
+              width="20"
+              height="20"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+            >
+              <use xlink:href="assets/sprite.svg#instagram" />
+            </svg>
+          </a>
+          <a href="#">
+            <svg
+              class="icon"
+              width="20"
+              height="20"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+            >
+              <use xlink:href="assets/sprite.svg#telegram" x="5" y="6" />
+              <use xlink:href="assets/sprite.svg#ellipse" />
+            </svg>
+          </a>
         </div>
-      </div>
-    </header>
-    <main>
-      <section class="rappresent">
-        <div class="content-block">
-          <h2>Rappresent your idea with <br>
-            a smart design
-          </h2>
-          <p>Tasks accompanying and related to programming include: 
-            testing, debugging, source code maintenance, implementation of 
-            build systems, and management of derived artifacts, such as the 
-            machine code of computer programs.
-          </p>
-          <button><span>get started</span></button>
-        </div>
-        <div class="image-block">
-          <img src="#" alt="development team">
-        </div>
-      </section>
-      <section class="our-community">
-        <div class="nav-items"><svg></svg><span>1</span><span>/</span><span>5</span><svg></svg></div>
-        <div class="text-cont">
-          <div></div>
-          <h3>our community</h3>
-          <p>A hacker is any skilled computer expert that uses their 
-            technical knowledge to overcome a problem, but it can also 
-            mean a security hacker in common language
-          </p>
-        </div>
-        <div class="slider-cont">
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-      </section>
-      <section class="implement">
-        <div class="image-block">
-          <img src="#" alt="laptop on the knees">
-        </div>
-        <div class="content-block">
-          <h2>Implement right code</h2>
-          <p>These might be considered part of the <strong>programming process</strong>, 
-            but often the term software development is used for this larger 
-            process with the term programming, implementation
-          </p>
-          <button><span>learn more</span></button>
-        </div>
-      </section>
-      <section class="subscribe">
-        <h3>sign up for our newsletter</h3>
-        <form>
-          <input type="email" name="email" placeholder="Email (Required)" required>
-          <button class="form-button"><svg></svg></button>
-        </form>
-      </section>
-      <section class="download">
-        <div class="text-block">
-          <h3>Download the app</h3>
-          <p>Machine code was the language of early programs, written in the instruction 
-            set of the particular machine, often in binary notation.
-          </p>
-          <div class="store-button-cont">
-            <div class="double-button">
-              <button><span>apple store</span></button>
-              <div><svg></svg></div>
+      </header>
+      <main>
+        <section class="rappresent">
+          <div class="content-block">
+            <h2>
+              Rappresent your idea with <br />
+              a smart design
+            </h2>
+            <p>
+              Tasks accompanying and related to programming include: testing,
+              debugging, source code maintenance,
+              <strong>implementation of build systems</strong>, and management
+              of derived artifacts, such as the machine code of computer
+              programs.
+            </p>
+            <button type="button" class="button button__left" onclick="document.location='#'">
+              <span>get started</span>
+            </button>
+          </div>
+          <div class="image-block">
+            <img src="assets/content-image-1.jpg" alt="development team" />
+          </div>
+        </section>
+        <section class="our-community">
+          <div class="nav-items">
+            <svg class="arrow" width="9" height="14" viewBox="0 0 9 14" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7.65685 1.34314L2 6.99999L7.65685 12.6568" />
+            </svg>
+            <span>1</span>
+            <span>/</span>
+            <span>5</span>
+            <svg class="arrow" width="9" height="14" viewBox="0 0 9 14" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1.34314 1.34314L6.99999 6.99999L1.34314 12.6568" />
+            </svg>
+          </div>
+          <div class="two-columns-layout">
+            <div class="text-content">
+              <div class="photo"></div>
+              <h3>our community</h3>
+              <p>
+                A hacker is any skilled computer expert that uses their
+                technical knowledge to overcome a problem, but it can also mean
+                a security hacker in common language
+              </p>
             </div>
-            <div class="double-button">
-              <button><span>play market</span></button>
-              <div><svg></svg></div>
+            <div class="slider-content">
+              <div></div>
+              <div></div>
+              <div></div>
             </div>
           </div>
-        </div>        
-      </section>
-    </main>
-    <footer>
-      <nav>
-        <ul class="navigation navigation__footer">
-          <li><a href="#">Credits</a></li>
-          <li><a href="#">Privacy</a></li>          
-          <li><a href="#">Our teams</a></li>          
-        </ul>
-      </nav>
-      <svg class="logo"></svg>
-      <div>by TonYem for RSS at 2020</div>
-    </footer>
-  </div>
-
- 
-</body>
+        </section>
+        <section class="implement">
+          <div class="image-block">
+            <img src="assets/content-image-2.jpg" alt="laptop on the knees" />
+          </div>
+          <div class="content-block">
+            <h2>Implement right code</h2>
+            <p>
+              These might be considered part of the
+              <strong>programming process</strong>, but often the term software
+              development is used for this larger process with the term
+              programming, implementation
+            </p>
+            <button type="button" class="button button__left" onclick="document.location='#'"><span>learn more</span></button>
+          </div>
+        </section>
+        <section class="subscribe">
+          <div class="form-container">
+            <h2>sign up for our newsletter</h2>
+            <form method="post" action="http://fe.it-academy.by/TestForm.php" target="_blank">
+              <input class="email" type="email" name="email" placeholder="E-mail" pattern=".+@.+" required />
+              <button type="button" class="button button__small" onclick="document.location='#'">
+                <svg
+                  width="17"
+                  height="14"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 17 14"
+                >
+                  <use xlink:href="assets/sprite.svg#check" />
+                </svg>
+              </button>
+            </form>
+          </div>
+        </section>
+        <section class="download">
+          <div class="text-block">
+            <h2>Download the app</h2>
+            <p>
+              Machine code was the language of early programs, written in the
+              instruction set of the particular machine, often in binary
+              notation.
+            </p>
+            <div class="buttons-cont">
+              <div class="double-button-container">
+                <button type="button" class="button button__double-1" onclick="document.location='#'"><span>apple store</span></button>
+                <button type="button" class="button button__double-2">
+                  <svg
+                  width="17"
+                  height="20"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 17 20"
+                >
+                  <use xlink:href="assets/sprite.svg#apple" />
+                </svg>
+                </button>
+              </div>
+              <div class="double-button-container">
+                <button type="button" class="button button__double-1" onclick="document.location='#'"><span>play market</span></button>
+                <button type="button" class="button button__double-2">
+                  <svg
+                  width="20"
+                  height="23"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 23"
+                >
+                  <use xlink:href="assets/sprite.svg#android" />
+                </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer>
+        <nav class="navigation__footer">
+          <ul>
+            <li><a href="#">Credits</a></li>
+            <li class="splitter"></li>
+            <li><a href="#">Privacy</a></li>
+            <li class="splitter"></li>
+            <li><a href="#">Our teams</a></li>
+            <li>
+              <a href="#">
+                <svg
+                  width="44"
+                  height="45"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 44 45"
+                >
+                  <use xlink:href="assets/sprite.svg#logo" />
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </nav>        
+        <div class="copyright">by TonYem for RSS at 2020</div>
+      </footer>
+    </div>
+  </body>
 </html>
+
+
+<!-- Shortcuts:
+
+div + tab
+alt + up / down
+alt + shift + down
+ctrl + x
+
+ctrl + D
+shift + f12
+ctrl + backspace        - cut by words 
+
+
+ctrl + shift + \         - jump to brackets
+ctrl + g                      - jump to specific line
+shift + alt + f            - prettify
+shift + alt + mouse - column select
+
+trim trailing whitespace
+split window
+-->
