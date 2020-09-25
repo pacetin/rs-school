@@ -20,16 +20,11 @@ class Calculator {
 
   appendNumber(number) {
     if (number === '.' && this.currentOperand.includes('.')) return;
-    this.currentOperand = this.currentOperand.toString() + number.toString();
-    //this.currentOperand = this.getRoundOff(this.currentOperand + number);
-    //console.log(this.currentOperand);    
+    this.currentOperand = this.currentOperand.toString() + number.toString();      
   };
 
-  /*getRoundOff(stringNumber) {    
-    console.log(`stringNumber=${stringNumber}`);   
-    let decimalDigits = stringNumber.split('.')[1];
-    console.log(stringNumber.split('.'));
-    console.log(`decimalDigits=${decimalDigits}`);
+ /* getRoundOff(stringNumber) {      
+    let decimalDigits = stringNumber.split('.')[1];    
     if (decimalDigits == null || decimalDigits == '') return stringNumber;
     else {
       let decimalLength = decimalDigits.length;
@@ -38,7 +33,7 @@ class Calculator {
   };*/
 
   chooseOperation(operation) {
-    if (this.currentOperand === '') return;
+    if (this.currentOperand === '' || this.currentOperand === 'Введены неверные данные') return;
     if (this.previousOperand !== '') {
       this.compute();
     } 
@@ -69,13 +64,14 @@ class Calculator {
         return;
     }
     this.readyToReset = true;    
-    this.currentOperand = computation;
+    this.currentOperand = (+computation.toFixed(10)).toString();
     this.operation = undefined;
     this.previousOperand = '';
   };
 
   getDisplayNumber(number) {
     const stringNumber = number.toString();
+    if (stringNumber === 'Введены неверные данные') return stringNumber;
     const integerDigits = parseFloat(stringNumber.split('.')[0]);
     const decimalDigits = stringNumber.split('.')[1];
     let integerDisplay
@@ -101,10 +97,50 @@ class Calculator {
       this.previousOperandTextElement.innerText = '';
     }
   };
+
+  power(exponent) {
+    if (this.currentOperand === '' || this.currentOperand === 'Введены неверные данные') return;
+    else {
+      this.previousOperand = `${this.getDisplayNumber(this.currentOperand)}×${this.getDisplayNumber(this.currentOperand)}`;
+      this.currentOperand = `${Math.pow(this.currentOperand, exponent)}`;
+      this.readyToReset = true;      
+      this.operation = undefined;      
+    }
+  };
+
+  sqrt() {
+    if (this.currentOperand === '' || this.currentOperand === 'Введены неверные данные') return;
+    else if (this.currentOperand < 0) {
+      this.previousOperand = `√(${this.getDisplayNumber(this.currentOperand)})`;
+      this.currentOperand = 'Введены неверные данные';    
+    }
+    else {
+      this.previousOperand = `√(${this.getDisplayNumber(this.currentOperand)})`;
+      this.currentOperand = `${Math.sqrt(this.currentOperand)}`;         
+    }
+    this.readyToReset = true;      
+    this.operation = undefined;
+  };
+
+  plusMinus() {
+    if (this.currentOperand === '' || this.currentOperand === 'Введены неверные данные') return;
+    else {
+      this.currentOperand = -this.currentOperand;
+    }  
+  };
+
+  updateDisplayPowSqrt() {
+    this.currentOperandTextElement.innerText = this.getDisplayNumber(this.currentOperand);    
+    this.previousOperandTextElement.innerText = this.previousOperand;
+    this.previousOperand = '';  
+  };
 }
 
 const numberButtons = document.querySelectorAll('[data-number]');
 const operationButtons = document.querySelectorAll('[data-operation]');
+const powButton= document.querySelector('[data-pow]');
+const sqrtButton= document.querySelector('[data-sqrt]');
+const negativeButton= document.querySelector('[data-minus]');
 const equalsButton = document.querySelector('[data-equals]');
 const deleteButton = document.querySelector('[data-delete]');
 const allClearButton = document.querySelector('[data-all-clear]');
@@ -115,18 +151,15 @@ const calculator  = new Calculator (previousOperandTextElement, currentOperandTe
 
 
 numberButtons.forEach(button => {
-  button.addEventListener("click", () => {
-
-      if(calculator.previousOperand === "" &&
-      calculator.currentOperand !== "" &&
-  calculator.readyToReset) {
-          calculator.currentOperand = "";
-          calculator.readyToReset = false;
+  button.addEventListener( 'click', () => {
+    if(calculator.readyToReset) {
+        calculator.currentOperand = '';
+        calculator.readyToReset = false;
       }
-      calculator.appendNumber(button.innerText)
-      calculator.updateDisplay();
-  })
-})
+    calculator.appendNumber(button.innerText)
+    calculator.updateDisplay();
+  } )
+} )
 
 operationButtons.forEach( button => {
   button.addEventListener( 'click', () => {
@@ -147,5 +180,20 @@ allClearButton.addEventListener( 'click', button => {
 
 deleteButton.addEventListener( 'click', button => {
   calculator.delete();
+  calculator.updateDisplay();
+} )
+
+powButton.addEventListener( 'click', button => {
+  calculator.power(2);
+  calculator.updateDisplayPowSqrt();
+} )
+
+sqrtButton.addEventListener( 'click', button => {
+  calculator.sqrt();
+  calculator.updateDisplayPowSqrt();
+} )
+
+negativeButton.addEventListener( 'click', button => {
+  calculator.plusMinus();
   calculator.updateDisplay();
 } )
