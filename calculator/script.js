@@ -60,6 +60,9 @@ class Calculator {
       case '÷':
         computation = previous / current;
         break
+      case '^':
+        computation = Math.pow(previous, current);
+        break
       default:
         return;
     }
@@ -98,7 +101,7 @@ class Calculator {
     }
   };
 
-  power(exponent) {
+  /*power(exponent) {
     if (this.currentOperand === '' || this.currentOperand === 'Введены неверные данные') return;
     else {
       this.previousOperand = `${this.getDisplayNumber(this.currentOperand)}×${this.getDisplayNumber(this.currentOperand)}`;
@@ -106,7 +109,7 @@ class Calculator {
       this.readyToReset = true;      
       this.operation = undefined;      
     }
-  };
+  };*/
 
   sqrt() {
     if (this.currentOperand === '' || this.currentOperand === 'Введены неверные данные') return;
@@ -184,8 +187,8 @@ deleteButton.addEventListener( 'click', button => {
 } )
 
 powButton.addEventListener( 'click', button => {
-  calculator.power(2);
-  calculator.updateDisplayPowSqrt();
+  calculator.chooseOperation('^');    
+  calculator.updateDisplay();
 } )
 
 sqrtButton.addEventListener( 'click', button => {
