@@ -1,0 +1,224 @@
+$color-primary: #F1CDB3;
+$color-primary-light: #FDDCC4;
+
+$color-dark-3xl: #292929;
+$color-dark-xl: #4C4C4C;
+$color-dark-l: #545454;
+$color-dark-m: #B2B2B2;
+$color-dark-s: #CDCDCD;
+
+$color-light-xl: #FFFFFF;
+$color-light-l: #F6F6F6;
+$color-light-s: #FAFAFA;
+
+@mixin h2 {
+  font: {
+  family: Georgia;
+  size: 4.4rem;  
+  weight: 400;
+  }
+  font-style: normal;
+  line-height: 5.7rem;
+}
+
+@mixin paragraph-l {
+  font: {
+  family: Arial;
+  size: 1.5rem;  
+  weight: 400;
+  }
+  font-style: normal;
+  line-height: 2.4rem;
+  letter-spacing: 0rem;
+}
+
+@mixin logo_title {
+  font: {
+  family: Georgia;
+  size: 3.2rem;  
+  weight: 400;
+  }
+  font-style: normal;
+  line-height: 3.5rem;
+  letter-spacing: 0.2rem; 
+}
+
+@mixin logo_subtitle {
+  font: {
+    family: Arial;
+    size: 1.3rem;  
+    weight: 400;
+  }
+  font-style: normal;
+  line-height: 1.5rem;
+  letter-spacing: 0.1em; 
+}
+
+
+
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+:root {
+  font-size: 10px;
+}
+
+.wrapper {
+  max-width: 1920px;
+  margin: 0 auto;  
+}
+
+.wrapper_start-screen-wrapper{  
+  background: url(/assets/noise_transparent.png) repeat,
+              radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%),
+              #211F20;
+}
+
+.start-screen-container {
+  height: 908px;
+  margin: 0 auto;
+  max-width: 1200px;
+  display: flex;   
+  flex-direction: column;    
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.visually-hidden {
+	position: absolute;
+	clip: rect(1px 1px 1px 1px);
+	clip: rect(1px, 1px, 1px, 1px);
+	padding:0;
+	border:0;
+	height: 1px; 
+	width: 1px; 
+	overflow: hidden;
+}
+
+.header { 
+  height: 60px;
+  margin-top: 60px;
+  display: flex;  
+  justify-content: space-between;
+  align-items: stretch;    
+}
+
+.logo {  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;  
+}
+
+.logo__title {
+  @include logo_title;
+  color: $color-primary;
+}
+
+.logo__subtitle {
+  margin-left: 4px;
+  @include logo_subtitle;
+  color: $color-light-xl;
+}
+
+.menu {
+  flex: 0 0 443px;
+  display: flex;
+  align-items: center;
+
+  .list {
+    flex: 0 1 100%;
+    display: flex;
+    flex-wrap:nowrap;
+    justify-content: space-between;
+    list-style-type: none;
+  }
+  .list__item {
+    @include paragraph-l;
+    color: #CDCDCD; 
+  }
+  .list__item:hover {
+    color: $color-light-s
+  } 
+  .list__item:first-child {
+    color: $color-light-s;    
+    border-bottom: solid $color-primary 0.35rem;
+  }  
+  .list__link {
+    text-decoration: none;
+    color: inherit;
+  }     
+}
+
+
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+
+.hero {  
+  height: 728px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;    
+}
+
+.hero__content {
+  height: 321px;
+  margin-bottom: 80px;
+  display: flex;
+  flex-wrap: wrap;  
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+.hero__title {
+  flex: 0 1 321px;
+  margin-bottom: 42px;  
+  @include h2;
+  color: $color-light-xl;
+}
+
+.hero__text {
+  flex: 0 1 460px;
+  margin-bottom: 38px;   
+  @include paragraph-l();
+  color: $color-dark-s;
+}
+
+button, 
+button:active, 
+button:focus {
+  outline: none;
+  border: none;
+  cursor: pointer;  
+}
+
+.button {
+  height: 52px;
+  padding: 15px 45px 15px 45px;
+  border: 2px solid $color-primary;
+  background-color: $color-primary;
+  border-radius: 10rem;
+  font-family: Georgia;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.7rem;
+  line-height: 2.2rem;
+  letter-spacing: 0.08rem;
+  color: $color-dark-3xl;
+}
+
+.button:hover {
+  background-color: $color-primary-light;
+  cursor: pointer;
+}
+
+
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+
+.wrapper_about-wrapper{
+  height: 588px;
+  background-color: $color-light-xl;
+}
