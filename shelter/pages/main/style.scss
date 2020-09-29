@@ -21,6 +21,39 @@ $color-light-s: #FAFAFA;
   line-height: 5.7rem;
 }
 
+@mixin h3 {
+  font: {
+  family: Georgia;
+  size: 3.5rem;  
+  weight: 400;
+  }
+  font-style: normal;
+  line-height: 4.5rem;
+  letter-spacing: 0.22rem;
+}
+
+@mixin h4 {
+  font: {
+  family: Georgia;
+  size: 2.0rem;  
+  weight: 400;
+  }
+  font-style: normal;
+  line-height: 2.3rem;
+  letter-spacing: 0.115rem;
+}
+
+@mixin h5 {
+  font: {
+  family: Georgia;
+  size: 1.5rem;  
+  weight: 400;
+  }
+  font-style: normal;
+  line-height: 1.7rem;
+  letter-spacing: 0.087rem;
+}
+
 @mixin paragraph-l {
   font: {
   family: Arial;
@@ -218,7 +251,199 @@ button:focus {
 
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 
-.wrapper_about-wrapper{
-  height: 588px;
+.wrapper_about-wrapper{  
   background-color: $color-light-xl;
+}
+
+.about-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 1200px;
+  height: 588px;
+}
+
+.about {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.about__image {
+  flex: 0 1 49.5%;
+  text-align: center;
+}
+
+.about__image img {
+  display: inline-block;
+  margin-left: 55px;
+  margin-bottom: 20px;
+}
+
+.about__content {
+  flex: 0 1 50.5%;
+  height: 408px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: stretch;  
+}
+
+.about__title {
+  flex: 0 1 370px; 
+  @include h3;
+  color: $color-dark-l;
+  margin-top: 17px;  
+}
+
+.about__text {
+  flex: 0 1 430px;
+  margin-top: 12px;   
+  @include paragraph-l();
+  color: $color-dark-xl;
+}
+
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+
+.wrapper_friends-wrapper{  
+  background-color: $color-light-l;
+}
+
+.friends-container {
+  margin: 0 auto;
+  max-width: 1200px;
+  height: 877px;
+}
+
+.friends {
+
+}
+
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+
+.wrapper_help-wrapper{  
+  background-color: $color-light-xl;
+}
+
+.help-container {
+  margin: 0 auto;
+  max-width: 1200px;
+  height: 611px;
+}
+
+.help {
+
+}
+
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+
+.wrapper_donation-wrapper{  
+  background-color: $color-light-l;
+}
+
+.donation-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 1200px;
+  height: 464px;
+}
+
+.donation {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 15px;  
+}
+
+.donation__image {
+  flex: 0 1 56.4%;
+  text-align: right;
+}
+
+.donation__image img {
+  display: inline-block;
+  margin-right: 30px;
+  margin-top: 10px;  
+}
+
+.donation__content {
+  flex: 0 1 43.6%;
+  height: 284px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;  
+}
+
+.donation__title {
+  flex: 0 1 300px; 
+  @include h3;
+  color: $color-dark-l;
+  margin-bottom: 16px;     
+}
+
+.donation__subtitle {
+  flex: 0 1 307px; 
+  @include h5;
+  color: $color-dark-l;
+  margin-bottom:15px;      
+}
+
+.donation__link {
+  flex: 0 1 349px;
+  display:block;
+  height: 43px;
+  margin-bottom:16px;   
+  padding: 10px 15px;    
+  border-radius: 10px;
+  background-color: $color-primary;
+  text-decoration: none;  
+}
+
+.donation__link:hover {
+  cursor: pointer;
+  background-color: $color-primary-light;
+}
+
+.donation__link svg {
+  vertical-align: middle;
+  fill: $color-dark-3xl;
+}
+
+.donation__link span {
+  vertical-align: middle;
+  margin-left: 13px;
+  @include h4;
+  color: $color-dark-l;
+}
+
+.donation__text {
+  flex: 0 1 380px;   
+  font-family: Arial;
+  font-style: italic;
+  font-weight: normal;
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+  color: $color-dark-m;
+}
+
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+
+.wrapper_footer-wrapper{  
+  background: url(/assets/noise_transparent.png), 
+              radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), 
+              #211F20;
+}
+
+.footer-container {
+  margin: 0 auto;
+  max-width: 1200px;
+  height: 351px;
+}
+
+.footer {
+
 }
