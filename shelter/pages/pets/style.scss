@@ -18,7 +18,7 @@ $color-light-s: #FAFAFA;
   weight: 400;
   }
   font-style: normal;
-  line-height: 5.75rem;
+  line-height: 5.8rem;
 }
 
 @mixin h3 {
@@ -106,10 +106,8 @@ $color-light-s: #FAFAFA;
 }
 
 .header {
-  width: 100vw;
-  max-width: 100%;
-  position: absolute;
-  padding: 6rem 0rem;
+  background-color: $color-light-xl;
+  padding: 3rem 0rem;
 
   .wrapper {  
     max-width: 1200px;
@@ -139,14 +137,14 @@ $color-light-s: #FAFAFA;
 
 .logo__title {
   @include logo_title;
-  color: $color-primary;
+  color: $color-dark-l;
 }
 
 .logo__subtitle {
   margin-top: 1rem;
   margin-left: 0.4rem;
   @include logo_subtitle;
-  color: $color-light-xl;
+  color: $color-dark-3xl;
 }
 
 .menu {
@@ -163,65 +161,19 @@ $color-light-s: #FAFAFA;
   }
   .list__item {
     @include paragraph-l;
-    color: $color-dark-s; 
+    color: $color-dark-l; 
   }
   .list__item:hover {
-    color: $color-light-s
+    color: $color-dark-3xl;
   } 
-  .list__item:first-child {
-    color: $color-light-s;    
+  .list__item:nth-child(2) {
+    color: $color-dark-3xl;    
     border-bottom: solid $color-primary 0.3rem;
   }  
   .list__link {
     text-decoration: none;
     color: inherit;
   }     
-}
-
-
-/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-
-.hero {
-  background: url(/assets/noise_transparent@2x.png) repeat,
-              radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%),
-              #211F20;
-  padding-top: 18rem;
-
-  .wrapper {  
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
-}
-
-.hero__content {
-  flex: 0 1 50%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: flex-start
-}
-
-.hero__image {
-  flex: 0 1 50%;
-  height: 728px;
-}
-
-.hero__title {
-  flex: 0 1 321px;
-  margin-top: 16.3rem;
-  margin-bottom: 4.1rem;  
-  @include h2;
-  color: $color-light-xl;
-}
-
-.hero__text {
-  flex: 0 1 460px;
-  margin-bottom: 4.1rem;   
-  @include paragraph-l();
-  color: $color-dark-s;
 }
 
 .button:active, 
@@ -257,60 +209,6 @@ $color-light-s: #FAFAFA;
 
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 
-
-.about {
-  background-color: $color-light-xl;
-  padding: 8rem 0rem 10rem;    
-
-  .wrapper { 
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;      
-  }
-}
-
-.about__image {
-  flex: 0 1 49.5%;
-  height: 408px;
-  text-align: center;
-  img {
-    display: inline-block;
-    margin-left: 5.6rem;
-  }
-}
-
-.about__content {
-  flex: 0 1 50.5%;  
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding-left: 0.1rem;   
-}
-
-.about__title {
-  flex: 0 1 370px; 
-  @include h3;
-  color: $color-dark-l;
-  margin-top: 1.5rem;  
-  margin-bottom: 2.4rem;
-}
-
-.about__text {
-  flex: 0 1 430px;     
-  @include paragraph-l();
-  color: $color-dark-xl;
-  margin-bottom: 2.5rem;
-}
-
-.about__text:last-child {
-  margin-bottom: 1.5rem;
-}
-
-/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-
 .pets {
   background-color: $color-light-l;
   padding: 8rem 0rem 10rem;    
@@ -330,20 +228,23 @@ $color-light-s: #FAFAFA;
   text-align: center;
   margin-left: 0.2rem;
   margin-top: 0.1rem;
-  margin-bottom: 6rem; 
+  margin-bottom: 4.5rem; 
   @include h3;
   color: $color-dark-l;
 }
 
-.slider {
+.pets__cards {
   flex: 0 1 100%;
+  margin-bottom: 4.5rem;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
 }
 
 .card {
   flex: 0 0 270px;
+  margin: 1.525rem 0rem;
   border-radius: 1rem;
   text-align: center;
   background-color: $color-light-s;
@@ -353,10 +254,6 @@ $color-light-s: #FAFAFA;
 
 .card:hover {
   background-color: $color-light-xl;  
-}
-
-.card:nth-child(2), .card:nth-child(3){
-  margin-right: 3.7rem;
 }
 
 .card__image {
@@ -373,6 +270,14 @@ $color-light-s: #FAFAFA;
 .button_card-button {
   background-color: transparent;
   margin-bottom: 3rem;
+}
+
+.pets__buttons-container {
+  flex: 0 1 340px;
+  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .round-button {
@@ -402,183 +307,24 @@ $color-light-s: #FAFAFA;
 
 .round-button:disabled {
   border: solid $color-dark-s 2px;
-  .arrow-icon {  
-    fill: $color-dark-s;  
-  }  
+  color: $color-dark-s;  
 }
 
-.arrow-icon {  
-  fill: $color-dark-3xl;  
+.round-button:disabled:hover {
+  border: solid $color-dark-s 2px;
+  background-color: transparent;
+  cursor: default; 
 }
 
-.arrow-icon_mirror {
-  transform: rotate(180deg);
-}
-
-.button_pets-button {
-  margin-top: 6rem;
-}
-
-/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-
-.help {
-  background-color: $color-light-xl;
-  padding: 8rem 0rem 10rem;    
-
-  .wrapper { 
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;      
-  }
-}
-
-.help {
-  .list {
-    flex: 0 1 100%;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    align-items: stretch;    
-    list-style-type: none;
-    padding: 0.5rem 2.7rem 0rem;  
-  }
-
-  .list_4 {  
-    padding: 0rem 11.1rem;
-    
-    .list__item:first-child {
-      .list__icon {
-        margin-top: 4px;
-      }
-    }
-
-    .list__item:nth-child(3) {
-      .list__icon {
-        margin-top: 5px;
-      }
-    }
-  }
-
-  .list__item {
-    flex: 1 1 auto;    
-    height: 113px;        
-    display: flex;
-    flex-direction: column;  
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 5.5rem;
-
-    .list__icon {
-      fill: $color-primary;
-    }
-  
-    .list__text {
-      @include h4;
-      color: $color-dark-l;
-      margin-bottom: 0.1rem;    
-    }
-  }  
-}
-
-.help__title {
-  flex: 0 1 310px;
-  text-align: center;
-  margin-top: 0.1rem;
-  margin-left: 0.2rem; 
-  @include h3;
-  color: $color-dark-l;
-}
-
-/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-
-.donation {
-  background-color: $color-light-xl;
-  padding: 8rem 0rem 10rem;    
-
-  .wrapper { 
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;  
-  }
-}
-
-.donation__image {
-  flex: 0 1 56.4%;
-  text-align: right;
-}
-
-.donation__image img {
-  display: inline-block;
-  margin-right: 3.0rem;
-  margin-top: 0.3rem;  
-}
-
-.donation__content {
-  flex: 0 1 43.6%;  
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding-bottom: 0.2rem;  
-}
-
-.donation__title {
-  flex: 0 1 300px; 
-  @include h3;
-  color: $color-dark-l;
-  margin-top: 0.1rem;     
-  margin-bottom: 2.0rem;
-}
-
-.donation__subtitle {
-  flex: 0 1 307px; 
-  @include h5;
-  color: $color-dark-l;
-  margin-bottom:2.0rem;      
-}
-
-.donation__link {
-  flex: 0 1 349px;
-  display:block;
-  height: 43px;
-  margin-bottom:2.0rem;   
-  padding: 1rem 1.5rem;    
-  border-radius: 10px;
-  background-color: $color-primary;
-  text-decoration: none;  
-}
-
-.donation__link:hover {
-  cursor: pointer;
-  background-color: $color-primary-light;
-}
-
-.donation__link svg {
-  vertical-align: middle;
-  fill: $color-dark-3xl;
-}
-
-.donation__link span {
-  vertical-align: middle;
-  margin-left: 13px;
+.round-button_text {
   @include h4;
-  color: $color-dark-l;
+  color: $color-dark-3xl;
 }
 
-.donation__text {
-  flex: 0 1 380px;   
-  font-family: Arial;
-  font-style: italic;
-  font-weight: normal;
-  font-size: 1.2rem;
-  line-height: 1.8rem;
-  color: $color-dark-m;
+.round-button_colored {  
+  background-color: $color-primary;
 }
+
 
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 
@@ -599,7 +345,7 @@ $color-light-s: #FAFAFA;
 
 .contacts {
   flex: 0 1 auto;
-  padding: 1.6rem 0rem 0rem;
+  margin-top: 1.7rem;
   display: flex;
   flex-wrap: wrap;  
   justify-content: flex-start;
@@ -612,7 +358,7 @@ $color-light-s: #FAFAFA;
 
 .location {
   flex: 0 1 auto;
-  padding: 1.6rem 0rem 0rem;
+  margin-top: 1.7rem;
   margin-right: 4.8rem;
   display: flex;
   flex-wrap: wrap;  
@@ -648,7 +394,7 @@ $color-light-s: #FAFAFA;
 }
 
 .location .contacts__item span {
-  margin-left: 1.2rem; 
+  margin-left: 1.4rem; 
 }
 
 .contacts__item:first-child {
@@ -657,7 +403,7 @@ $color-light-s: #FAFAFA;
 
 .location {
   .contacts__item:first-child {
-    margin-bottom: 3.2rem;
+    margin-bottom: 3.4rem;
   }
   .contacts__item:last-child {
     margin-bottom: 0.9rem;
@@ -675,6 +421,3 @@ $color-light-s: #FAFAFA;
    fill: $color-primary;
    vertical-align: middle;
 }
-  
-
-

@@ -49,13 +49,14 @@
   font-size: 3.2rem;
   font-weight: 400;
   font-style: normal;
-  line-height: 3.5rem;
+  line-height: 3.55rem;
   letter-spacing: 0.2rem;
   color: #F1CDB3;
 }
 
 .logo__subtitle {
-  margin-left: 4px;
+  margin-top: 1rem;
+  margin-left: 0.4rem;
   font-family: Arial;
   font-size: 1.3rem;
   font-weight: 400;
@@ -132,7 +133,7 @@
   font-size: 4.4rem;
   font-weight: 400;
   font-style: normal;
-  line-height: 5.8rem;
+  line-height: 5.75rem;
   color: #FFFFFF;
 }
 
