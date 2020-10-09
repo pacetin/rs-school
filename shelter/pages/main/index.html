@@ -4,8 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Shelter</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Shelter</title>  
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="shortcut icon" href="#" type="image/x-icon">
 </head>
 <body>
   <header class="header">   
@@ -28,7 +29,7 @@
             </a>
           </li>
           <li class="list__item">
-            <a href="#" class="list__link">
+            <a href="/pages/pets/index.html" class="list__link">
               Our pets
             </a>
           </li>
@@ -94,26 +95,30 @@
               <use xlink:href="/assets/sprite.svg#arrow" />            
             </svg>
           </button>
-          <div class="card">            
-            <img class="card__image" src="/assets/pets-katrine.jpg" alt="pet's picture">
-              <p class="card__title">Katrine</p>
-              <button type="button" class="button button_card-button">
-                Learn more
-              </button>
-          </div>
-          <div class="card">
-            <img class="card__image" src="/assets/pets-jennifer.jpg" alt="pet's picture">
-            <p class="card__title">Jennifer</p>
-            <button type="button" class="button button_card-button">
-              Learn more
-            </button>   
-          </div>
-          <div class="card">
-            <img class="card__image" src="/assets/pets-woody.jpg" alt="pet's picture">
-              <p class="card__title">Woody</p>
-              <button type="button" class="button button_card-button">
-                Learn more
-              </button>
+          <div class="cards">
+            <div class="cards-container">
+              <div class="card">            
+                <img class="card__image" src="/assets/pets-katrine.jpg" alt="pet's picture">
+                  <p class="card__title">Katrine</p>
+                  <button type="button" class="button button_card-button">
+                    Learn more
+                  </button>
+              </div>
+              <div class="card">
+                <img class="card__image" src="/assets/pets-jennifer.jpg" alt="pet's picture">
+                <p class="card__title">Jennifer</p>
+                <button type="button" class="button button_card-button">
+                  Learn more
+                </button>   
+              </div>
+              <div class="card">
+                <img class="card__image" src="/assets/pets-woody.jpg" alt="pet's picture">
+                  <p class="card__title">Woody</p>
+                  <button type="button" class="button button_card-button">
+                    Learn more
+                  </button>
+              </div>
+            </div>
           </div>
           <button type="button" class="round-button">
             <svg class="arrow-icon arrow-icon_mirror" width="14" height="6" viewBox="0 0 14 6" xmlns="http://www.w3.org/2000/svg">
@@ -129,7 +134,7 @@
     <section class="help">
       <div class="wrapper">                
         <h3 class="help__title">How you can help <br> our shelter</h3>
-        <ul class="list">
+        <ul class="list list__1280px">
             <li class="list__item">
               <svg class="list__icon"  width="48" height="60" viewBox="0 0 48 60" xmlns="http://www.w3.org/2000/svg">
                 <use xlink:href="/assets/sprite.svg#food" />
@@ -161,7 +166,7 @@
               <p class="list__text">Shampoos</p>
             </li>            
         </ul>
-        <ul class="list list_4">
+        <ul class="list list_4 list__1280px">
           <li class="list__item">
             <svg class="list__icon" width="60" height="55" viewBox="0 0 60 55" xmlns="http://www.w3.org/2000/svg">
               <use xlink:href="/assets/sprite.svg#vitamins" />
@@ -186,6 +191,62 @@
             </svg>
             <p class="list__text">Sleeping areas</p>
           </li>
+        </ul>
+        <ul class="list list__768px">
+          <li class="list__item">
+            <svg class="list__icon"  width="48" height="60" viewBox="0 0 48 60" xmlns="http://www.w3.org/2000/svg">
+              <use xlink:href="/assets/sprite.svg#food" />
+            </svg>
+            <p class="list__text">Pet food</p>
+          </li>
+          <li class="list__item">
+            <svg class="list__icon"  width="61" height="60" viewBox="0 0 61 60" xmlns="http://www.w3.org/2000/svg">
+              <use xlink:href="/assets/sprite.svg#transportation" />
+            </svg>
+            <p class="list__text">Transportation</p>
+          </li>
+          <li class="list__item">
+            <svg class="list__icon"  width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+              <use xlink:href="/assets/sprite.svg#toys" />
+            </svg>
+            <p class="list__text">Toys</p>
+          </li>
+          <li class="list__item">
+            <svg class="list__icon" width="60" height="57" viewBox="0 0 60 57" xmlns="http://www.w3.org/2000/svg">
+              <use xlink:href="/assets/sprite.svg#bowls" />
+            </svg>
+            <p class="list__text">Bowls and cups</p>
+          </li>
+          <li class="list__item">
+            <svg class="list__icon"  width="32" height="60" viewBox="0 0 32 60" xmlns="http://www.w3.org/2000/svg">
+              <use xlink:href="/assets/sprite.svg#shampoos" />
+            </svg>
+            <p class="list__text">Shampoos</p>
+          </li>
+          <li class="list__item">
+            <svg class="list__icon" width="60" height="55" viewBox="0 0 60 55" xmlns="http://www.w3.org/2000/svg">
+              <use xlink:href="/assets/sprite.svg#vitamins" />
+            </svg>
+            <p class="list__text">Vitamins</p>
+          </li>            
+          <li class="list__item">
+            <svg class="list__icon" width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+              <use xlink:href="/assets/sprite.svg#medicines" />
+            </svg>
+            <p class="list__text">Medicines</p>
+          </li>
+          <li class="list__item">
+            <svg class="list__icon" width="60" height="53" viewBox="0 0 60 53"  xmlns="http://www.w3.org/2000/svg">
+              <use xlink:href="/assets/sprite.svg#collars" />
+            </svg>
+            <p class="list__text">Collars / leashes</p>
+          </li>
+          <li class="list__item">
+            <svg class="list__icon" width="57" height="60" viewBox="0 0 57 60" xmlns="http://www.w3.org/2000/svg">
+              <use xlink:href="/assets/sprite.svg#sleeping-area" />
+            </svg>
+            <p class="list__text">Sleeping areas</p>
+          </li>            
         </ul>
       </div>
     </section>
@@ -219,7 +280,7 @@
         <ul class="footer-list">
           <li class="contacts__item">
             <a href="mailto:email@shelter.com" class="contacts__link" target="_blank">
-              <svg class="contacts__icon" width="40" height="26" viewBox="0 0 40 26"   xmlns="http://www.w3.org/2000/svg">
+              <svg class="contacts__icon" width="40" height="26" viewBox="0 0 40 26" xmlns="http://www.w3.org/2000/svg">
                 <use xlink:href="/assets/sprite.svg#mail" />
               </svg>
               <span>email@shelter.com</span>
