@@ -16,6 +16,10 @@
 .header {
   background-color: #FFFFFF;
   padding: 3rem 0rem;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
 }
 .header .wrapper {
   max-width: 1200px;
@@ -97,6 +101,10 @@
   color: inherit;
 }
 
+.hamburger-menu {
+  display: none;
+}
+
 .button:active,
 .button:focus {
   outline: none;
@@ -130,7 +138,7 @@
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 .pets {
   background-color: #F6F6F6;
-  padding: 8rem 0rem 10rem;
+  padding: 20rem 0rem 10rem;
 }
 .pets .wrapper {
   max-width: 1200px;
@@ -267,32 +275,23 @@
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  align-items: stretch;
+  align-items: flex-start;
 }
 
-.contacts {
+.contacts, .location {
   flex: 0 1 auto;
-  margin-top: 1.7rem;
+  padding: 1.6rem 0rem 0rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: flex-start;
-}
-.contacts .footer__title {
-  flex: 0 1 280px;
 }
 
 .location {
-  flex: 0 1 auto;
-  margin-top: 1.7rem;
   margin-right: 4.8rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: flex-start;
 }
 .location .footer__title {
-  flex: 0 1 270px;
+  margin-bottom: 3.4rem;
 }
 
 .footer__image {
@@ -308,7 +307,8 @@
   line-height: 4.5rem;
   letter-spacing: 0.21rem;
   color: #FFFFFF;
-  margin-bottom: -1.8rem;
+  margin-bottom: 4.3rem;
+  flex: 0 1 280px;
 }
 
 .contacts__item {
@@ -321,8 +321,8 @@
   margin-left: 1.5rem;
 }
 
-.location .contacts__item span {
-  margin-left: 1.4rem;
+.contacts__item span {
+  margin-left: 1.5rem;
 }
 
 .contacts__item:first-child {
@@ -330,10 +330,10 @@
 }
 
 .location .contacts__item:first-child {
-  margin-bottom: 3.4rem;
+  margin-bottom: 3.3rem;
 }
 .location .contacts__item:last-child {
-  margin-bottom: 0.9rem;
+  margin-bottom: 0rem;
 }
 
 .contacts__link {
@@ -351,6 +351,290 @@
 .contacts__icon {
   fill: #F1CDB3;
   vertical-align: middle;
+}
+
+@media only all and (min-width: 768px) and (max-width: 1279px) {
+  .header {
+    padding: 3rem 0rem;
+  }
+  .header .wrapper {
+    margin: 0 3rem;
+  }
+
+  .pets {
+    padding: 20rem 0rem 7.5rem;
+  }
+  .pets .wrapper {
+    margin: 0 3em;
+  }
+
+  .pets__title {
+    margin-left: 0.2rem;
+    margin-top: 0.1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .pets__cards {
+    flex: 0 1 82%;
+    height: 1380px;
+    overflow: hidden;
+    margin-bottom: 4rem;
+  }
+
+  .card {
+    margin: 1.5rem 0rem;
+  }
+
+  .footer {
+    padding: 3.1rem 0rem 0rem;
+  }
+  .footer .wrapper {
+    margin: 0 3rem;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .contacts {
+    flex: 0 1 280px;
+    padding: 0rem 0rem;
+    margin-left: 0.4rem;
+  }
+
+  .location {
+    flex: 0 1 302px;
+    padding: 0rem 0rem;
+    margin-right: 0.4rem;
+  }
+
+  .footer__image {
+    flex: 0 1 100%;
+    margin-top: 6.5rem;
+    text-align: center;
+  }
+
+  .contacts__item span {
+    width: 200px;
+  }
+
+  .location .contacts__item span {
+    width: 260px;
+    margin-left: 1.3rem;
+  }
+
+  .location .footer__title {
+    margin-bottom: 3.3rem;
+  }
+  .location .contacts__item:first-child {
+    margin-bottom: 3.4rem;
+  }
+}
+@media only all and (max-width: 767px) {
+  .header .wrapper {
+    margin: 0 1rem;
+  }
+
+  .menu.menu__1280px {
+    display: none;
+  }
+
+  .hamburger-menu {
+    display: block;
+  }
+
+  .hidden-button {
+    display: none;
+  }
+
+  /*.menu {
+    position: absolute;
+    top: 0;
+    left: -270px;
+    z-index: 2;
+    list-style:none;
+    padding: 20px;
+    margin: 0;
+    width: 270px;
+    height: 100vh;
+    background-color: #fff;
+    transition: left 0.4s ease;
+  }
+
+  .menu > li > a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .menu > li {
+    list-style: none;
+    color: #191b32;
+    font-family: "Montserrat", Sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-style: normal;
+    line-height: 1.5em;
+    letter-spacing: 1.2px;
+    margin-bottom: 15px;
+  }
+
+  .menu > li > a:hover {
+    color:#32baa6;
+  }
+  .menu > li:first-child {
+    color:#32baa6;
+  }*/
+  .menu-button {
+    background-color: #fff;
+    padding: 7px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    cursor: pointer;
+    transition: left 0.23s;
+    z-index: 3;
+    width: 35px;
+  }
+
+  .menu-button span {
+    display: block;
+    height: 3px;
+    border-radius: 2px;
+    background-color: #000;
+    margin: 5px 0 0;
+    transition: all 0.1s linear 0.23s;
+    position: relative;
+  }
+
+  .menu-button span.first {
+    margin-top: 0;
+  }
+
+  .hidden-button:checked ~ .menu-button {
+    left: 235px;
+    background-color: #fff;
+  }
+
+  .hidden-button:checked ~ .menu {
+    left: 0;
+  }
+
+  .hidden-button:checked ~ .menu-button span.first {
+    transform: rotate(45deg);
+    top: 8px;
+    background-color: #000;
+  }
+
+  .hidden-button:checked ~ .menu-button span.second {
+    opacity: 0;
+  }
+
+  .hidden-button:checked ~ .menu-button span.third {
+    transform: rotate(-45deg);
+    top: -8px;
+    background-color: #000;
+  }
+
+  .pets {
+    padding: 16.2rem 0rem 4.2rem;
+  }
+  .pets .wrapper {
+    margin: 0 1rem;
+  }
+
+  .pets__title {
+    flex: 0 0 300px;
+    margin-left: 0rem;
+    margin-top: 0rem;
+    margin-bottom: 4.2rem;
+    font-family: Georgia;
+    font-size: 2.5rem;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 3.2rem;
+    letter-spacing: 0.15rem;
+  }
+
+  .pets__cards {
+    flex: 0 1 500px;
+    height: 1365px;
+    overflow: hidden;
+    justify-content: center;
+    margin-bottom: 4.2rem;
+  }
+
+  .card {
+    margin: 0rem 0rem 3.13rem;
+  }
+
+  .footer {
+    padding: 3rem 0rem 0rem;
+  }
+  .footer .wrapper {
+    margin: 0 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .contacts {
+    flex: 0 0 100%;
+    justify-content: center;
+    padding: 0rem 0rem;
+    margin-left: 0rem;
+    margin-bottom: 4rem;
+  }
+
+  .location {
+    flex: 1 0 300px;
+    justify-content: center;
+    padding: 0rem 0rem;
+    margin-right: 0rem;
+  }
+
+  .footer__image {
+    flex: 1 1 100%;
+    height: 269px;
+    margin-top: 4rem;
+    text-align: center;
+  }
+
+  .footer__image img {
+    height: 269px;
+  }
+
+  .footer__title {
+    text-align: center;
+    font-family: Georgia;
+    font-size: 2.5rem;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 3.2rem;
+    letter-spacing: 0.15rem;
+  }
+
+  .footer-list {
+    flex: 0 0 100%;
+  }
+
+  .contacts__item {
+    text-align: center;
+  }
+  .contacts__item span {
+    margin-left: 1.5rem;
+    width: auto;
+  }
+
+  .location .contacts__item span {
+    text-align: left;
+    width: 258px;
+    margin-left: 1.35rem;
+  }
+
+  .location .footer__title {
+    margin-bottom: 4rem;
+  }
+  .location .contacts__item:first-child {
+    margin-bottom: 4rem;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

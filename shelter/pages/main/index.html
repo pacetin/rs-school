@@ -21,7 +21,7 @@
           <use xlink:href="/assets/Logo.svg#logo" />
         </svg>  
       </div>
-      <nav class="menu">
+      <nav class="menu menu__1280px">
         <ul class="list">
           <li class="list__item">
             <a href="#" class="list__link">
@@ -43,6 +43,16 @@
               Contacts
             </a>
           </li>
+        </ul>
+      </nav>
+      <nav class="hamburger-menu">
+        <input type="checkbox" id="hmt" class="hidden-button">
+        <label class="menu-button" for="hmt">
+          <span class="first"></span>
+          <span class="second"></span>
+          <span class="third"></span>
+        </label>
+        <ul class="menu">              
         </ul>
       </nav>
     </div>
@@ -90,11 +100,13 @@
       <div class="wrapper">
         <h3 class="pets__title">Our friends who <br> are looking for a house</h3>    
         <div class="slider">
-          <button type="button" class="round-button">
-            <svg class="arrow-icon" width="14" height="6" viewBox="0 0 14 6" xmlns="http://www.w3.org/2000/svg">
-              <use xlink:href="/assets/sprite.svg#arrow" />            
-            </svg>
-          </button>
+          <div class="round-button-container">
+            <button type="button" class="round-button">
+              <svg class="arrow-icon" width="14" height="6" viewBox="0 0 14 6" xmlns="http://www.w3.org/2000/svg">
+                <use xlink:href="/assets/sprite.svg#arrow" />            
+              </svg>
+            </button>
+          </div>
           <div class="cards">
             <div class="cards-container">
               <div class="card">            
@@ -120,11 +132,13 @@
               </div>
             </div>
           </div>
-          <button type="button" class="round-button">
-            <svg class="arrow-icon arrow-icon_mirror" width="14" height="6" viewBox="0 0 14 6" xmlns="http://www.w3.org/2000/svg">
-              <use xlink:href="/assets/sprite.svg#arrow" />            
-            </svg>
-          </button>
+          <div class="round-button-container">
+            <button type="button" class="round-button">
+              <svg class="arrow-icon arrow-icon_mirror" width="14" height="6" viewBox="0 0 14 6" xmlns="http://www.w3.org/2000/svg">
+                <use xlink:href="/assets/sprite.svg#arrow" />            
+              </svg>
+            </button>
+          </div>
         </div>
         <button type="button" class="button button_pets-button">
           Get to know the rest
@@ -136,31 +150,31 @@
         <h3 class="help__title">How you can help <br> our shelter</h3>
         <ul class="list list__1280px">
             <li class="list__item">
-              <svg class="list__icon"  width="48" height="60" viewBox="0 0 48 60" xmlns="http://www.w3.org/2000/svg">
+              <svg class="list__icon" viewBox="0 0 48 60" xmlns="http://www.w3.org/2000/svg">
                 <use xlink:href="/assets/sprite.svg#food" />
               </svg>
               <p class="list__text">Pet food</p>
             </li>
             <li class="list__item">
-              <svg class="list__icon"  width="61" height="60" viewBox="0 0 61 60" xmlns="http://www.w3.org/2000/svg">
+              <svg class="list__icon" viewBox="0 0 61 60" xmlns="http://www.w3.org/2000/svg">
                 <use xlink:href="/assets/sprite.svg#transportation" />
               </svg>
               <p class="list__text">Transportation</p>
             </li>
             <li class="list__item">
-              <svg class="list__icon"  width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+              <svg class="list__icon" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
                 <use xlink:href="/assets/sprite.svg#toys" />
               </svg>
               <p class="list__text">Toys</p>
             </li>
             <li class="list__item">
-              <svg class="list__icon" width="60" height="57" viewBox="0 0 60 57" xmlns="http://www.w3.org/2000/svg">
+              <svg class="list__icon" viewBox="0 0 60 57" xmlns="http://www.w3.org/2000/svg">
                 <use xlink:href="/assets/sprite.svg#bowls" />
               </svg>
               <p class="list__text">Bowls and cups</p>
             </li>
             <li class="list__item">
-              <svg class="list__icon"  width="32" height="60" viewBox="0 0 32 60" xmlns="http://www.w3.org/2000/svg">
+              <svg class="list__icon" viewBox="0 0 32 60" xmlns="http://www.w3.org/2000/svg">
                 <use xlink:href="/assets/sprite.svg#shampoos" />
               </svg>
               <p class="list__text">Shampoos</p>
@@ -168,25 +182,25 @@
         </ul>
         <ul class="list list_4 list__1280px">
           <li class="list__item">
-            <svg class="list__icon" width="60" height="55" viewBox="0 0 60 55" xmlns="http://www.w3.org/2000/svg">
+            <svg class="list__icon" viewBox="0 0 60 55" xmlns="http://www.w3.org/2000/svg">
               <use xlink:href="/assets/sprite.svg#vitamins" />
             </svg>
             <p class="list__text">Vitamins</p>
           </li>            
           <li class="list__item">
-            <svg class="list__icon" width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+            <svg class="list__icon" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
               <use xlink:href="/assets/sprite.svg#medicines" />
             </svg>
             <p class="list__text">Medicines</p>
           </li>
           <li class="list__item">
-            <svg class="list__icon" width="60" height="53" viewBox="0 0 60 53"  xmlns="http://www.w3.org/2000/svg">
+            <svg class="list__icon" viewBox="0 0 60 53"  xmlns="http://www.w3.org/2000/svg">
               <use xlink:href="/assets/sprite.svg#collars" />
             </svg>
             <p class="list__text">Collars / leashes</p>
           </li>
           <li class="list__item">
-            <svg class="list__icon" width="57" height="60" viewBox="0 0 57 60" xmlns="http://www.w3.org/2000/svg">
+            <svg class="list__icon" viewBox="0 0 57 60" xmlns="http://www.w3.org/2000/svg">
               <use xlink:href="/assets/sprite.svg#sleeping-area" />
             </svg>
             <p class="list__text">Sleeping areas</p>
@@ -194,55 +208,55 @@
         </ul>
         <ul class="list list__768px">
           <li class="list__item">
-            <svg class="list__icon"  width="48" height="60" viewBox="0 0 48 60" xmlns="http://www.w3.org/2000/svg">
+            <svg class="list__icon" viewBox="0 0 48 60" xmlns="http://www.w3.org/2000/svg">
               <use xlink:href="/assets/sprite.svg#food" />
             </svg>
             <p class="list__text">Pet food</p>
           </li>
           <li class="list__item">
-            <svg class="list__icon"  width="61" height="60" viewBox="0 0 61 60" xmlns="http://www.w3.org/2000/svg">
+            <svg class="list__icon" viewBox="0 0 61 60" xmlns="http://www.w3.org/2000/svg">
               <use xlink:href="/assets/sprite.svg#transportation" />
             </svg>
             <p class="list__text">Transportation</p>
           </li>
           <li class="list__item">
-            <svg class="list__icon"  width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+            <svg class="list__icon" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
               <use xlink:href="/assets/sprite.svg#toys" />
             </svg>
             <p class="list__text">Toys</p>
           </li>
           <li class="list__item">
-            <svg class="list__icon" width="60" height="57" viewBox="0 0 60 57" xmlns="http://www.w3.org/2000/svg">
+            <svg class="list__icon" viewBox="0 0 60 57" xmlns="http://www.w3.org/2000/svg">
               <use xlink:href="/assets/sprite.svg#bowls" />
             </svg>
             <p class="list__text">Bowls and cups</p>
           </li>
           <li class="list__item">
-            <svg class="list__icon"  width="32" height="60" viewBox="0 0 32 60" xmlns="http://www.w3.org/2000/svg">
+            <svg class="list__icon" viewBox="0 0 32 60" xmlns="http://www.w3.org/2000/svg">
               <use xlink:href="/assets/sprite.svg#shampoos" />
             </svg>
             <p class="list__text">Shampoos</p>
           </li>
           <li class="list__item">
-            <svg class="list__icon" width="60" height="55" viewBox="0 0 60 55" xmlns="http://www.w3.org/2000/svg">
+            <svg class="list__icon" viewBox="0 0 60 55" xmlns="http://www.w3.org/2000/svg">
               <use xlink:href="/assets/sprite.svg#vitamins" />
             </svg>
             <p class="list__text">Vitamins</p>
           </li>            
           <li class="list__item">
-            <svg class="list__icon" width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+            <svg class="list__icon" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
               <use xlink:href="/assets/sprite.svg#medicines" />
             </svg>
             <p class="list__text">Medicines</p>
           </li>
           <li class="list__item">
-            <svg class="list__icon" width="60" height="53" viewBox="0 0 60 53"  xmlns="http://www.w3.org/2000/svg">
+            <svg class="list__icon" viewBox="0 0 60 53"  xmlns="http://www.w3.org/2000/svg">
               <use xlink:href="/assets/sprite.svg#collars" />
             </svg>
             <p class="list__text">Collars / leashes</p>
           </li>
           <li class="list__item">
-            <svg class="list__icon" width="57" height="60" viewBox="0 0 57 60" xmlns="http://www.w3.org/2000/svg">
+            <svg class="list__icon" viewBox="0 0 57 60" xmlns="http://www.w3.org/2000/svg">
               <use xlink:href="/assets/sprite.svg#sleeping-area" />
             </svg>
             <p class="list__text">Sleeping areas</p>
@@ -256,7 +270,7 @@
           <img src="/assets/donation-dog.png" alt="white dog"/>
         </div>      
         <div class="donation__content">
-          <h3 class="donation__title">You can also make a donation</h3>
+          <h3 class="donation__title">You can also <br> make a donation</h3>
           <h5 class="donation__subtitle">Name of the bank / Type of bank account</h5>
           <a class="donation__link" href="#">
             <svg width="30" height="23" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 23">

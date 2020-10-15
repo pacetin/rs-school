@@ -10,6 +10,7 @@
 
 .main, .header, .footer {
   max-width: 1280px;
+  min-width: 320px;
   margin: 0 auto;
 }
 
@@ -97,6 +98,10 @@
 .menu .list__link {
   text-decoration: none;
   color: inherit;
+}
+
+.hamburger-menu {
+  display: none;
 }
 
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
@@ -396,12 +401,6 @@
 .help .list_4 {
   padding: 0rem 11.1rem;
 }
-.help .list_4 .list__item:first-child .list__icon {
-  margin-top: 4px;
-}
-.help .list_4 .list__item:nth-child(3) .list__icon {
-  margin-top: 5px;
-}
 .help .list__item {
   flex: 1 1 auto;
   height: 113px;
@@ -411,10 +410,12 @@
   align-items: center;
   margin-top: 5.5rem;
 }
-.help .list__item .list__icon {
+.help .list__icon {
   fill: #F1CDB3;
+  width: 60px;
+  height: 60px;
 }
-.help .list__item .list__text {
+.help .list__text {
   font-family: Georgia;
   font-size: 2rem;
   font-weight: 400;
@@ -746,12 +747,6 @@
   .list .list__item:nth-child(2) .list__icon {
     margin-right: 22px;
   }
-  .list .list__item:nth-child(6) .list__icon {
-    margin-top: 4px;
-  }
-  .list .list__item:nth-child(8) .list__icon {
-    margin-top: 5px;
-  }
 
   .donation {
     padding: 8rem 0rem 9.7rem;
@@ -784,18 +779,19 @@
   .footer .wrapper {
     margin: 0 3rem;
     flex-wrap: wrap;
+    justify-content: space-around;
   }
 
   .contacts {
-    flex: 0 1 40%;
+    flex: 0 1 280px;
     padding: 0rem 0rem;
-    margin-left: 3.4rem;
+    margin-left: 0.4rem;
   }
 
   .location {
-    flex: 0 1 45%;
+    flex: 0 1 302px;
     padding: 0rem 0rem;
-    margin-right: 1.7rem;
+    margin-right: 0.4rem;
   }
 
   .footer__image {
@@ -825,36 +821,151 @@
     padding: 3rem 0rem;
   }
   .header .wrapper {
-    margin: 0 3rem;
+    margin: 0 1rem;
+  }
+
+  .menu.menu__1280px {
+    display: none;
+  }
+
+  .hamburger-menu {
+    display: block;
+  }
+
+  .hidden-button {
+    display: none;
+  }
+
+  /*.menu {
+    position: absolute;
+    top: 0;
+    left: -270px;
+    z-index: 2;
+    list-style:none;
+    padding: 20px;
+    margin: 0;
+    width: 270px;
+    height: 100vh;
+    background-color: #fff;
+    transition: left 0.4s ease;
+  }
+
+  .menu > li > a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .menu > li {
+    list-style: none;
+    color: #191b32;
+    font-family: "Montserrat", Sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-style: normal;
+    line-height: 1.5em;
+    letter-spacing: 1.2px;
+    margin-bottom: 15px;
+  }
+
+  .menu > li > a:hover {
+    color:#32baa6;
+  }
+  .menu > li:first-child {
+    color:#32baa6;
+  }*/
+  .menu-button {
+    background-color: #fff;
+    padding: 7px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    cursor: pointer;
+    transition: left 0.23s;
+    z-index: 3;
+    width: 35px;
+  }
+
+  .menu-button span {
+    display: block;
+    height: 3px;
+    border-radius: 2px;
+    background-color: #000;
+    margin: 5px 0 0;
+    transition: all 0.1s linear 0.23s;
+    position: relative;
+  }
+
+  .menu-button span.first {
+    margin-top: 0;
+  }
+
+  .hidden-button:checked ~ .menu-button {
+    left: 235px;
+    background-color: #fff;
+  }
+
+  .hidden-button:checked ~ .menu {
+    left: 0;
+  }
+
+  .hidden-button:checked ~ .menu-button span.first {
+    transform: rotate(45deg);
+    top: 8px;
+    background-color: #000;
+  }
+
+  .hidden-button:checked ~ .menu-button span.second {
+    opacity: 0;
+  }
+
+  .hidden-button:checked ~ .menu-button span.third {
+    transform: rotate(-45deg);
+    top: -8px;
+    background-color: #000;
   }
 
   .hero {
     padding-top: 15rem;
   }
   .hero .wrapper {
-    margin: 0 3rem;
+    margin: 0 1rem;
     flex-wrap: wrap;
     justify-content: center;
   }
 
   .hero__content {
     flex: 0 1 460px;
+    justify-content: center;
+  }
+
+  .hero__title {
+    flex: 0 1 250px;
+    text-align: center;
+    margin-top: 0rem;
+    margin-bottom: 4.25rem;
+    font-family: Georgia;
+    font-size: 2.5rem;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 3.2rem;
+    letter-spacing: 0.15rem;
+  }
+
+  .hero__text {
+    text-align: center;
   }
 
   .hero__image {
     flex: 0 1 100%;
-    height: 593px;
-    margin-top: 10rem;
-    text-align: right;
+    height: 272px;
+    margin-top: 10.5rem;
+    margin-left: 4rem;
+    text-align: center;
   }
 
   .hero__image img {
-    height: 593px;
-  }
-
-  .hero__title {
-    margin-top: 0rem;
-    margin-bottom: 4.25rem;
+    height: 272px;
   }
 
   .hero__text {
@@ -865,62 +976,148 @@
     margin: 0 auto;
   }
 
+  .about {
+    padding: 4.2rem 0rem 4.2rem;
+  }
   .about .wrapper {
-    margin: 0 3rem;
+    margin: 0 1rem;
     flex-wrap: wrap;
   }
 
   .about__image {
     flex: 0 1 100%;
+    height: 353.1px;
     order: 2;
-    margin-top: 6.5rem;
+    margin-top: 4rem;
   }
 
   .about__image img {
     margin-left: 0rem;
+    height: 353.1px;
   }
 
   .about__content {
     flex: 0 1 437px;
     order: 1;
     flex-wrap: wrap;
+    justify-content: center;
+    padding-left: 0rem;
   }
 
   .about__title {
-    flex: 0 1 370px;
+    flex: 0 1 250px;
+    text-align: center;
     margin-top: 0rem;
     margin-bottom: 2.6rem;
+    font-family: Georgia;
+    font-size: 2.5rem;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 3.2rem;
+    letter-spacing: 0.15rem;
   }
 
   .about__text {
     flex: 0 1 100%;
+    text-align: justify;
+    margin: 0rem 1.5rem;
   }
 
+  .about__text:last-child {
+    margin-bottom: 0rem;
+    margin-top: 2.3rem;
+  }
+
+  .pets {
+    padding: 4.2rem 0rem;
+  }
   .pets .wrapper {
-    margin: 0 3rem;
+    margin: 0 1rem;
+  }
+
+  .pets__title {
+    flex: 0 1 400px;
+    text-align: center;
+    margin-left: 0rem;
+    margin-top: 0rem;
+    margin-bottom: 4.35rem;
+    font-family: Georgia;
+    font-size: 2.5rem;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 3.2rem;
+    letter-spacing: 0.15rem;
+  }
+
+  .slider {
+    flex: 0 1 400px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .round-button-container {
+    flex: 0 1 40%;
+    order: 2;
+    text-align: center;
   }
 
   .cards {
-    flex: 0 1 580px;
+    flex: 0 1 270px;
+    order: 1;
     margin: 0 0rem;
     position: relative;
     overflow: hidden;
+    margin-bottom: 2rem;
   }
 
   .cards-container {
-    width: 200%;
+    width: 400%;
   }
 
   .card:nth-child(2), .card:nth-child(3) {
     margin-left: 3.75rem;
   }
 
+  .button_pets-button {
+    margin-top: 4.2rem;
+  }
+
+  .help {
+    padding: 4.2rem 0rem;
+  }
   .help .wrapper {
-    margin: 0 3rem;
+    margin: 0 1rem;
     justify-content: space-evenly;
   }
   .help .list {
-    padding: 0.5rem 3.9rem 0rem;
+    padding: 0rem 0.5rem;
+  }
+  .help .list__icon {
+    width: 50px;
+    height: 50px;
+  }
+  .help .list__text {
+    font-family: Georgia;
+    font-size: 1.5rem;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.7rem;
+    letter-spacing: 0.087rem;
+  }
+
+  .help__title {
+    flex: 0 1 310px;
+    margin-top: 0rem;
+    margin-left: 0rem;
+    margin-bottom: 1.2rem;
+    font-family: Georgia;
+    font-size: 2.5rem;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 3.2rem;
+    letter-spacing: 0.15rem;
   }
 
   .help .list.list__1280px {
@@ -932,24 +1129,16 @@
   }
 
   .help .list__item {
-    flex: 0 1 27%;
-  }
-
-  .list .list__item:nth-child(2) .list__icon {
-    margin-right: 22px;
-  }
-  .list .list__item:nth-child(6) .list__icon {
-    margin-top: 4px;
-  }
-  .list .list__item:nth-child(8) .list__icon {
-    margin-top: 5px;
+    flex: 0 1 44.8%;
+    margin-top: 3rem;
+    height: 87px;
   }
 
   .donation {
-    padding: 8rem 0rem 9.7rem;
+    padding: 4.2rem 0rem 4rem;
   }
   .donation .wrapper {
-    margin: 0 3rem;
+    margin: 0 1rem;
     flex-wrap: wrap;
   }
 
@@ -957,59 +1146,131 @@
     flex: 0 1 100%;
     order: 2;
     text-align: center;
-    margin-top: 5.8rem;
+    margin-top: 4rem;
   }
 
   .donation__image img {
+    width: 260px;
     margin-right: 0rem;
     margin-top: 0rem;
   }
 
   .donation__content {
     flex: 0 1 380px;
+    justify-content: center;
     order: 1;
   }
 
+  .donation__title {
+    flex: 0 1 250px;
+    text-align: center;
+    margin-bottom: 2rem;
+    margin-top: 0rem;
+    font-family: Georgia;
+    font-size: 2.5rem;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 3.2rem;
+    letter-spacing: 0.15rem;
+  }
+
+  .donation__subtitle {
+    flex: 0 1 274px;
+    font-family: Arial;
+    font-size: 1.5rem;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 2.4rem;
+    letter-spacing: 0rem;
+    margin-bottom: 2rem;
+  }
+
+  .donation__link {
+    flex: 0 1 281px;
+  }
+
+  .donation__link span {
+    font-family: Georgia;
+    font-size: 1.5rem;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.7rem;
+    letter-spacing: 0.087rem;
+  }
+
+  .donation__text {
+    flex: 0 1 100%;
+    text-align: justify;
+  }
+
   .footer {
-    padding: 3.1rem 0rem 0rem;
+    padding: 3rem 0rem 0rem;
   }
   .footer .wrapper {
-    margin: 0 3rem;
+    margin: 0 1rem;
     flex-wrap: wrap;
+    justify-content: center;
   }
 
   .contacts {
-    flex: 0 1 40%;
+    flex: 0 0 100%;
+    justify-content: center;
     padding: 0rem 0rem;
-    margin-left: 3.4rem;
+    margin-left: 0rem;
+    margin-bottom: 4rem;
   }
 
   .location {
-    flex: 0 1 45%;
+    flex: 1 0 300px;
+    justify-content: center;
     padding: 0rem 0rem;
-    margin-right: 1.7rem;
+    margin-right: 0rem;
   }
 
   .footer__image {
-    flex: 0 1 100%;
-    margin-top: 6.5rem;
+    flex: 1 1 100%;
+    height: 269px;
+    margin-top: 4rem;
     text-align: center;
   }
 
+  .footer__image img {
+    height: 269px;
+  }
+
+  .footer__title {
+    text-align: center;
+    font-family: Georgia;
+    font-size: 2.5rem;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 3.2rem;
+    letter-spacing: 0.15rem;
+  }
+
+  .footer-list {
+    flex: 0 0 100%;
+  }
+
+  .contacts__item {
+    text-align: center;
+  }
   .contacts__item span {
-    width: 200px;
+    margin-left: 1.5rem;
+    width: auto;
   }
 
   .location .contacts__item span {
-    width: 260px;
-    margin-left: 1.3rem;
+    text-align: left;
+    width: 258px;
+    margin-left: 1.35rem;
   }
 
   .location .footer__title {
-    margin-bottom: 3.3rem;
+    margin-bottom: 4rem;
   }
   .location .contacts__item:first-child {
-    margin-bottom: 3.4rem;
+    margin-bottom: 4rem;
   }
 }
 
