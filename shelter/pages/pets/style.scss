@@ -119,14 +119,14 @@ $color-light-s: #FAFAFA;
 .header {
   background-color: $color-light-xl;
   padding: 3rem 0rem;
-  position: fixed;
-  width: 100%;
-  left: 0;
-  top: 0;    
+  width: 100vw;
+  max-width: 100%;
+  position: sticky;
+  min-height: 12rem;
+  z-index: 2;      
 
   .wrapper {  
-    max-width: 1200px;
-    min-width: 320px;
+    max-width: 1200px;        
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -231,11 +231,10 @@ $color-light-s: #FAFAFA;
 
 .pets {
   background-color: $color-light-l;
-  padding: 20rem 0rem 10rem;    
+  padding: 8rem 0rem 10rem;    
 
   .wrapper { 
-    max-width: 1200px;
-    min-width: 320px;
+    max-width: 1200px;    
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
@@ -294,8 +293,7 @@ $color-light-s: #FAFAFA;
 }
 
 .pets__buttons-container {
-  flex: 0 1 340px;
-  
+  flex: 0 1 340px;  
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -356,8 +354,7 @@ $color-light-s: #FAFAFA;
   padding: 4rem 0rem 0rem;    
 
   .wrapper { 
-    max-width: 1200px;
-    min-width: 320px;
+    max-width: 1200px;    
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -447,7 +444,7 @@ $color-light-s: #FAFAFA;
   } 
   
   .pets { 
-    padding: 20rem 0rem 7.5rem; 
+    padding: 8rem 0rem 7.5rem; 
     .wrapper {    
       margin: 0 3em;        
     }
@@ -463,8 +460,7 @@ $color-light-s: #FAFAFA;
     flex: 0 1 82%;
     height: 1380px;
     overflow: hidden;
-    margin-bottom: 4rem;    
-  
+    margin-bottom: 4rem;  
   }
   
   .card {  
@@ -534,113 +530,20 @@ $color-light-s: #FAFAFA;
   
   .menu.menu__1280px {
     display: none;
-  }
-
-  .hamburger-menu {
-    display: block;
   } 
-  
-  .hidden-button {
-    display: none;
-  }
-  
-  /*.menu {
-    position: absolute;
-    top: 0;
-    left: -270px;
-    z-index: 2;
-    list-style:none;
-    padding: 20px;
-    margin: 0;
-    width: 270px;
-    height: 100vh;
-    background-color: #fff;
-    transition: left 0.4s ease;
-  }
-  
-  .menu > li > a {
-    text-decoration: none;
-    color: inherit;
-  }
-  
-  .menu > li {
-    list-style: none;
-    color: #191b32;
-    font-family: "Montserrat", Sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-style: normal;
-    line-height: 1.5em;
-    letter-spacing: 1.2px;
-    margin-bottom: 15px;
-  }
-  
-  .menu > li > a:hover {
-    color:#32baa6;
-  }
-  .menu > li:first-child {
-    color:#32baa6;
-  }*/
-  
-  .menu-button {
-    background-color: #fff;
-    padding: 7px;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    cursor: pointer;
-    transition: left .23s;
-    z-index: 3;
-    width: 35px;
-  }
-  
-  .menu-button span {
-    display: block;
-    height: 3px;
-    border-radius: 2px;
-    background-color: #000;
-    margin: 5px 0 0;
-    transition: all .1s linear .23s;
-    position: relative;
-  }
-  
-  .menu-button span.first {
-    margin-top: 0;
-  }
-  
-  .hidden-button:checked ~ .menu-button {
-    left: 235px;
-    background-color: #fff;
-  }
-
-  .hidden-button:checked ~ .menu {
-    left: 0;
-  }
-
-  .hidden-button:checked ~ .menu-button span.first {
-    transform: rotate(45deg);
-    top: 8px;
-    background-color: #000;
-  }
-
-  .hidden-button:checked ~ .menu-button span.second {
-    opacity: 0;
-  }
-  
-  .hidden-button:checked ~ .menu-button span.third {
-    transform: rotate(-45deg);
-    top: -8px;
-    background-color: #000;
-  }
 
 
   
   .pets { 
-    padding: 16.2rem 0rem 4.2rem; 
+    padding: 4.2rem 0rem 4.2rem; 
     .wrapper {    
       margin: 0 1rem;        
     }
+  }
+
+  
+  .pets__buttons-container {
+    flex: 0 1 300px; 
   }
 
   .pets__title {

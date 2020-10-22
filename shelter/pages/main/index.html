@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Shelter</title>  
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="style.css"/>  
   <link rel="shortcut icon" href="#" type="image/x-icon">
 </head>
 <body>
   <header class="header">   
-    <div class="wrapper">
+    <div class="wrapper">      
       <h1 class="visually-hidden">Cozy house</h1>
       <div class="logo">
         <div class="logo__title">Cozy House</div>
@@ -24,7 +24,7 @@
       <nav class="menu menu__1280px">
         <ul class="list">
           <li class="list__item">
-            <a href="#" class="list__link">
+            <a href="/pages/main/index.html" class="list__link">
               About the shelter
             </a>
           </li>
@@ -52,8 +52,29 @@
           <span class="second"></span>
           <span class="third"></span>
         </label>
-        <ul class="menu">              
-        </ul>
+        <div class="blackout-background"></div>
+        <ul class="list">
+          <li class="list__item">
+            <a href="/pages/main/index.html" class="list__link">
+              About the shelter
+            </a>
+          </li>
+          <li class="list__item">
+            <a href="/pages/pets/index.html" class="list__link">
+              Our pets
+            </a>
+          </li>
+          <li class="list__item">
+            <a href="#" class="list__link">
+              Help the shelter
+            </a>
+          </li>
+          <li class="list__item">
+            <a href="#" class="list__link">
+              Contacts
+            </a>
+          </li>
+        </ul>        
       </nav>
     </div>
   </header>
@@ -65,7 +86,7 @@
           <p class="hero__text">We offer to give a chance to a little and nice puppy 
           with an extremely wide and open heart. He or she will love you more than 
           anybody else in the world, you will see!</p>
-          <button type="button" class="button button_hero-button" onclick="document.location='#'">
+          <button type="button" class="button button_hero-button" onclick="document.location='/pages/pets/index.html'">
             Make a friend
           </button>
         </div>
@@ -98,7 +119,7 @@
     </section>
     <section class="pets">
       <div class="wrapper">
-        <h3 class="pets__title">Our friends who <br> are looking for a house</h3>    
+        <h3 class="pets__title"><span>Our friends who</span><span>are looking for a house</span></h3>    
         <div class="slider">
           <div class="round-button-container">
             <button type="button" class="round-button">
@@ -147,66 +168,8 @@
     </section>
     <section class="help">
       <div class="wrapper">                
-        <h3 class="help__title">How you can help <br> our shelter</h3>
-        <ul class="list list__1280px">
-            <li class="list__item">
-              <svg class="list__icon" viewBox="0 0 48 60" xmlns="http://www.w3.org/2000/svg">
-                <use xlink:href="/assets/sprite.svg#food" />
-              </svg>
-              <p class="list__text">Pet food</p>
-            </li>
-            <li class="list__item">
-              <svg class="list__icon" viewBox="0 0 61 60" xmlns="http://www.w3.org/2000/svg">
-                <use xlink:href="/assets/sprite.svg#transportation" />
-              </svg>
-              <p class="list__text">Transportation</p>
-            </li>
-            <li class="list__item">
-              <svg class="list__icon" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-                <use xlink:href="/assets/sprite.svg#toys" />
-              </svg>
-              <p class="list__text">Toys</p>
-            </li>
-            <li class="list__item">
-              <svg class="list__icon" viewBox="0 0 60 57" xmlns="http://www.w3.org/2000/svg">
-                <use xlink:href="/assets/sprite.svg#bowls" />
-              </svg>
-              <p class="list__text">Bowls and cups</p>
-            </li>
-            <li class="list__item">
-              <svg class="list__icon" viewBox="0 0 32 60" xmlns="http://www.w3.org/2000/svg">
-                <use xlink:href="/assets/sprite.svg#shampoos" />
-              </svg>
-              <p class="list__text">Shampoos</p>
-            </li>            
-        </ul>
-        <ul class="list list_4 list__1280px">
-          <li class="list__item">
-            <svg class="list__icon" viewBox="0 0 60 55" xmlns="http://www.w3.org/2000/svg">
-              <use xlink:href="/assets/sprite.svg#vitamins" />
-            </svg>
-            <p class="list__text">Vitamins</p>
-          </li>            
-          <li class="list__item">
-            <svg class="list__icon" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-              <use xlink:href="/assets/sprite.svg#medicines" />
-            </svg>
-            <p class="list__text">Medicines</p>
-          </li>
-          <li class="list__item">
-            <svg class="list__icon" viewBox="0 0 60 53"  xmlns="http://www.w3.org/2000/svg">
-              <use xlink:href="/assets/sprite.svg#collars" />
-            </svg>
-            <p class="list__text">Collars / leashes</p>
-          </li>
-          <li class="list__item">
-            <svg class="list__icon" viewBox="0 0 57 60" xmlns="http://www.w3.org/2000/svg">
-              <use xlink:href="/assets/sprite.svg#sleeping-area" />
-            </svg>
-            <p class="list__text">Sleeping areas</p>
-          </li>
-        </ul>
-        <ul class="list list__768px">
+        <h3 class="help__title"><span>How you can help</span> <span>our shelter</span></h3>        
+        <ul class="list">
           <li class="list__item">
             <svg class="list__icon" viewBox="0 0 48 60" xmlns="http://www.w3.org/2000/svg">
               <use xlink:href="/assets/sprite.svg#food" />
@@ -270,7 +233,7 @@
           <img src="/assets/donation-dog.png" alt="white dog"/>
         </div>      
         <div class="donation__content">
-          <h3 class="donation__title">You can also <br> make a donation</h3>
+          <h3 class="donation__title"><span>You can also</span><span>make a donation</span></h3>
           <h5 class="donation__subtitle">Name of the bank / Type of bank account</h5>
           <a class="donation__link" href="#">
             <svg width="30" height="23" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 23">
@@ -335,6 +298,7 @@
         <img src="/assets/footer-puppy.png" alt="dog">
       </div>     
     </div>
-  </footer>     
+  </footer>
+  <script src="/pages/main/script.js"></script>     
 </body>
 </html>

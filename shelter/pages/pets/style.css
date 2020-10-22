@@ -16,10 +16,11 @@
 .header {
   background-color: #FFFFFF;
   padding: 3rem 0rem;
-  position: fixed;
-  width: 100%;
-  left: 0;
-  top: 0;
+  width: 100vw;
+  max-width: 100%;
+  position: sticky;
+  min-height: 12rem;
+  z-index: 2;
 }
 .header .wrapper {
   max-width: 1200px;
@@ -138,7 +139,7 @@
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 .pets {
   background-color: #F6F6F6;
-  padding: 20rem 0rem 10rem;
+  padding: 8rem 0rem 10rem;
 }
 .pets .wrapper {
   max-width: 1200px;
@@ -362,7 +363,7 @@
   }
 
   .pets {
-    padding: 20rem 0rem 7.5rem;
+    padding: 8rem 0rem 7.5rem;
   }
   .pets .wrapper {
     margin: 0 3em;
@@ -437,108 +438,15 @@
     display: none;
   }
 
-  .hamburger-menu {
-    display: block;
-  }
-
-  .hidden-button {
-    display: none;
-  }
-
-  /*.menu {
-    position: absolute;
-    top: 0;
-    left: -270px;
-    z-index: 2;
-    list-style:none;
-    padding: 20px;
-    margin: 0;
-    width: 270px;
-    height: 100vh;
-    background-color: #fff;
-    transition: left 0.4s ease;
-  }
-
-  .menu > li > a {
-    text-decoration: none;
-    color: inherit;
-  }
-
-  .menu > li {
-    list-style: none;
-    color: #191b32;
-    font-family: "Montserrat", Sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-style: normal;
-    line-height: 1.5em;
-    letter-spacing: 1.2px;
-    margin-bottom: 15px;
-  }
-
-  .menu > li > a:hover {
-    color:#32baa6;
-  }
-  .menu > li:first-child {
-    color:#32baa6;
-  }*/
-  .menu-button {
-    background-color: #fff;
-    padding: 7px;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    cursor: pointer;
-    transition: left 0.23s;
-    z-index: 3;
-    width: 35px;
-  }
-
-  .menu-button span {
-    display: block;
-    height: 3px;
-    border-radius: 2px;
-    background-color: #000;
-    margin: 5px 0 0;
-    transition: all 0.1s linear 0.23s;
-    position: relative;
-  }
-
-  .menu-button span.first {
-    margin-top: 0;
-  }
-
-  .hidden-button:checked ~ .menu-button {
-    left: 235px;
-    background-color: #fff;
-  }
-
-  .hidden-button:checked ~ .menu {
-    left: 0;
-  }
-
-  .hidden-button:checked ~ .menu-button span.first {
-    transform: rotate(45deg);
-    top: 8px;
-    background-color: #000;
-  }
-
-  .hidden-button:checked ~ .menu-button span.second {
-    opacity: 0;
-  }
-
-  .hidden-button:checked ~ .menu-button span.third {
-    transform: rotate(-45deg);
-    top: -8px;
-    background-color: #000;
-  }
-
   .pets {
-    padding: 16.2rem 0rem 4.2rem;
+    padding: 4.2rem 0rem 4.2rem;
   }
   .pets .wrapper {
     margin: 0 1rem;
+  }
+
+  .pets__buttons-container {
+    flex: 0 1 300px;
   }
 
   .pets__title {

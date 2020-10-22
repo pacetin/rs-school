@@ -76,6 +76,17 @@ $color-light-s: #FAFAFA;
   letter-spacing: 0rem;
 }
 
+@mixin paragraph-mobile-menu {
+  font: {
+  family: Arial;
+  size: 3.2rem;  
+  weight: 400;
+  }
+  font-style: normal;
+  line-height: 4.8rem;
+  letter-spacing: 0rem;
+}
+
 @mixin logo_title {
   font: {
   family: Georgia;
@@ -146,7 +157,8 @@ $color-light-s: #FAFAFA;
 .logo {  
   display: flex;
   flex-direction: column;
-  justify-content: space-between;  
+  justify-content: space-between;
+  z-index: 3;  
 }
 
 .logo__title {
@@ -341,14 +353,17 @@ $color-light-s: #FAFAFA;
   }
 }
 
-.pets__title {
-  flex: 0 1 400px;
+.pets__title {  
   text-align: center;
   margin-left: 0.2rem;
   margin-top: 0.1rem;
   margin-bottom: 6rem; 
   @include h3;
   color: $color-dark-l;
+
+  span {
+    display: block;
+  }
 }
 
 .slider {
@@ -459,33 +474,23 @@ $color-light-s: #FAFAFA;
   }
 }
 
-.help .list.list__768px {
-  display: none;
-}
-
 .help {
   .list {
-    flex: 0 1 100%;
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
-    align-items: stretch;    
-    list-style-type: none;
-    padding: 0.5rem 2.7rem 0rem;  
-  }
-
-  .list_4 {  
-    padding: 0rem 11.1rem;    
+    justify-content: center;
+    align-items: center;
+    column-gap: 12rem;
+    row-gap: 5.5rem;    
+    list-style-type: none;      
   }
 
   .list__item {
-    flex: 1 1 auto;    
-    height: 113px;        
+    height: 113px;       
     display: flex;
     flex-direction: column;  
     justify-content: space-between;
-    align-items: center;
-    margin-top: 5.5rem;    
+    align-items: center;      
   }
   
   .list__icon {
@@ -501,13 +506,17 @@ $color-light-s: #FAFAFA;
   }
 }
 
-.help__title {
-  flex: 0 1 310px;
+.help__title {  
   text-align: center;
   margin-top: 0.1rem;
-  margin-left: 0.2rem; 
+  margin-left: 0.2rem;
+  margin-bottom: 6rem; 
   @include h3;
   color: $color-dark-l;
+
+  span {
+    display: block;
+  }
 }
 
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
@@ -545,12 +554,15 @@ $color-light-s: #FAFAFA;
   padding-bottom: 0.2rem;  
 }
 
-.donation__title {
-  flex: 0 1 300px; 
+.donation__title {   
   @include h3;
   color: $color-dark-l;
   margin-top: 0.1rem;     
   margin-bottom: 2.0rem;
+
+  span{
+    display: block;
+  }
 }
 
 .donation__subtitle {
@@ -792,20 +804,13 @@ $color-light-s: #FAFAFA;
 
   .help {
     .wrapper { 
-      margin: 0 3rem;
-      justify-content: space-evenly;          
+      margin: 0 2.2rem;
+                
     }
-    .list {
-      padding: 0.5rem 3.9rem 0rem; 
+    .list {      
+      justify-content: space-evenly;      
+      column-gap: 0rem;                
     }   
-  }
-
-  .help .list.list__1280px {
-    display: none;
-  }
-
-  .help .list.list__768px {
-    display: flex;
   }
 
   .help .list__item {
@@ -904,7 +909,7 @@ $color-light-s: #FAFAFA;
     padding: 3rem 0rem;
 
     .wrapper {       
-      margin: 0 1rem;    
+      margin: 0 1rem;         
     }
   }
   
@@ -914,102 +919,101 @@ $color-light-s: #FAFAFA;
 
   .hamburger-menu {
     display: block;
+    position: absolute;
+    top: 0;
+    right: 0;    
+    
+    .blackout-background {
+      width: 100vw;
+      height: 823px;
+      position: absolute;
+      top: 0;
+      right: 0;        
+      z-index: 1;
+      display: none;   
+      background-color: rgba(41, 41, 41, 0.6);            
+    }
+
+    .list {
+      width: 320px;
+      height: 823px;
+      position: absolute;
+      top: 0;
+      right: -320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;     
+      z-index: 2;
+      list-style:none;
+      font-size: 0px;      
+      background-color: $color-dark-3xl;
+      transition: right 0.4s ease;
+    }
+
+    .list__item {
+      @include paragraph-mobile-menu();
+      color: $color-dark-s;
+      margin-top: 4.3rem;
+      &:last-child {
+        margin-bottom: 4.1rem;
+      } 
+    }
+
+    .list__item:hover {
+      color: $color-light-s
+    }
+
+    .list__item:first-child {
+      color: $color-light-s;         
+      border-bottom: solid $color-primary 0.3rem;
+    }
+
+    .list__link {
+      text-decoration: none;
+      color: inherit;
+    } 
   } 
   
   .hidden-button {
     display: none;
-  }
-  
-  /*.menu {
-    position: absolute;
-    top: 0;
-    left: -270px;
-    z-index: 2;
-    list-style:none;
-    padding: 20px;
-    margin: 0;
-    width: 270px;
-    height: 100vh;
-    background-color: #fff;
-    transition: left 0.4s ease;
-  }
-  
-  .menu > li > a {
-    text-decoration: none;
-    color: inherit;
-  }
-  
-  .menu > li {
-    list-style: none;
-    color: #191b32;
-    font-family: "Montserrat", Sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-style: normal;
-    line-height: 1.5em;
-    letter-spacing: 1.2px;
-    margin-bottom: 15px;
-  }
-  
-  .menu > li > a:hover {
-    color:#32baa6;
-  }
-  .menu > li:first-child {
-    color:#32baa6;
-  }*/
+  }  
   
   .menu-button {
-    background-color: #fff;
-    padding: 7px;
     position: absolute;
-    top: 0px;
-    left: 0px;
+    top: 50px;
+    right: 53px;    
+    background-color: transparent;        
     cursor: pointer;
-    transition: left .23s;
+    transition: all .1s linear .23s;
     z-index: 3;
-    width: 35px;
   }
   
   .menu-button span {
     display: block;
-    height: 3px;
-    border-radius: 2px;
-    background-color: #000;
-    margin: 5px 0 0;
-    transition: all .1s linear .23s;
-    position: relative;
+    height: 2px;
+    width: 30px;    
+    background-color: $color-primary;
+    margin-bottom: 8px;        
   }
-  
-  .menu-button span.first {
-    margin-top: 0;
+
+  .menu-button span:last-child {
+    margin-bottom: 0px;        
   }
-  
+    
   .hidden-button:checked ~ .menu-button {
-    left: 235px;
-    background-color: #fff;
+    transform: rotate(90deg);    
   }
 
-  .hidden-button:checked ~ .menu {
-    left: 0;
-  }
-
-  .hidden-button:checked ~ .menu-button span.first {
-    transform: rotate(45deg);
-    top: 8px;
-    background-color: #000;
-  }
-
-  .hidden-button:checked ~ .menu-button span.second {
-    opacity: 0;
+  .hidden-button:checked ~ .list {
+    right: 0;
   }
   
-  .hidden-button:checked ~ .menu-button span.third {
-    transform: rotate(-45deg);
-    top: -8px;
-    background-color: #000;
-  }
-
+  .hidden-button:checked ~ .blackout-background {
+    display: block;
+  } 
+  
+  
   .hero {    
     padding-top: 15rem;
 
@@ -1155,18 +1159,25 @@ $color-light-s: #FAFAFA;
 
   .button_pets-button {
     margin-top: 4.2rem;
-  }
+  }  
 
   .help {
     padding: 4.2rem 0rem;
 
     .wrapper { 
-      margin: 0 1rem;
-      justify-content: space-evenly;          
+      margin: 0 1rem;                
     }
-    .list {
-      padding: 0rem 0.5rem; 
+
+    .list {      
+      justify-content: space-between;      
+      column-gap: 0rem;
+      row-gap: 3rem; 
     }
+
+    .list__item {
+      flex: 0 1 47%;      
+      height: 87px;
+    } 
     
     .list__icon {    
       width: 50px;
@@ -1182,23 +1193,9 @@ $color-light-s: #FAFAFA;
     flex: 0 1 310px;  
     margin-top: 0rem;
     margin-left: 0rem;
-    margin-bottom: 1.2rem; 
+    margin-bottom: 4.2rem; 
     @include h3__mobile;    
-  }
-
-  .help .list.list__1280px {
-    display: none;
-  }
-
-  .help .list.list__768px {
-    display: flex;
-  }
-
-  .help .list__item {
-    flex: 0 1 44.8%;
-    margin-top: 3rem;
-    height: 87px;
-  }  
+  }   
 
   .donation {
     padding: 4.2rem 0rem 4rem;
