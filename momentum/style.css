@@ -18,6 +18,12 @@ body {
   transition: background-image 1s ease-in-out;  
 }
 
+.two-column {
+  display: flex;
+  justify-content: space-between;
+}
+
+
 .content {
   display: flex;
   flex-direction: column;
@@ -120,6 +126,8 @@ input:focus {
 .button:disabled svg {
   fill: #CDCDCD;
 }
+
+
 
 @media (max-width: 700px) {
   #time {
