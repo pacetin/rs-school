@@ -1,0 +1,128 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content: space-between;  
+  height: 100vh;
+  color: white;  
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;  
+  transition: background-image 1s ease-in-out;  
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5));
+  padding: 15px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+}
+
+#time {
+  font-size: 8rem;
+  min-width: 455px;  
+  text-align: left;
+  margin: 0 auto;  
+}
+
+#date {
+  font-size: 2rem;
+  margin-bottom: 3rem;
+  opacity: 0.8;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;  
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  opacity: 0.6;   
+}
+
+#name {
+  background-color: transparent;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  margin-left: 0.5rem;
+  text-align: center;
+}
+ 
+
+
+#focus {
+  background-color: transparent;
+  font-family: 'Quicksand', sans-serif;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  opacity: 0.6;
+  margin-left: 0.5rem;
+  text-align: center; 
+}
+
+button, 
+button:active, 
+button:focus {
+  outline: none;
+  border: none;
+  cursor: pointer;  
+}
+
+input, 
+input:active, 
+input:focus {
+  outline: none;
+  border: none;
+}
+
+.button {
+  display: block;
+  text-align: left;  
+  margin: 15px 0px;
+  padding: 8px 8px 5px;
+  border-radius: 50%;  
+  background-color: #b0bcbe;
+}
+
+.button:hover {
+  background-color: #737b7e;
+}
+
+.button svg {
+  fill: black;
+  width: 30px;
+  height: 30px;
+}
+
+.button:disabled {
+  transform: scale(0.98);
+  cursor: wait;
+}
+
+.button:disabled svg {
+  fill: #CDCDCD;
+}
+
+@media (max-width: 700px) {
+  #time {
+    font-size: 6rem;
+  }
+}
