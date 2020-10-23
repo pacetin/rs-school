@@ -6,11 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="owfont-regular.css">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=B612+Mono:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
     <title>Momentum</title>
   </head>
   <body>
-    <button class="button" id='BGChange'>
+    <button class="change-bg" id='BGChange'>
       <svg viewBox="0 0 512 512"xmlns="http://www.w3.org/2000/svg">
         <use xlink:href="/momentum/assets/refresh.svg#update" />
       </svg>      
@@ -21,12 +22,10 @@
         <button class="change-quote">Get a quote</button>
       </div>
       <div class="weather-forecast">
-        <h2>
-          <span>Weather Forecast</span>
-          <input type="text" id="city" autocomplete="off">
-        </h2>
+        <h2>Weather Forecast</h2>
+        <input type="text" id="city" autocomplete="off">
         <div class="weather-forecast__content">
-          <i class="weather-icon owf owf-5x owf-pull-left"></i>
+          <i class="weather-icon owf owf-5x"></i>
           <div class="weather-description">            
           </div>
         </div>        

@@ -198,8 +198,7 @@
           localStorage.setItem('city', e.target.value);          
         } else {
           getCity();
-        }
-        getWeather();
+        }        
         city.blur();
       }
     } else if (e.type === 'blur') {
@@ -268,34 +267,32 @@
   }
   
   async function getWeather() {
-    let location;
-    if (localStorage.getItem('city') === null || localStorage.getItem('city').trim() === '') {
-      location = '[Enter City]';
-    } else {
-      location = localStorage.getItem('city');
-    }
-
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&lang=en&appid=d903f9f0ee896c1487303723586336cd&units=metric`;
+    let location = localStorage.getItem('city').trim();
+    if (location === null || location === '' || location === '[Enter City]') {
+      return;
+    } else {      
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&lang=en&appid=d903f9f0ee896c1487303723586336cd&units=metric`;
     
-    try {
-      const response = await fetch(url);
-      const data = await response.json();
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
   
-      weather.innerHTML = `<p class="temperature">${data.main.temp}</p>
-      <p class="humidity"><span>Humidity:</span><span>${data.main.humidity}</span></p>
-      <p class="wind"><span>Wind Speed:</span><span>${data.wind.speed}</span></p>`;
-      weatherIcon.className = 'weather-icon owf';
-      weatherIcon.classList.add(`owf-${data.weather[0].id}`);
+        weather.innerHTML = `<p class="temperature">${Math.trunc(data.main.temp)} °C</p>
+        <p class="humidity"><span>Humidity: </span><span>${data.main.humidity} %</span></p>
+        <p class="wind"><span>Wind Speed: </span><span>${data.wind.speed} m/s</span></p>`;
+        weatherIcon.className = 'weather-icon owf owf-5x';
+        weatherIcon.classList.add(`owf-${data.weather[0].id}`);
   
-    } catch (e) {
-      if (location !== '[Enter City]') {
-        alert("Entered city doesn't exist");
-        weather.innerHTML = '';
-        weatherIcon.className = 'weather-icon owf';
-        localStorage.setItem('city', '[Enter City]');
-        city.value = '[Enter City]';        
+      } catch (e) {      
+        if (location !== '[Enter City]') {
+          alert("Entered city doesn't exist");
+          weather.innerHTML = '';
+          weatherIcon.className = 'weather-icon owf owf-5x';
+          localStorage.setItem('city', '[Enter City]');
+          city.value = '[Enter City]';        
+        }
       }
-    }  
+    }      
   }
 
 
