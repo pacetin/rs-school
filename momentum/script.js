@@ -246,9 +246,9 @@
 
   function showBackGround(source) {  
     const img = document.createElement('img');
-    img.src = `/momentum/assets/images/${source}`;
+    img.src = `../momentum/assets/images/${source}`;
     img.onload = () => {      
-      document.body.style.backgroundImage = `url("/momentum/assets/images/${source}")`;
+      document.body.style.backgroundImage = `url("../momentum/assets/images/${source}")`;
     };
   }
 
