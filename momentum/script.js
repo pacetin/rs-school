@@ -267,10 +267,11 @@
   }
   
   async function getWeather() {
-    let location = localStorage.getItem('city').trim();
-    if (location === null || location === '' || location === '[Enter City]') {
+    let location;
+    if (localStorage.getItem('city') === null || localStorage.getItem('city').trim() === '' || localStorage.getItem('city').trim() === '[Enter City]') {
       return;
-    } else {      
+    } else {
+      location = localStorage.getItem('city').trim();      
       const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&lang=en&appid=d903f9f0ee896c1487303723586336cd&units=metric`;
     
       try {
