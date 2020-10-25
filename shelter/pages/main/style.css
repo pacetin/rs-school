@@ -8,6 +8,20 @@
   font-size: 10px;
 }
 
+body, html {
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.no-scroll {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
 .main, .header, .footer {
   max-width: 1280px;
   min-width: 320px;
@@ -18,6 +32,9 @@
   width: 100vw;
   max-width: 100%;
   position: absolute;
+  z-index: 19;
+  top: 0;
+  left: 0;
   padding: 6rem 0rem;
 }
 .header .wrapper {
@@ -44,6 +61,10 @@
   flex-direction: column;
   justify-content: space-between;
   z-index: 3;
+}
+
+.logo_hidden {
+  opacity: 0;
 }
 
 .logo__title {
@@ -89,8 +110,11 @@
   letter-spacing: 0rem;
   color: #CDCDCD;
 }
-.menu .list__item:hover {
+.menu .list__item:hover:first-child, .menu .list__item:hover:nth-child(2) {
   color: #FAFAFA;
+}
+.menu .list__item:hover:first-child .list__link, .menu .list__item:hover:nth-child(2) .list__link {
+  cursor: pointer;
 }
 .menu .list__item:first-child {
   color: #FAFAFA;
@@ -99,15 +123,20 @@
 .menu .list__link {
   text-decoration: none;
   color: inherit;
+  cursor: default;
 }
 
 .hamburger-menu {
   display: none;
 }
 
+.burger-button {
+  display: none;
+}
+
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 .hero {
-  background: url(/assets/noise_transparent@2x.png) repeat, radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
+  background: url(../../assets/noise_transparent@2x.png) repeat, radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
   padding-top: 18rem;
 }
 .hero .wrapper {
@@ -542,7 +571,7 @@
 
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 .footer {
-  background: url(/assets/noise_transparent.png), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
+  background: url(../../assets/noise_transparent.png), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
   padding: 4rem 0rem 0rem;
 }
 .footer .wrapper {
@@ -813,21 +842,16 @@
   }
   .header .wrapper {
     margin: 0 1rem;
+    align-items: center;
   }
 
   .menu.menu__1280px {
     display: none;
   }
 
-  .hamburger-menu {
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-  }
-  .hamburger-menu .blackout-background {
+  .blackout-background {
     width: 100vw;
-    height: 823px;
+    height: 100vh;
     position: absolute;
     top: 0;
     right: 0;
@@ -835,21 +859,40 @@
     display: none;
     background-color: rgba(41, 41, 41, 0.6);
   }
-  .hamburger-menu .list {
+
+  .blackout-background_active {
+    display: block;
+  }
+
+  .hamburger-menu {
     width: 320px;
-    height: 823px;
+    height: 100vh;
+    padding: 3rem 1rem 0rem;
+    display: block;
     position: absolute;
     top: 0;
     right: -320px;
+    z-index: 9;
+    background-color: #292929;
+    transition: transform 0.4s ease;
+  }
+  .hamburger-menu .logo {
+    width: 30rem;
+    text-align: left;
+    position: absolute;
+    left: 1rem;
+    top: 3rem;
+    z-index: 3;
+  }
+  .hamburger-menu .list {
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 2;
     list-style: none;
     font-size: 0px;
-    background-color: #292929;
-    transition: right 0.4s ease;
   }
   .hamburger-menu .list__item {
     font-family: Arial;
@@ -864,9 +907,6 @@
   .hamburger-menu .list__item:last-child {
     margin-bottom: 4.1rem;
   }
-  .hamburger-menu .list__item:hover {
-    color: #FAFAFA;
-  }
   .hamburger-menu .list__item:first-child {
     color: #FAFAFA;
     border-bottom: solid #F1CDB3 0.3rem;
@@ -874,23 +914,38 @@
   .hamburger-menu .list__link {
     text-decoration: none;
     color: inherit;
+    cursor: default;
+  }
+  .hamburger-menu .list__item:hover:first-child, .hamburger-menu .list__item:hover:nth-child(2) {
+    color: #FAFAFA;
+  }
+  .hamburger-menu .list__item:hover:first-child .list__link, .hamburger-menu .list__item:hover:nth-child(2) .list__link {
+    cursor: pointer;
   }
 
-  .hidden-button {
-    display: none;
+  .hamburger-menu_active {
+    transform: translateX(-320px);
   }
 
-  .menu-button {
-    position: absolute;
-    top: 50px;
-    right: 53px;
+  .burger-button {
+    display: block;
+    margin-right: 4.3rem;
+    z-index: 19;
+    transition: transform 0.2s ease-in 0.2s;
+  }
+
+  .burger-button_active {
+    transform: rotate(-90deg);
+  }
+
+  .burger-icon {
     background-color: transparent;
     cursor: pointer;
     transition: all 0.1s linear 0.23s;
     z-index: 3;
   }
 
-  .menu-button span {
+  .burger-icon span {
     display: block;
     height: 2px;
     width: 30px;
@@ -898,20 +953,8 @@
     margin-bottom: 8px;
   }
 
-  .menu-button span:last-child {
+  .burger-icon span:last-child {
     margin-bottom: 0px;
-  }
-
-  .hidden-button:checked ~ .menu-button {
-    transform: rotate(90deg);
-  }
-
-  .hidden-button:checked ~ .list {
-    right: 0;
-  }
-
-  .hidden-button:checked ~ .blackout-background {
-    display: block;
   }
 
   .hero {
@@ -942,6 +985,7 @@
   }
 
   .hero__text {
+    flex: 0 1 300px;
     text-align: center;
   }
 
@@ -955,10 +999,6 @@
 
   .hero__image img {
     height: 272px;
-  }
-
-  .hero__text {
-    flex: 0 1 100%;
   }
 
   .button_hero-button {
@@ -1069,8 +1109,14 @@
     margin-left: 3.75rem;
   }
 
-  .button_pets-button {
+  .button-container {
+    flex: 0 1 90%;
+    text-align: center;
     margin-top: 4.2rem;
+  }
+
+  .button_pets-button {
+    margin-top: 0rem;
   }
 
   .help {
@@ -1251,6 +1297,54 @@
   }
   .location .contacts__item:first-child {
     margin-bottom: 4rem;
+  }
+}
+@media only all and (max-width: 374px) {
+  .round-button-container {
+    flex: 0 1 30%;
+  }
+}
+@media only all and (max-width: 319px) {
+  .hero .wrapper {
+    min-width: 320px;
+    display: block;
+    margin: 0;
+    padding: 0 1rem;
+  }
+
+  .about .wrapper {
+    min-width: 320px;
+    display: block;
+    margin: 0;
+    padding: 0 1rem;
+  }
+
+  .pets .wrapper {
+    min-width: 320px;
+    display: block;
+    margin: 0;
+    padding: 0 1rem;
+  }
+
+  .help .wrapper {
+    min-width: 320px;
+    display: block;
+    margin: 0;
+    padding: 0 1rem;
+  }
+
+  .donation .wrapper {
+    min-width: 320px;
+    display: block;
+    margin: 0;
+    padding: 0 1rem;
+  }
+
+  .footer .wrapper {
+    min-width: 320px;
+    display: block;
+    margin: 0;
+    padding: 0 1rem;
   }
 }
 

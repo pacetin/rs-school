@@ -76,6 +76,17 @@ $color-light-s: #FAFAFA;
   letter-spacing: 0rem;
 }
 
+@mixin paragraph-mobile-menu {
+  font: {
+  family: Arial;
+  size: 3.2rem;  
+  weight: 400;
+  }
+  font-style: normal;
+  line-height: 4.8rem;
+  letter-spacing: 0rem;
+}
+
 @mixin logo_title {
   font: {
   family: Georgia;
@@ -111,19 +122,36 @@ $color-light-s: #FAFAFA;
   font-size: 10px;
 }
 
+body, html {
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.no-scroll {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
 .main, .header, .footer {
   max-width: 1280px;
+  min-width: 320px;
   margin: 0 auto;  
 }
 
 .header {
-  background-color: $color-light-xl;
-  padding: 3rem 0rem;
   width: 100vw;
   max-width: 100%;
-  position: sticky;
   min-height: 12rem;
-  z-index: 2;      
+  position: fixed;
+  top: 0;
+  left:0;
+  z-index: 19;      
+  padding: 3rem 0rem;
+  background-color: $color-light-xl;  
 
   .wrapper {  
     max-width: 1200px;        
@@ -132,6 +160,11 @@ $color-light-s: #FAFAFA;
     justify-content: space-between;
     align-items: stretch;
   }
+}
+
+.header_pos-absolute {
+  position: absolute;
+  background-color: transparent;
 }
 
 .visually-hidden {
@@ -148,7 +181,12 @@ $color-light-s: #FAFAFA;
 .logo {  
   display: flex;
   flex-direction: column;
-  justify-content: space-between;  
+  justify-content: space-between;
+  z-index: 3;  
+}
+
+.logo_hidden {  
+  opacity: 0; 
 }
 
 .logo__title {
@@ -179,8 +217,11 @@ $color-light-s: #FAFAFA;
     @include paragraph-l;
     color: $color-dark-l; 
   }
-  .list__item:hover {
+  .list__item:hover:first-child, .list__item:hover:nth-child(2) {
     color: $color-dark-3xl;
+    .list__link {
+      cursor: pointer;
+    }
   } 
   .list__item:nth-child(2) {
     color: $color-dark-3xl;    
@@ -189,10 +230,15 @@ $color-light-s: #FAFAFA;
   .list__link {
     text-decoration: none;
     color: inherit;
+    cursor: default;
   }     
 }
 
 .hamburger-menu {
+  display: none;
+}
+
+.burger-button {
   display: none;
 }
 
@@ -231,7 +277,7 @@ $color-light-s: #FAFAFA;
 
 .pets {
   background-color: $color-light-l;
-  padding: 8rem 0rem 10rem;    
+  padding: 20rem 0rem 10rem;    
 
   .wrapper { 
     max-width: 1200px;    
@@ -241,6 +287,13 @@ $color-light-s: #FAFAFA;
     justify-content: center;
     align-items: flex-start;      
   }
+}
+
+.pets__content {  
+  display: flex;
+  flex-wrap: wrap;    
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .pets__title {
@@ -348,7 +401,7 @@ $color-light-s: #FAFAFA;
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 
 .footer {
-  background: url(/assets/noise_transparent.png), 
+  background: url(../../assets/noise_transparent.png), 
               radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), 
               #211F20;
   padding: 4rem 0rem 0rem;    
@@ -444,24 +497,32 @@ $color-light-s: #FAFAFA;
   } 
   
   .pets { 
-    padding: 8rem 0rem 7.5rem; 
+    padding: 20rem 0rem 7.5rem; 
     .wrapper {    
       margin: 0 3em;        
     }
   }
+
+  .pets__content {
+    flex: 0 1 708px;
+    display: flex;
+    flex-wrap: wrap;    
+    justify-content: center;
+    align-items: flex-start;
+  }
   
-  .pets__title {  
+  .pets__title {      
     margin-left: 0.2rem;
     margin-top: 0.1rem;
     margin-bottom: 1.5rem; 
   }
   
   .pets__cards {
-    flex: 0 1 82%;
+    flex: 0 1 580px;
     height: 1380px;
     overflow: hidden;
     margin-bottom: 4rem;  
-  }
+  }  
   
   .card {  
     margin: 1.5rem 0rem; 
@@ -524,23 +585,131 @@ $color-light-s: #FAFAFA;
 
   .header {
     .wrapper {       
-      margin: 0 1rem;    
+      margin: 0 1rem;
+      align-items: center;   
     }
   }
   
   .menu.menu__1280px {
     display: none;
-  } 
+  }
 
+  .blackout-background {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    right: 0;        
+    z-index: 1;
+    display: none;   
+    background-color: rgba(41, 41, 41, 0.6);            
+  }
 
+  .blackout-background_active {
+    display: block;
+  }
+
+  .hamburger-menu {
+    width: 320px;
+    height: 100vh;
+    padding: 3rem 1rem 0rem;
+    display: block;
+    position: absolute;
+    top: 0;
+    right: -320px;    
+    z-index: 9;
+    background-color: $color-light-xl;    
+    transition: transform 0.4s ease;
+    
+    .logo {
+      width: 30rem;
+      text-align: left;
+      position: absolute;
+      left: 1rem;
+      top: 3rem;
+      z-index:3;
+    }   
+
+    .list {
+      width: 100%;
+      height: 100%;                       
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;      
+      list-style:none;
+      font-size: 0px;            
+    }
+
+    .list__item {
+      @include paragraph-mobile-menu();
+      color: $color-dark-l;
+      margin-top: 4.3rem;
+      &:last-child {
+        margin-bottom: 4.1rem;
+      } 
+    }
+    .list__item:hover:first-child, .list__item:hover:nth-child(2) {
+      color: $color-dark-3xl;
+      .list__link {
+        cursor: pointer;
+      }
+    } 
+    .list__item:nth-child(2) {
+      color: $color-dark-3xl;    
+      border-bottom: solid $color-primary 0.3rem;
+    }  
+    .list__link {
+      text-decoration: none;
+      color: inherit;
+      cursor: default;
+    }    
+  }
+  
+  .hamburger-menu_active {
+    transform: translateX(-320px);
+  }
+  
+  .burger-button {
+    display: block;    
+    margin-right: 4.3rem;
+    z-index: 19;
+    transition: transform 0.2s ease-in 0.2s;
+  }
+
+  .burger-button_active {
+    transform: rotate(-90deg);
+  }
+  
+  .burger-icon {        
+    background-color: transparent;        
+    cursor: pointer;
+    transition: all .1s linear .23s;
+    z-index: 3;
+  }
+  
+  .burger-icon span {
+    display: block;
+    height: 2px;
+    width: 30px;    
+    background-color: $color-dark-3xl;
+    margin-bottom: 8px;        
+  }
+
+  .burger-icon span:last-child {
+    margin-bottom: 0px;        
+  }
   
   .pets { 
-    padding: 4.2rem 0rem 4.2rem; 
+    padding: 16.2rem 0rem 4.2rem; 
     .wrapper {    
       margin: 0 1rem;        
     }
   }
 
+  .pets__content {
+    flex: 0 1 320px;
+  }
   
   .pets__buttons-container {
     flex: 0 1 300px; 
@@ -633,5 +802,27 @@ $color-light-s: #FAFAFA;
     .contacts__item:first-child {
       margin-bottom: 4rem;
     }    
+  }
+}
+
+
+
+@media only all and (max-width: 319px) {
+  .pets {  
+    .wrapper {  
+      min-width: 320px;
+      display: block;      
+      margin: 0;
+      padding: 0 1rem;   
+    }
+  }
+  
+  .footer {  
+    .wrapper {  
+      min-width: 320px;
+      display: block;      
+      margin: 0;
+      padding: 0 1rem;  
+    }
   }
 }
