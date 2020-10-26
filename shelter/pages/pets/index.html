@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Shelter</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="overlay" id="overlay"></div>
+  <div class="modal" id="modal">    
+  </div>
+  <div class="blackout-background"></div>
+  <nav class="hamburger-menu">    
+    <div class="logo">
+      <div class="logo__title">Cozy House</div>
+      <div class="logo__subtitle">Shelter for pets in Boston</div>
+    </div>
+    <ul class="list">
+      <li class="list__item">
+        <a href="../main/index.html" class="list__link">
+          About the shelter
+        </a>
+      </li>
+      <li class="list__item">
+        <a href="index.html" class="list__link">
+          Our pets
+        </a>
+      </li>
+      <li class="list__item">
+        <a href="#" class="list__link">
+          Help the shelter
+        </a>
+      </li>
+      <li class="list__item">
+        <a href="#" class="list__link">
+          Contacts
+        </a>
+      </li>
+    </ul>        
+  </nav>
+  <header class="header">   
+    <div class="wrapper">
+      <h1 class="visually-hidden">Cozy house</h1>
+      <div class="logo" id="logo">
+        <div class="logo__title">Cozy House</div>
+        <div class="logo__subtitle">Shelter for pets in Boston</div>
+      </div>      
+      <nav class="menu menu__1280px">
+        <ul class="list">
+          <li class="list__item">
+            <a href="../main/index.html" class="list__link">
+              About the shelter
+            </a>
+          </li>
+          <li class="list__item">
+            <a href="index.html" class="list__link">
+              Our pets
+            </a>
+          </li>
+          <li class="list__item">
+            <a href="#" class="list__link">
+              Help the shelter
+            </a>
+          </li>
+          <li class="list__item">
+            <a href="#" class="list__link">
+              Contacts
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="burger-button" id="burger-button">        
+        <div class="burger-icon">
+          <span class="first"></span>
+          <span class="second"></span>
+          <span class="third"></span>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main class="main"> 
+    <section class="pets">
+      <div class="wrapper">
+        <div class="pets__content">        
+          <h3 class="pets__title">Our friends who <br> are looking for a house</h3>    
+          <div class="pets__cards">          
+            <div class="card" id="4">            
+              <img class="card__image" src="../../assets/pets-katrine.jpg" alt="pet's picture">
+                <p class="card__title">Katrine</p>
+                <button type="button" class="button button_card-button">
+                  Learn more
+                </button>
+            </div>
+            <div class="card" id="0">
+              <img class="card__image" src="../../assets/pets-jennifer.jpg" alt="pet's picture">
+              <p class="card__title">Jennifer</p>
+              <button type="button" class="button button_card-button">
+                Learn more
+              </button>   
+            </div>
+            <div class="card" id="2">
+              <img class="card__image" src="../../assets/pets-woody.jpg" alt="pet's picture">
+                <p class="card__title">Woody</p>
+                <button type="button" class="button button_card-button">
+                  Learn more
+                </button>
+            </div>
+            <div class="card" id="1">
+              <img class="card__image" src="../../assets/pets-sophia.jpg" alt="pet's picture">
+                <p class="card__title">Sophia</p>
+                <button type="button" class="button button_card-button">
+                  Learn more
+                </button>
+            </div>
+            <div class="card" id="5">
+              <img class="card__image" src="../../assets/pets-timmy.jpg" alt="pet's picture">
+                <p class="card__title">Timmy</p>
+                <button type="button" class="button button_card-button">
+                  Learn more
+                </button>
+            </div>
+            <div class="card" id="7">
+              <img class="card__image" src="../../assets/pets-charly.jpg" alt="pet's picture">
+                <p class="card__title">Charly</p>
+                <button type="button" class="button button_card-button">
+                  Learn more
+                </button>
+            </div>
+            <div class="card" id="3">
+              <img class="card__image" src="../../assets/pets-scarlet.jpg" alt="pet's picture">
+                <p class="card__title">Scarlett</p>
+                <button type="button" class="button button_card-button">
+                  Learn more
+                </button>
+            </div>
+            <div class="card" id="6">
+              <img class="card__image" src="../../assets/pets-freddie.jpg" alt="pet's picture">
+                <p class="card__title">Freddie</p>
+                <button type="button" class="button button_card-button">
+                  Learn more
+                </button>
+            </div>          
+          </div>
+          <div class="pets__buttons-container">
+            <button type="button" class="round-button round-button_text" disabled>
+              <<
+            </button>
+            <button type="button" class="round-button round-button_text" disabled>
+              <
+            </button>
+            <button type="button" class="round-button round-button_text round-button_colored">
+              1
+            </button>
+            <button type="button" class="round-button round-button_text">
+              >
+            </button>
+            <button type="button" class="round-button round-button_text">
+              >>
+            </button>
+          </div>
+        </div>        
+      </div>
+    </section>    
+  </main>
+  <footer class="footer">
+    <div class="wrapper">
+      <div class="contacts">
+        <h3 class="footer__title">For questions and suggestions</h3>        
+        <ul class="footer-list">
+          <li class="contacts__item">
+            <a href="mailto:email@shelter.com" class="contacts__link" target="_blank">
+              <svg class="contacts__icon" width="40" height="26" viewBox="0 0 40 26"   xmlns="http://www.w3.org/2000/svg">
+                <use xlink:href="../../assets/sprite.svg#mail" />
+              </svg>
+              <span>email@shelter.com</span>
+            </a>            
+          </li>
+          <li class="contacts__item">
+            <a href="tel:+136745677554" class="contacts__link" target="_blank">
+              <svg class="contacts__icon" width="40" height="32" viewBox="0 0 40 32" xmlns="http://www.w3.org/2000/svg">
+                <use xlink:href="../../assets/sprite.svg#phone" />
+              </svg>
+              <span>+13 674 567 75 54</span>
+            </a>            
+          </li>        
+        </ul>
+      </div>
+      <div class="location">
+        <h3 class="footer__title">We are waiting for your visit</h3>
+        <ul class="footer-list">
+          <li class="contacts__item">
+            <a href="https://goo.gl/maps/f8od6sbEvPfpuRhD7" class="contacts__link" target="_blank">
+              <svg class="contacts__icon" width="22" height="32" viewBox="0 0 22 32" xmlns="http://www.w3.org/2000/svg">
+                <use xlink:href="../../assets/sprite.svg#pin" />
+              </svg>
+              <span>1 Central Street, Boston (entrance from the store)</span>              
+            </a>            
+          </li>
+          <li class="contacts__item">
+            <a href="https://goo.gl/maps/zgZ8eT3JxQaEUSsPA" class="contacts__link" target="_blank">
+              <svg class="contacts__icon" width="22" height="32" viewBox="0 0 22 32" xmlns="http://www.w3.org/2000/svg">
+                <use xlink:href="../../assets/sprite.svg#pin" />
+              </svg>
+              <span>18 South Park, London </span>
+            </a>            
+          </li>        
+        </ul>
+      </div>
+      <div class="footer__image">
+        <img src="../../assets/footer-puppy.png" alt="dog">
+      </div>     
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
