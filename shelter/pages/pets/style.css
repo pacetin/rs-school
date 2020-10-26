@@ -22,10 +22,33 @@ body, html {
   overflow-y: hidden;
 }
 
+.no-scroll_modal {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
 .main, .header, .footer {
   max-width: 1280px;
   min-width: 320px;
   margin: 0 auto;
+}
+
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 28;
+  display: none;
+  background-color: rgba(41, 41, 41, 0.6);
+}
+
+.overlay_active {
+  display: block;
 }
 
 .header {
@@ -396,6 +419,107 @@ body, html {
   vertical-align: middle;
 }
 
+.modal {
+  display: none;
+  width: 900px;
+  height: 500px;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #F6F6F6;
+  border-radius: 1rem;
+  z-index: 29;
+}
+
+.modal_active {
+  display: flex;
+}
+
+.pet__image {
+  width: 500px;
+  height: 500px;
+  background-position: 0rem -4rem;
+  border-radius: 1rem 0rem 0rem 1rem;
+}
+
+.pet__content {
+  flex: 0 1 44.44%;
+  height: 500px;
+  align-content: stretch;
+  padding: 4.5rem 2rem 8.8rem 2.9rem;
+}
+.pet__content h3 {
+  font-family: Georgia;
+  font-size: 3.5rem;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 4.5rem;
+  letter-spacing: 0.21rem;
+  color: black;
+  margin-bottom: 1rem;
+}
+.pet__content h4 {
+  font-family: Georgia;
+  font-size: 2rem;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 2.3rem;
+  letter-spacing: 0.115rem;
+  color: black;
+  margin-bottom: 4rem;
+}
+.pet__content p {
+  font-family: Georgia;
+  font-size: 1.5rem;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.7rem;
+  letter-spacing: 0.087rem;
+  letter-spacing: 0.1rem;
+  color: black;
+  margin-bottom: 4.2rem;
+}
+.pet__content .pet__description {
+  margin-left: 1.5rem;
+  font-family: Georgia;
+  font-size: 1.5rem;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.7rem;
+  letter-spacing: 0.087rem;
+  letter-spacing: 0.1rem;
+}
+.pet__content .pet__description li {
+  color: #F1CDB3;
+}
+.pet__content .pet__description li span:first-child {
+  font-weight: 700;
+}
+.pet__content .pet__description li span {
+  color: black;
+}
+.pet__content .pet__description li:not(:last-child) {
+  margin-bottom: 1.1rem;
+}
+
+.modal-round-button {
+  position: absolute;
+  top: -58px;
+  right: -42px;
+  background-color: transparent;
+}
+.modal-round-button svg {
+  margin-top: 0.6rem;
+}
+
+.overlay_active:hover ~ .modal .modal-round-button {
+  border: solid #FDDCC4 2px;
+  background-color: #FDDCC4;
+}
+
 @media only all and (min-width: 768px) and (max-width: 1279px) {
   .header {
     padding: 3rem 0rem;
@@ -477,6 +601,40 @@ body, html {
   }
   .location .contacts__item:first-child {
     margin-bottom: 3.4rem;
+  }
+
+  .modal {
+    width: 630px;
+    height: 350px;
+    background-color: #FAFAFA;
+  }
+
+  .pet__image {
+    width: 350px;
+    height: 350px;
+    background-position: center;
+    background-size: contain;
+  }
+
+  .pet__content {
+    height: 350px;
+    padding: 1rem 0.9rem 3.7rem 0.9rem;
+  }
+  .pet__content h4 {
+    margin-bottom: 2rem;
+  }
+  .pet__content p {
+    font-size: 1.3rem;
+    line-height: 1.4rem;
+    letter-spacing: 0.08rem;
+    margin-bottom: 2rem;
+  }
+  .pet__content .pet__description li:not(:last-child) {
+    margin-bottom: 0.65rem;
+  }
+
+  .modal-round-button {
+    top: -52px;
   }
 }
 @media only all and (max-width: 767px) {
@@ -706,6 +864,46 @@ body, html {
   .location .contacts__item:first-child {
     margin-bottom: 4rem;
   }
+
+  .modal {
+    width: 240px;
+    max-height: calc(100% - 104px);
+    height: auto;
+    background-color: #FAFAFA;
+  }
+
+  .pet__image {
+    display: none;
+  }
+
+  .pet__content {
+    flex: 0 1 100%;
+    height: auto;
+    align-content: center;
+    padding: 1rem;
+  }
+  .pet__content h3 {
+    text-align: center;
+  }
+  .pet__content h4 {
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  .pet__content p {
+    text-align: justify;
+    font-size: 1.3rem;
+    line-height: 1.4rem;
+    letter-spacing: 0.08rem;
+    margin-bottom: 2.4rem;
+  }
+  .pet__content .pet__description li:not(:last-child) {
+    margin-bottom: 0.65rem;
+  }
+
+  .modal-round-button {
+    top: -52px;
+    right: -30px;
+  }
 }
 @media only all and (max-width: 319px) {
   .pets .wrapper {
@@ -720,6 +918,11 @@ body, html {
     display: block;
     margin: 0;
     padding: 0 1rem;
+  }
+
+  modal {
+    display: block;
+    min-width: 240px;
   }
 }
 

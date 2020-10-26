@@ -136,11 +136,33 @@ body, html {
   overflow-y: hidden;
 }
 
+.no-scroll_modal {
+  width: 100%;  
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
 
 .main, .header, .footer {
   max-width: 1280px;
   min-width: 320px;  
   margin: 0 auto;  
+}
+
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 28; 
+  display: none;   
+  background-color: rgba(41, 41, 41, 0.6);            
+}
+
+.overlay_active {
+  display: block;
 }
 
 .header {
@@ -725,6 +747,87 @@ body, html {
    vertical-align: middle;
 }
 
+.modal {
+  display: none;
+  width: 900px;
+  height: 500px;  
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: $color-light-l;
+  border-radius: 1rem;
+  z-index:29;
+}
+
+.modal_active {
+  display: flex;
+}
+
+.pet__image {
+  width: 500px;
+  height: 500px;    
+  background-position: 0rem -4rem;
+  border-radius: 1rem 0rem 0rem 1rem; 
+}
+
+.pet__content {
+  flex: 0 1 44.44%;
+  height: 500px;
+  align-content: stretch;
+  padding: 4.5rem 2rem 8.8rem 2.9rem;
+  h3 {
+    @include h3;
+    color: black;
+    margin-bottom: 1rem;
+  }
+  h4 {
+    @include h4;
+    color: black;
+    margin-bottom: 4rem;
+  }
+  p {
+    @include h5;
+    letter-spacing: 0.1rem;
+    color: black;    
+    margin-bottom: 4.2rem;
+  }
+  .pet__description {
+    margin-left: 1.5rem;    
+    @include h5;
+    letter-spacing: 0.1rem;    
+    li {
+      color: $color-primary;
+      span:first-child {
+        font-weight: 700;
+      }
+      span {
+        color: black;
+      }
+    }
+    li:not(:last-child) {
+      margin-bottom: 1.1rem;
+    }    
+  }
+}
+
+.modal-round-button {
+  position: absolute;
+  top: -58px;
+  right: -42px;
+  background-color: transparent;
+  svg {
+    margin-top: 0.6rem;
+  }
+}
+
+.overlay_active:hover ~ .modal .modal-round-button {
+  border: solid $color-primary-light 2px;
+  background-color: $color-primary-light;  
+}
+
 
 
 
@@ -927,11 +1030,43 @@ body, html {
       margin-bottom: 3.4rem;
     }    
   }
+
+  .modal {
+    width: 630px;
+    height: 350px;
+    background-color: $color-light-s; 
+  }
+  
+  .pet__image {
+    width: 350px;
+    height: 350px;      
+    background-position: center;
+    background-size: contain; 
+  }
+  
+  .pet__content {    
+    height: 350px;    
+    padding: 1rem 0.9rem 3.7rem 0.9rem;    
+    h4 {    
+      margin-bottom: 2rem;
+    }
+    p {      
+      font-size: 1.3rem;
+      line-height: 1.4rem;
+      letter-spacing: 0.08rem;    
+      margin-bottom: 2rem;
+    }
+    .pet__description {      
+      li:not(:last-child) {
+        margin-bottom: 0.65rem;
+      }    
+    }
+  }
+  
+  .modal-round-button {    
+    top: -52px;    
+  }
 }
-
-
-
-
 
 @media only all and (max-width: 767px) {
 
@@ -1053,9 +1188,7 @@ body, html {
 
   .burger-icon span:last-child {
     margin-bottom: 0px;        
-  }
-   
-  
+  }  
   
   .hero {    
     padding-top: 15rem;
@@ -1367,6 +1500,48 @@ body, html {
       margin-bottom: 4rem;
     }    
   }
+
+  .modal {
+    width: 240px;
+    max-height: calc(100% - 104px);
+    height: auto;
+    background-color: $color-light-s;
+  }
+  
+  .pet__image {
+    display: none;
+  }
+  
+  .pet__content {
+    flex: 0 1 100%;
+    height: auto;    
+    align-content: center;
+    padding: 1rem;
+    h3 {
+      text-align: center;
+    }    
+    h4 {    
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    p {
+      text-align: justify;
+      font-size: 1.3rem;
+      line-height: 1.4rem;
+      letter-spacing: 0.08rem;    
+      margin-bottom: 2.4rem;
+    }
+    .pet__description {      
+      li:not(:last-child) {
+        margin-bottom: 0.65rem;
+      }    
+    }
+  }
+  
+  .modal-round-button {    
+    top: -52px;
+    right: -30px;    
+  }
 }
 
 @media only all and (max-width: 374px) {
@@ -1423,6 +1598,11 @@ body, html {
       margin: 0;
       padding: 0 1rem;  
     }
+  }
+
+  modal {
+    display: block;
+    min-width: 240px;
   }
 }
 
