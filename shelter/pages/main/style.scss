@@ -481,7 +481,8 @@ body, html {
 .round-button:active, 
 .round-button:focus {
   outline: none;
-  border: none;
+  border: solid $color-primary 2px;
+  background-color: $color-light-l;
   cursor: pointer;  
 }
 

@@ -6,31 +6,69 @@ window.addEventListener("DOMContentLoaded", () =>{
     blackout = document.querySelector('.blackout-background'),
     burgerMenu = document.querySelector('.hamburger-menu'),
     logo = document.querySelector('#logo');
+
+  let pets;
+  let fullPets = [];
+  let scrollTop;
+  const cardWidth = 270;
+
   burgerButton.addEventListener('click', showMenu);  
   blackout.addEventListener('click', showMenu); 
   
+  
+
+  
+  
+  async function getData() {
+    const url = '../../assets/pets.json';
+    const response = await fetch(url);
+    pets = await response.json();
+    console.log(pets);    
+
+    fullPets = ( () => {
+      let tempArr = [];
+      let cardsNumber = getCardNumber();
+      console.log(cardsNumber);
+      let k=0;
+      let used = {};
+      let randomInd;
+      let randomElem;
+
+      do {
+        randomInd = Math.floor(Math.random()*pets.length);
+        randomElem = pets[randomInd];
+        if (!(randomElem.id in used)) {
+          tempArr.push(randomElem);
+          k++;
+          used.id = true;
+        } 
+      }
+      while (k<cardsNumber);
+      return tempArr    
+    } )();
+
+    //fullPets = sort863(fullPets);    
+        
+    //createPets(fullPets.slice(0, 8));
+
+    const cards = document.querySelectorAll('.card');    
+    for (let i=0; i<cards.length; i++) {
+      cards[i].addEventListener('click', showPopUp);
+    }
+  }
+
+  const getCardNumber = () => {
+    let contWidth = document.querySelector('#pets').offsetWidth;    
+    let cards = Math.trunc(contWidth/cardWidth);  
+    return cards;
+  }
+
   function showMenu() {  
     burgerButton.classList.toggle('burger-button_active');
     burgerMenu.classList.toggle('hamburger-menu_active');
     logo.classList.toggle('logo_hidden');
     blackout.classList.toggle('blackout-background_active');
     document.querySelector('body').classList.toggle('no-scroll');
-  }
-
-  let pets;
-  let scrollTop;
-  
-  async function getData() {
-    const url = '../../assets/pets.json';
-    const response = await fetch(url);
-    pets = await response.json();
-    console.log (pets);
-
-    const cards = document.querySelectorAll('.card');
-    console.log(cards);
-    for (let i=0; i<cards.length; i++) {
-      cards[i].addEventListener('click', showPopUp);
-    }
   }
 
   function showPopUp(e) {
@@ -103,13 +141,7 @@ window.addEventListener("DOMContentLoaded", () =>{
     window.scroll(0, scrollTop);
   }
 
-  getData();
-
-  
-
-  
-
-  
+  getData();  
 
   
 } );

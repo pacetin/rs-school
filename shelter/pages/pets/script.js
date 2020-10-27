@@ -105,13 +105,13 @@ window.addEventListener("DOMContentLoaded", () =>{
   async function getData() {
     const url = '../../assets/pets.json';
     const response = await fetch(url);
-    pets = await response.json();
+    pets = await response.json();       
     
     fullPets = ( () => {
       let tempArr = [];
 
       for (let i=0; i<6; i++) {
-        const newPets = pets;
+        const newPets = pets.slice();        
 
         for (let j=pets.length; j>0; j--) {
           let randomInd = Math.floor(Math.random()*j);
@@ -126,17 +126,16 @@ window.addEventListener("DOMContentLoaded", () =>{
 
     //fullPets = sort863(fullPets);    
         
-    createPets(fullPets.slice(0, 8));
-
-    const cards = document.querySelectorAll('.card');    
-    for (let i=0; i<cards.length; i++) {
-      cards[i].addEventListener('click', showPopUp);
-    }
+    createPets(fullPets.slice(0, 8));    
   }
 
   const createPets = (array) => {
     const cardsCont = document.querySelector('#pets');
     cardsCont.innerHTML = createCards(array);
+    const cards = document.querySelectorAll('.card');        
+    for (let i=0; i<cards.length; i++) {            
+      cards[i].addEventListener('click', showPopUp);
+    }
   }
 
   const createCards = (array) => {
@@ -215,6 +214,7 @@ window.addEventListener("DOMContentLoaded", () =>{
 
   function showPopUp(e) {
     let index = (e.currentTarget.getAttribute('id'));    
+
     const modal = document.querySelector('#modal'),
       overlay = document.querySelector('.overlay');    
 

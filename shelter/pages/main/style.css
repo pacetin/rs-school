@@ -23,6 +23,7 @@ body, html {
 }
 
 .no-scroll_modal {
+  width: 100%;
   height: 100%;
   overflow-x: hidden;
   overflow-y: hidden;
@@ -396,7 +397,8 @@ body, html {
 .round-button:active,
 .round-button:focus {
   outline: none;
-  border: none;
+  border: solid #F1CDB3 2px;
+  background-color: #F6F6F6;
   cursor: pointer;
 }
 
@@ -701,7 +703,8 @@ body, html {
 .pet__image {
   width: 500px;
   height: 500px;
-  background-position: 0rem -4rem;
+  background-size: 105%;
+  background-position: -1rem -1rem;
   border-radius: 1rem 0rem 0rem 1rem;
 }
 
@@ -968,8 +971,6 @@ body, html {
   .pet__image {
     width: 350px;
     height: 350px;
-    background-position: center;
-    background-size: contain;
   }
 
   .pet__content {
