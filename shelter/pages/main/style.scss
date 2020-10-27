@@ -768,8 +768,9 @@ body, html {
 
 .pet__image {
   width: 500px;
-  height: 500px;    
-  background-position: 0rem -4rem;
+  height: 500px;
+  background-size: 105%;    
+  background-position: -1rem -1rem;
   border-radius: 1rem 0rem 0rem 1rem; 
 }
 
@@ -1039,9 +1040,7 @@ body, html {
   
   .pet__image {
     width: 350px;
-    height: 350px;      
-    background-position: center;
-    background-size: contain; 
+    height: 350px;   
   }
   
   .pet__content {    
