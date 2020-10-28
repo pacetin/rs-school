@@ -1,19 +1,58 @@
 'use strict';
 
 
-window.addEventListener("DOMContentLoaded", () =>{
+window.addEventListener("load", () =>{
   const burgerButton = document.querySelector('#burger-button'), 
     blackout = document.querySelector('.blackout-background'),
     burgerMenu = document.querySelector('.hamburger-menu'),
-    logo = document.querySelector('#logo');
+    logo = document.querySelector('#logo'),
+    cardsCont = document.querySelector('#cards-container'),
+    prevButton = document.querySelector('#previous'),
+    nextButton = document.querySelector('#next');
 
   let pets;
   let fullPets = [];
+  let needToDeletePets = [];
   let scrollTop;
   const cardWidth = 270;
+  const gap = 37.5;
 
-  burgerButton.addEventListener('click', showMenu);  
+  burgerButton.addEventListener('click', showMenu);        //burger
   blackout.addEventListener('click', showMenu); 
+
+  prevButton.addEventListener('click', showPreviousSlide);
+  nextButton.addEventListener('click', showNextSlide);     //slider
+  
+  function showNextSlide() {
+    let cardsNumber = getCardNumber();
+    let newPets = createNewPetsArray(cardsNumber, fullPets);    
+    appendPets(newPets);
+    needToDeletePets = fullPets.slice();
+    fullPets = newPets.slice();
+    cardsCont.style.transform = `translateX(-${cardWidth*cardsNumber+gap*cardsNumber}px)`;
+    prevButton.disabled = 'true';
+    nextButton.disabled = 'true';
+    cardsCont.addEventListener('transitionend', showNextSlideEnd);
+  }
+
+  function showNextSlideEnd() {
+    cardsCont.removeEventListener('transitionend', showNextSlideEnd);    
+    //removePets(needToDeletePets);
+    prevButton.disabled = 'false';
+    nextButton.disabled = 'false';
+  }
+
+  function removePets(array) {
+    array.forEach( (item) => {
+      let domElem = document.getElementById(item.id);
+      cardsCont.removeChild(domElem);
+    });
+  }
+
+  function showPreviousSlide() {
+    let cardsNumber = getCardNumber();
+    let newPets = createNewPetsArray(cardsNumber, fullPets);
+  }
   
   
 
@@ -22,39 +61,85 @@ window.addEventListener("DOMContentLoaded", () =>{
   async function getData() {
     const url = '../../assets/pets.json';
     const response = await fetch(url);
-    pets = await response.json();
-    console.log(pets);    
+    pets = await response.json();       
 
-    fullPets = ( () => {
-      let tempArr = [];
+    fullPets = ( () => {      
       let cardsNumber = getCardNumber();
-      console.log(cardsNumber);
-      let k=0;
-      let used = {};
-      let randomInd;
-      let randomElem;
-
-      do {
-        randomInd = Math.floor(Math.random()*pets.length);
-        randomElem = pets[randomInd];
-        if (!(randomElem.id in used)) {
-          tempArr.push(randomElem);
-          k++;
-          used.id = true;
-        } 
-      }
-      while (k<cardsNumber);
-      return tempArr    
+      let newPets = createNewPetsArray(cardsNumber, undefined);      
+      return newPets;    
     } )();
 
     //fullPets = sort863(fullPets);    
         
-    //createPets(fullPets.slice(0, 8));
+    createPets(fullPets);
+  }
 
-    const cards = document.querySelectorAll('.card');    
-    for (let i=0; i<cards.length; i++) {
+  const createNewPetsArray = (length, currentArray) => {
+    let tempArr = [];
+    let k=0;
+    let used = {};
+    let randomInd;
+    let randomElem;
+    if (currentArray === undefined) {      
+      do {
+        randomInd = Math.floor(Math.random()*pets.length);        
+        if (!(randomInd in used)) {
+          randomElem = pets[randomInd];
+          tempArr.push(randomElem);
+          k++;
+          used[randomInd] = true;        
+        } 
+      }
+      while (k < length);
+    } else {        
+        do {
+          randomInd = Math.floor(Math.random()*pets.length);          
+          if ( !(randomInd in used) && !(isRepeat(randomInd, currentArray)) ) {            
+            randomElem = pets[randomInd];
+            tempArr.push(randomElem);
+            k++;
+            used[randomInd] = true;
+          }
+        }        
+        while (k < length);      
+      
+      }
+    console.log(tempArr, currentArray);    
+    return tempArr;
+  }  
+
+  function isRepeat(randomInd, array) {    
+    return array.some( item => Number(item.id) === randomInd );    
+  }
+
+  const createPets = (array) => {    
+    cardsCont.innerHTML = createCards(array);
+    const cards = document.querySelectorAll('.card');        
+    for (let i=0; i<cards.length; i++) {            
       cards[i].addEventListener('click', showPopUp);
     }
+  }
+
+  const appendPets = (array) => {    
+    cardsCont.insertAdjacentHTML('beforeend', createCards(array));
+    /*const cards = document.querySelectorAll('.card');        
+    for (let i=0; i<cards.length; i++) {            
+      cards[i].addEventListener('click', showPopUp);
+    }*/
+  }
+
+  const createCards = (array) => {
+    let str = '';
+    for (let i=0; i<array.length; i++) {
+      str += `<div class="card" id="${array[i].id}">            
+        <img class="card__image" src="../../assets/pets-${array[i].name.toLowerCase()}.png" alt="pet's picture">
+        <p class="card__title">${array[i].name}</p>
+        <button type="button" class="button button_card-button">
+          Learn more
+        </button>
+        </div>`;
+    }
+    return str;
   }
 
   const getCardNumber = () => {

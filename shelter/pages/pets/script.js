@@ -1,4 +1,4 @@
-window.addEventListener("DOMContentLoaded", () =>{
+window.addEventListener("load", () =>{
   let pets;
   let fullPets = [];
   let scrollTop;

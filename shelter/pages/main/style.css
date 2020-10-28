@@ -337,10 +337,20 @@ body, html {
 }
 
 .cards {
-  flex: 0 1 990px;
-  margin: 0 5.3rem;
+  flex: 0 1 890px;
+  height: 435px;
   position: relative;
   overflow: hidden;
+}
+
+.cards-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 200%;
+  display: flex;
+  column-gap: 3.75rem;
+  transition: transform 1s ease-out 0.15s;
 }
 
 .card {
@@ -355,10 +365,6 @@ body, html {
 
 .card:hover {
   background-color: #FFFFFF;
-}
-
-.card:nth-child(2), .card:nth-child(3) {
-  margin-left: 8.75rem;
 }
 
 .card__image {
@@ -412,6 +418,15 @@ body, html {
   border: solid #CDCDCD 2px;
 }
 .round-button:disabled .arrow-icon {
+  fill: #CDCDCD;
+}
+
+.round-button:disabled:hover {
+  border: solid #CDCDCD 2px;
+  background-color: transparent;
+  cursor: default;
+}
+.round-button:disabled:hover .arrow-icon {
   fill: #CDCDCD;
 }
 
@@ -865,17 +880,10 @@ body, html {
 
   .cards {
     flex: 0 1 580px;
-    margin: 0 0rem;
-    position: relative;
-    overflow: hidden;
   }
 
   .cards-container {
-    width: 200%;
-  }
-
-  .card:nth-child(2), .card:nth-child(3) {
-    margin-left: 3.75rem;
+    transition: transform 0.75s ease-out 0.15s;
   }
 
   .help .wrapper {
@@ -1253,18 +1261,12 @@ body, html {
   .cards {
     flex: 0 1 270px;
     order: 1;
-    margin: 0 0rem;
-    position: relative;
-    overflow: hidden;
     margin-bottom: 2rem;
   }
 
   .cards-container {
-    width: 400%;
-  }
-
-  .card:nth-child(2), .card:nth-child(3) {
-    margin-left: 3.75rem;
+    column-gap: 3.75rem;
+    transition: transform 0.5s ease-out 0.15s;
   }
 
   .button-container {
