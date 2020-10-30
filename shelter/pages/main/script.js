@@ -26,18 +26,18 @@ window.addEventListener("load", () =>{
   function showNextSlide() {
     let cardsNumber = getCardNumber();
     let newPets = createNewPetsArray(cardsNumber, fullPets);    
-    appendPets(newPets);
-    needToDeletePets = fullPets.slice();
+    createPets(newPets);
     fullPets = newPets.slice();
+    /*needToDeletePets = fullPets.slice();
     cardsCont.style.transform = `translateX(-${cardWidth*cardsNumber+gap*cardsNumber}px)`;
     prevButton.disabled = 'true';
     nextButton.disabled = 'true';
-    cardsCont.addEventListener('transitionend', showNextSlideEnd);
+    cardsCont.addEventListener('transitionend', showNextSlideEnd);*/
   }
 
-  function showNextSlideEnd() {
+  /*function showNextSlideEnd() {
     cardsCont.removeEventListener('transitionend', showNextSlideEnd);    
-    //removePets(needToDeletePets);
+    removePets(needToDeletePets);
     prevButton.disabled = 'false';
     nextButton.disabled = 'false';
   }
@@ -47,16 +47,14 @@ window.addEventListener("load", () =>{
       let domElem = document.getElementById(item.id);
       cardsCont.removeChild(domElem);
     });
-  }
+  }*/
 
   function showPreviousSlide() {
     let cardsNumber = getCardNumber();
     let newPets = createNewPetsArray(cardsNumber, fullPets);
-  }
-  
-  
-
-  
+    createPets(newPets);
+    fullPets = newPets.slice();
+  } 
   
   async function getData() {
     const url = '../../assets/pets.json';
