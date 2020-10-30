@@ -409,7 +409,7 @@ body, html {
   text-align: center;
   margin-left: 0.2rem;
   margin-top: 0.1rem;
-  margin-bottom: 6rem; 
+  margin-bottom: 1rem; 
   @include h3;
   color: $color-dark-l;
 
@@ -427,9 +427,20 @@ body, html {
 
 .cards {
   flex: 0 1 990px;
-  margin: 0 5.3rem;
+  height: 535px;  
   position: relative;
   overflow: hidden;    
+}
+
+.cards-container { 
+  position: absolute;
+  left:0;
+  top:0;
+  padding: 5rem;
+  width: 100%;
+  display: flex;
+  column-gap: 3.75rem;
+  transition: transform 1s ease-out 0.15s;
 }
 
 .card {
@@ -437,17 +448,14 @@ body, html {
   width: 270px;  
   border-radius: 1rem;
   text-align: center;
-  background-color: $color-light-s;
+  background-color: $color-light-s;  
   transition-duration: 0.2s;
   transition-timing-function: ease-in-out;
 }
 
 .card:hover {
-  background-color: $color-light-xl;  
-}
-
-.card:nth-child(2), .card:nth-child(3){
-  margin-left: 8.75rem;
+  background-color: $color-light-xl;
+  box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);  
 }
 
 .card__image {
@@ -499,6 +507,15 @@ body, html {
   }  
 }
 
+.round-button:disabled:hover {
+  border: solid $color-dark-s 2px;
+  background-color: transparent;
+  .arrow-icon {  
+    fill: $color-dark-s;  
+  }
+  cursor: default;  
+}
+
 .arrow-icon {  
   fill: $color-dark-3xl;  
 }
@@ -508,7 +525,7 @@ body, html {
 }
 
 .button_pets-button {
-  margin-top: 6rem;
+  margin-top: 1rem;
 }
 
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
@@ -920,21 +937,30 @@ body, html {
     .wrapper {    
       margin: 0 3rem;          
     }
-  } 
+  }
+  
+  .pets__title {
+    margin-bottom: 4.5rem;
+  }
 
   .cards{
-    flex: 0 1 580px;    
-    margin: 0 0rem;
-    position: relative;    
-    overflow: hidden;  
+    flex: 0 1 590px;
+    height: 465px;       
   }
   
   .cards-container{
-    width: 200%;        
-  }   
-  
-  .card:nth-child(2), .card:nth-child(3){
-    margin-left: 3.75rem;
+    width: 100%;
+    padding: 1.5rem;    
+    column-gap: 2rem;  
+    transition: transform 0.75s ease-out 0.15s;            
+  }
+
+  .card:hover {    
+    box-shadow: 0px 0px 7px 7px rgba(13, 13, 13, 0.04);  
+  }
+
+  .button_pets-button {
+    margin-top: 4.5rem;
   }
 
   .help {
@@ -1295,7 +1321,7 @@ body, html {
     text-align: center;
     margin-left: 0rem;
     margin-top: 0rem;
-    margin-bottom: 4.35rem; 
+    margin-bottom: 2.7rem; 
     @include h3__mobile;    
   }
 
@@ -1311,24 +1337,25 @@ body, html {
     flex: 0 1 40%;  
     order: 2;
     text-align: center;
-  }
+  }  
 
   .cards{
-    flex: 0 1 270px;
-    order: 1;    
-    margin: 0 0rem;
-    position: relative;    
-    overflow: hidden;
-    margin-bottom: 2rem;  
+    flex: 0 1 300px;
+    height: 465px;
+    order: 1;  
+    margin-bottom: 0.5rem;  
+  }
+
+  .card:hover {
+    box-shadow: 0px 0px 7px 7px rgba(13, 13, 13, 0.04);
   }
   
   .cards-container{
-    width: 400%;        
-  }   
-  
-  .card:nth-child(2), .card:nth-child(3){
-    margin-left: 3.75rem;
-  }
+    width: 100%;
+    padding: 1.5rem;
+    column-gap: 2rem;
+    transition: transform 0.5s ease-out 0.15s;            
+  }  
 
   .button-container {
     flex:  0 1 90%;
