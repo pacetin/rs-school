@@ -2,6 +2,24 @@
   box-sizing: border-box;
 }
 
+textarea {
+  display: block;
+  width: 90%;
+  margin: 30px auto;
+  padding: 10px;
+  font-size: 20px;
+  height: calc(100vh - 360px);
+  min-height: 200px;
+}
+
+.use-keyboard-input {
+  outline: black;  
+}
+
+.use-keyboard-input:focus {
+  outline: black;  
+}
+
 .keyboard {
   position: fixed;
   left: 0;
@@ -68,7 +86,14 @@
 }
 
 .keyboard__key_active::after {
+  content: '';
+  top: 10px;
+  right: 10px;
+  position: absolute;
+  width: 8px;
+  height: 8px;
   background: #08ff00;
+  border-radius: 50%;
 }
 
 .keyboard__key_dark {

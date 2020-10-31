@@ -1,5 +1,7 @@
 "use strict";
-const Keybord = {
+const Keyboard = {
+  field: null,
+
   elements: {
     main: null,
     keysContainer: null,
@@ -28,6 +30,15 @@ const Keybord = {
 
     this.elements.main.appendChild(this.elements.keysContainer);
     document.body.appendChild(this.elements.main);
+
+    document.querySelectorAll('.use-keyboard-input').forEach(element => {
+      element.addEventListener('focus', () => {
+        this.open(element.value, currentValue => {
+          element.value = currentValue;
+        });
+        this.field = element;        
+      });
+    });
   },
 
   _createKeys() {
@@ -57,13 +68,14 @@ const Keybord = {
           keyElement.innerHTML = createIconHTML('backspace');
 
           keyElement.addEventListener('click', () => {
-            this.properties.value = this.properties.value.substring(0, this.properties.value -1);
+            
+            this.properties.value = this.properties.value.substring(0, this.properties.value.length-1);
             this._triggerEvent('oninput');
           });
           break;
         
         case 'caps':
-          keyElement.classList.add('keyboard__key_wide', 'keyboard__key_activatible');
+          keyElement.classList.add('keyboard__key_wide', 'keyboard__key_activatable');
           keyElement.innerHTML = createIconHTML('keyboard_capslock');
 
           keyElement.addEventListener('click', () => {
@@ -102,10 +114,11 @@ const Keybord = {
           });
           break;
         
-        default:
+        default:          
           keyElement.textContent = key.toLowerCase();
 
           keyElement.addEventListener('click', () => {
+            this.field.focus();
             this.properties.value += this.properties.capsLock ? key.toUpperCase() : key.toLowerCase();
             this._triggerEvent('oninput');
           });
@@ -144,7 +157,10 @@ const Keybord = {
   },
 
   close() {
-
+    this.properties.value = '';
+    this.eventHandlers.oninput = oninput;
+    this.eventHandlers.onclose = onclose;
+    this.elements.main.classList.add('keyboard_hidden');
   },
 
 
@@ -153,8 +169,5 @@ const Keybord = {
 };
 
 window.addEventListener('DOMContentLoaded', function () {
-  Keybord.init();
-  Keybord.open('dcode', function (currentValue) {
-    
-  })
+  Keyboard.init();  
 });
