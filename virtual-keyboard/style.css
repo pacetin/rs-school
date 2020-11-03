@@ -53,12 +53,25 @@ textarea {
   outline: none;
   cursor: pointer;
   display: inline-flex;
-  align-items: center;
+  flex-wrap: wrap;
+  align-items: stretch;
   justify-content: center;
   vertical-align: top;
-  padding: 0;
+  padding: 4px 7px;
   -webkit-tap-highlight-color: transparent;
   position: relative;
+}
+
+.sub {
+  flex: 0 1 100%;
+  text-align: left;  
+  color:rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+}
+
+.letter {
+  flex: 0 1 100%;
+  text-align: left;
 }
 
 .keyboard__key:active {
