@@ -30,7 +30,7 @@ const Keyboard = {
       {small: 'p', shift: 'P', code: 'KeyP'},
       {small: '[', shift: '{', code: 'BracketLeft'},
       {small: ']', shift: '}', code: 'BracketRight'},
-      {small: '\\', shift: '|', code: 'BackSlash'},
+      {small: '\\', shift: '|', code: 'Backslash'},
       {small: 'CapsLock', shift: null, code: 'CapsLock'},
       {small: 'a', shift: 'A', code: 'KeyA'},
       {small: 's', shift: 'S', code: 'KeyS'},
@@ -42,7 +42,7 @@ const Keyboard = {
       {small: 'k', shift: 'K', code: 'KeyK'},
       {small: 'l', shift: 'L', code: 'KeyL'},
       {small: ';', shift: ':', code: 'Semicolon'},
-      {small: "'", shift: '"', code: 'Apostrophe'},
+      {small: "'", shift: '"', code: 'Quote'},
       {small: 'Enter', shift: null, code: 'Enter'},
       {small: 'Done', shift: null, code: 'Done'},
       {small: 'z', shift: 'Z', code: 'KeyZ'},
@@ -53,8 +53,8 @@ const Keyboard = {
       {small: 'n', shift: 'N', code: 'KeyN'},
       {small: 'm', shift: 'M', code: 'KeyM'},
       {small: ',', shift: '<', code: 'Comma'},
-      {small: '.', shift: '>', code: 'FullStop'},
-      {small: '/', shift: '?', code: 'Solidus'},
+      {small: '.', shift: '>', code: 'Period'},
+      {small: '/', shift: '?', code: 'Slash'},
       {small: 'Shift', shift: null, code: 'Shift'},
       {small: 'En', shift: null, code: 'Language'},
       {small: 'Microphone', shift: null, code: 'Microphone'},
@@ -90,7 +90,7 @@ const Keyboard = {
       {small: 'з', shift: 'З', code: 'KeyP'},
       {small: 'х', shift: 'Х', code: 'BracketLeft'},
       {small: 'ъ', shift: 'Ъ', code: 'BracketRight'},
-      {small: '\\', shift: '/', code: 'BackSlash'},
+      {small: '\\', shift: '/', code: 'Backslash'},
       {small: 'CapsLock', shift: null, code: 'CapsLock'},
       {small: 'ф', shift: 'Ф', code: 'KeyA'},
       {small: 'ы', shift: 'Ы', code: 'KeyS'},
@@ -102,7 +102,7 @@ const Keyboard = {
       {small: 'л', shift: 'Л', code: 'KeyK'},
       {small: 'д', shift: 'Д', code: 'KeyL'},
       {small: 'ж', shift: 'Ж', code: 'Semicolon'},
-      {small: "э", shift: 'Э', code: 'Apostrophe'},
+      {small: "э", shift: 'Э', code: 'Quote'},
       {small: 'Enter', shift: null, code: 'Enter'},
       {small: 'Done', shift: null, code: 'Done'},
       {small: 'я', shift: 'Я', code: 'KeyZ'},
@@ -113,8 +113,8 @@ const Keyboard = {
       {small: 'т', shift: 'Т', code: 'KeyN'},
       {small: 'ь', shift: 'Ь', code: 'KeyM'},
       {small: 'б', shift: 'Б', code: 'Comma'},
-      {small: 'ю', shift: 'Ю', code: 'FullStop'},
-      {small: '.', shift: ',', code: 'Solidus'},
+      {small: 'ю', shift: 'Ю', code: 'Period'},
+      {small: '.', shift: ',', code: 'Slash'},
       {small: 'Shift', shift: null, code: 'Shift'},
       {small: 'En', shift: null, code: 'Language'},
       {small: 'Microphone', shift: null, code: 'Microphone'},
@@ -129,6 +129,7 @@ const Keyboard = {
     main: null,
     keysContainer: null,
     keys: [],
+    recognition: null,
   },
 
   eventHandlers: {
@@ -139,10 +140,12 @@ const Keyboard = {
   properties: {
     lang: 'en',    
     value: '',
-    cursorPosition: undefined,
+    cursorPosition: 0,
     capsLock: false,
     shift: false,
+    keyboardShift: true,
     sound: true,
+    microphone: false,
   },
 
   sounds: {
@@ -150,10 +153,12 @@ const Keyboard = {
     capsLock: new Audio('assets/sounds/capslock.mp3'),
     backspace: new Audio('assets/sounds/backspace.mp3'),
     enter: new Audio('assets/sounds/enter.mp3'),
+    mic_on: new Audio('assets/sounds/mic-on.mp3'),
+    mic_off: new Audio('assets/sounds/mic-off.mp3'),
     default: {en: new Audio('assets/sounds/en-default.mp3'), ru: new Audio('assets/sounds/ru-default.mp3')},    
   },
 
-  init() {
+  init() {    
     this.elements.main = document.createElement('div');
     this.elements.keysContainer = document.createElement('div');
 
@@ -176,16 +181,59 @@ const Keyboard = {
       });
     });
 
-    document
+    window.addEventListener('keydown', (e) => {      
+      const keyCode = e.code;
+      const key = Array.from(this.elements.keys).find( button => button.dataset.code === keyCode);
+      if (key) {
+        key.classList.add('keyboard__key_pressed');
+        if (keyCode === 'CapsLock') {        
+          key.click();
+        }
+      }else if (keyCode.match(/shift/i)) {        
+        if (this.properties.keyboardShift) {
+          this.properties.keyboardShift = false;
+          const key = Array.from(this.elements.keys).find( button => button.dataset.code === 'Shift');
+          key.click();
+          key.classList.add('keyboard__key_pressed');
+        }
+      }         
+    });
+
+    window.addEventListener('keyup', (e) => {
+      const keyCode = e.code;
+      const key = Array.from(this.elements.keys).find( button => button.dataset.code === keyCode);
+      if (key) {
+        key.classList.remove('keyboard__key_pressed');
+      }
+      else if (keyCode.match(/shift/i)) {
+        this.properties.keyboardShift = true;
+        const key = Array.from(this.elements.keys).find( button => button.dataset.code === 'Shift');
+        key.click();
+        key.classList.remove('keyboard__key_pressed');
+      }            
+    });
+
+    window.SpeechRecognition = window.SpeechRecognition || window. webkitSpeechRecognition;
+    const recognition = new SpeechRecognition;
+    this.elements.recognition = recognition;
+    this.elements.recognition.addEventListener('result', e => {
+      const transcript = Array.from(e.results).map(item => item[0]).map(item => item.transcript).join('');
+      if(e.results[0].isFinal) {
+        this.properties.value += (this.properties.value === '') ? `${transcript}` : ` ${transcript}`;
+        this.properties.cursorPosition += transcript.length + 1;
+        this._triggerEvent('oninput');
+      }      
+    });
+    
   },
 
   _createKeys() {
     const fragment = document.createDocumentFragment();
     const keyLayout = [
       ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7', 'Digit8', 'Digit9', 'Digit0', 'Minus', 'Equal', 'Backspace'],
-      ['KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP', 'BracketLeft', 'BracketRight', 'BackSlash'],
-      ['CapsLock', 'KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'Semicolon', 'Apostrophe', 'Enter'],
-      ['Done', 'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN', 'KeyM', 'Comma', 'FullStop', 'Solidus', 'Shift'],
+      ['KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP', 'BracketLeft', 'BracketRight', 'Backslash'],
+      ['CapsLock', 'KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'Semicolon', 'Quote', 'Enter'],
+      ['Done', 'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN', 'KeyM', 'Comma', 'Period', 'Slash', 'Shift'],
       ['Language', 'Microphone', 'Sound', 'Space', 'ArrowLeft', 'ArrowRight']
     ];
 
@@ -311,7 +359,13 @@ const Keyboard = {
             break;
 
           case 'Microphone':            
-            letter.innerHTML = createIconHTML('mic');  
+            letter.innerHTML = createIconHTML('mic_off');
+            keyElement.addEventListener('click', () => {                           
+              this.field.focus();
+              this._toggleRecognizeSpeech();
+              letter.innerHTML = this.properties.microphone ? createIconHTML('mic') : createIconHTML('mic_off');
+              if (this.properties.sound) this._soundPlay(this.properties.microphone ? this.sounds.mic_on : this.sounds.mic_off);  
+            });  
             break;
 
           case 'Sound':            
@@ -506,6 +560,19 @@ const Keyboard = {
     sound.play();
   },
 
+  _toggleRecognizeSpeech() {
+    this.properties.microphone = !this.properties.microphone;
+    if (this.properties.microphone) {      
+      this.elements.recognition.interimResults = true;
+      this.elements.recognition.lang = this.properties.lang;
+      this.elements.recognition.start();
+      this.elements.recognition.addEventListener('end', this.elements.recognition.start);
+    } else {      
+      this.elements.recognition.removeEventListener('end', this.elements.recognition.start);
+      this.elements.recognition.stop();      
+    }
+  },
+
   open(field, initialValue, oninput, onclose) {
     this.field = field;
     this.properties.value = initialValue || '';
@@ -531,9 +598,6 @@ window.addEventListener('DOMContentLoaded', function () {
   Keyboard.init();
   alert("Уважаемый проверяющий, огромная просьба отложить проверку моей работы до пятницы, субботы или воскресенья, так как я еще в очень активном процессе. Заранее большой респект за понимание и любезность)))");  
 });
-
-
-
 
 
 /*switch (key) {
