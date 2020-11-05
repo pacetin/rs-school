@@ -1,14 +1,264 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Virtual keybord</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-</head>
-<body>
-  <textarea class="use-keyboard-input" placeholder="Click here..." spellcheck="false"></textarea>    
-<script src="script.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Virtual keybord</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <textarea
+      class="use-keyboard-input"
+      placeholder="Click here..."
+      spellcheck="false"
+    ></textarea>
+
+    <!--<div class="keyboard" data-language="en">
+      <div class="keyboard__keys">
+        <div class="keyboard__row">
+          <button type="button" class="keyboard__key" data-code="Backquote">
+            <div class="sub">~</div>
+            <div class="letter letter_big">`</div></button
+          ><button type="button" class="keyboard__key" data-code="Digit1">
+            <div class="sub">!</div>
+            <div class="letter">1</div></button
+          ><button type="button" class="keyboard__key" data-code="Digit2">
+            <div class="sub">@</div>
+            <div class="letter">2</div></button
+          ><button type="button" class="keyboard__key" data-code="Digit3">
+            <div class="sub">#</div>
+            <div class="letter">3</div></button
+          ><button type="button" class="keyboard__key" data-code="Digit4">
+            <div class="sub">$</div>
+            <div class="letter">4</div></button
+          ><button type="button" class="keyboard__key" data-code="Digit5">
+            <div class="sub">%</div>
+            <div class="letter">5</div></button
+          ><button type="button" class="keyboard__key" data-code="Digit6">
+            <div class="sub">^</div>
+            <div class="letter">6</div></button
+          ><button type="button" class="keyboard__key" data-code="Digit7">
+            <div class="sub">&amp;</div>
+            <div class="letter">7</div></button
+          ><button type="button" class="keyboard__key" data-code="Digit8">
+            <div class="sub">*</div>
+            <div class="letter">8</div></button
+          ><button type="button" class="keyboard__key" data-code="Digit9">
+            <div class="sub">(</div>
+            <div class="letter">9</div></button
+          ><button type="button" class="keyboard__key" data-code="Digit0">
+            <div class="sub">)</div>
+            <div class="letter">0</div></button
+          ><button type="button" class="keyboard__key" data-code="Minus">
+            <div class="sub">_</div>
+            <div class="letter  letter_big">-</div></button
+          ><button type="button" class="keyboard__key" data-code="Equal">
+            <div class="sub">+</div>
+            <div class="letter">=</div></button
+          ><button
+            type="button"
+            class="keyboard__key keyboard__key_wide"
+            data-code="Backspace"
+          >
+            <div class="sub"></div>
+            <div class="letter"><i class="material-icons">backspace</i></div>
+          </button>
+        </div>
+        <div class="keyboard__row">
+          <button type="button" class="keyboard__key" data-code="KeyQ">
+            <div class="sub"></div>
+            <div class="letter">q</div></button
+          ><button type="button" class="keyboard__key" data-code="KeyW">
+            <div class="sub"></div>
+            <div class="letter">w</div></button
+          ><button type="button" class="keyboard__key" data-code="KeyE">
+            <div class="sub"></div>
+            <div class="letter">e</div></button
+          ><button type="button" class="keyboard__key" data-code="KeyR">
+            <div class="sub"></div>
+            <div class="letter">r</div></button
+          ><button type="button" class="keyboard__key" data-code="KeyT">
+            <div class="sub"></div>
+            <div class="letter">t</div></button
+          ><button type="button" class="keyboard__key" data-code="KeyY">
+            <div class="sub"></div>
+            <div class="letter">y</div></button
+          ><button type="button" class="keyboard__key" data-code="KeyU">
+            <div class="sub"></div>
+            <div class="letter">u</div></button
+          ><button type="button" class="keyboard__key" data-code="KeyI">
+            <div class="sub"></div>
+            <div class="letter">i</div></button
+          ><button type="button" class="keyboard__key" data-code="KeyO">
+            <div class="sub"></div>
+            <div class="letter">o</div></button
+          ><button type="button" class="keyboard__key" data-code="KeyP">
+            <div class="sub"></div>
+            <div class="letter">p</div></button
+          ><button type="button" class="keyboard__key" data-code="BracketLeft">
+            <div class="sub">{</div>
+            <div class="letter">[</div></button
+          ><button type="button" class="keyboard__key" data-code="BracketRight">
+            <div class="sub">}</div>
+            <div class="letter">]</div></button
+          ><button type="button" class="keyboard__key" data-code="Backslash">
+            <div class="sub">|</div>
+            <div class="letter">\</div>
+          </button>
+        </div>
+        <div class="keyboard__row">
+          <button
+            type="button"
+            class="keyboard__key keyboard__key_wide keyboard__key_activatable"
+            data-code="CapsLock"
+          >
+            <div class="sub"></div>
+            <div class="letter">
+              <i class="material-icons">keyboard_capslock</i>
+            </div></button
+          ><button type="button" class="keyboard__key" data-code="KeyA">
+            <div class="sub"></div>
+            <div class="letter">a</div></button
+          ><button type="button" class="keyboard__key" data-code="KeyS">
+            <div class="sub"></div>
+            <div class="letter">s</div></button
+          ><button type="button" class="keyboard__key" data-code="KeyD">
+            <div class="sub"></div>
+            <div class="letter">d</div></button
+          ><button type="button" class="keyboard__key" data-code="KeyF">
+            <div class="sub"></div>
+            <div class="letter">f</div></button
+          ><button type="button" class="keyboard__key" data-code="KeyG">
+            <div class="sub"></div>
+            <div class="letter">g</div></button
+          ><button type="button" class="keyboard__key" data-code="KeyH">
+            <div class="sub"></div>
+            <div class="letter">h</div></button
+          ><button type="button" class="keyboard__key" data-code="KeyJ">
+            <div class="sub"></div>
+            <div class="letter">j</div></button
+          ><button type="button" class="keyboard__key" data-code="KeyK">
+            <div class="sub"></div>
+            <div class="letter">k</div></button
+          ><button type="button" class="keyboard__key" data-code="KeyL">
+            <div class="sub"></div>
+            <div class="letter">l</div></button
+          ><button type="button" class="keyboard__key" data-code="Semicolon">
+            <div class="sub">:</div>
+            <div class="letter letter_big">;</div></button
+          ><button type="button" class="keyboard__key" data-code="Quote">
+            <div class="sub">"</div>
+            <div class="letter letter_big">'</div></button
+          ><button
+            type="button"
+            class="keyboard__key keyboard__key_wide"
+            data-code="Enter"
+          >
+            <div class="sub"></div>
+            <div class="letter">
+              <i class="material-icons">keyboard_return</i>
+            </div>
+          </button>
+        </div>
+        <div class="keyboard__row">
+          <button
+            type="button"
+            class="keyboard__key keyboard__key_wide keyboard__key_dark"
+            data-code="Done"
+          >
+            <div class="sub"></div>
+            <div class="letter">
+              <i class="material-icons">check_circle</i>
+            </div></button
+          ><button type="button" class="keyboard__key" data-code="KeyZ">
+            <div class="sub"></div>
+            <div class="letter">z</div></button
+          ><button type="button" class="keyboard__key" data-code="KeyX">
+            <div class="sub"></div>
+            <div class="letter">x</div></button
+          ><button type="button" class="keyboard__key" data-code="KeyC">
+            <div class="sub"></div>
+            <div class="letter">c</div></button
+          ><button type="button" class="keyboard__key" data-code="KeyV">
+            <div class="sub"></div>
+            <div class="letter">v</div></button
+          ><button type="button" class="keyboard__key" data-code="KeyB">
+            <div class="sub"></div>
+            <div class="letter">b</div></button
+          ><button type="button" class="keyboard__key" data-code="KeyN">
+            <div class="sub"></div>
+            <div class="letter">n</div></button
+          ><button type="button" class="keyboard__key" data-code="KeyM">
+            <div class="sub"></div>
+            <div class="letter">m</div></button
+          ><button type="button" class="keyboard__key" data-code="Comma">
+            <div class="sub">&lt;</div>
+            <div class="letter  letter_big">,</div></button
+          ><button type="button" class="keyboard__key" data-code="Period">
+            <div class="sub">&gt;</div>
+            <div class="letter  letter_big">.</div></button
+          ><button type="button" class="keyboard__key" data-code="Slash">
+            <div class="sub">?</div>
+            <div class="letter">/</div></button
+          ><button
+            type="button"
+            class="keyboard__key keyboard__key_wide keyboard__key_activatable"
+            data-code="Shift"
+          >
+            <div class="sub"></div>
+            <div class="letter"><i class="material-icons">north</i></div>
+          </button>
+        </div>
+        <div class="keyboard__row">
+          <button type="button" class="keyboard__key keyboard__key_wide" data-code="Language">
+            <div class="sub"></div>
+            <div class="letter">EN</div></button
+          ><button type="button" class="keyboard__key keyboard__key_wide" data-code="Microphone">
+            <div class="sub"></div>
+            <div class="letter">
+              <i class="material-icons">mic_off</i>
+            </div></button
+          ><button type="button" class="keyboard__key keyboard__key_wide" data-code="Sound">
+            <div class="sub"></div>
+            <div class="letter">
+              <i class="material-icons">music_note</i>
+            </div></button
+          ><button
+            type="button"
+            class="keyboard__key keyboard__key_extra-wide"
+            data-code="Space"
+          >
+            <div class="sub"></div>
+            <div class="letter">
+              <i class="material-icons">space_bar</i>
+            </div></button
+          ><button
+            type="button"
+            class="keyboard__key  keyboard__key_wide keyboard__key_colored"
+            data-code="ArrowLeft"
+          >
+            <div class="sub"></div>
+            <div class="letter">
+              <i class="material-icons">arrow_back</i>
+            </div></button
+          ><button
+            type="button"
+            class="keyboard__key keyboard__key_wide keyboard__key_colored"
+            data-code="ArrowRight"
+          >
+            <div class="sub"></div>
+            <div class="letter">
+              <i class="material-icons">arrow_forward</i>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>-->
+
+    <script src="script.js"></script>
+  </body>
 </html>
