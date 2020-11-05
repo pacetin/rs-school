@@ -339,7 +339,7 @@ const Keyboard = {
               
           case 'Shift':
             keyElement.classList.add('keyboard__key_wide', 'keyboard__key_activatable');
-            letter.innerHTML = createIconHTML('north') + keyCode;
+            letter.innerHTML = createIconHTML('north');
             keyElement.addEventListener('click', () => {
               if (this.properties.sound) this._soundPlay(this.sounds.shift);
               this.field.focus();
@@ -348,7 +348,8 @@ const Keyboard = {
             }); 
             break;
 
-          case 'Language':           
+          case 'Language':
+            keyElement.classList.add('keyboard__key_wide');           
             letter.textContent = this.properties.lang.toUpperCase();
             keyElement.addEventListener('click', () => {
               if (this.properties.sound) this._soundPlay(this.sounds.default[this.properties.lang]);
@@ -358,7 +359,8 @@ const Keyboard = {
             });  
             break;
 
-          case 'Microphone':            
+          case 'Microphone':
+            keyElement.classList.add('keyboard__key_wide');            
             letter.innerHTML = createIconHTML('mic_off');
             keyElement.addEventListener('click', () => {                           
               this.field.focus();
@@ -368,7 +370,8 @@ const Keyboard = {
             });  
             break;
 
-          case 'Sound':            
+          case 'Sound':
+            keyElement.classList.add('keyboard__key_wide');            
             letter.innerHTML = createIconHTML('music_note');
             keyElement.addEventListener('click', () => {
               if (this.properties.sound) this._soundPlay(this.sounds.default[this.properties.lang]);
@@ -379,7 +382,7 @@ const Keyboard = {
             break;
 
           case 'ArrowLeft':
-            keyElement.classList.add('keyboard__key_colored');            
+            keyElement.classList.add('keyboard__key_wide','keyboard__key_colored');                      
             letter.innerHTML = createIconHTML('arrow_back');            
             keyElement.addEventListener('click', () => {
               if (this.properties.sound) this._soundPlay(this.sounds.default[this.properties.lang]);
@@ -389,7 +392,7 @@ const Keyboard = {
             break;
 
           case 'ArrowRight':            
-            keyElement.classList.add('keyboard__key_colored');            
+            keyElement.classList.add('keyboard__key_wide','keyboard__key_colored');             
             letter.innerHTML = createIconHTML('arrow_forward');
             keyElement.addEventListener('click', () => {
               if (this.properties.sound) this._soundPlay(this.sounds.default[this.properties.lang]);
@@ -595,72 +598,9 @@ const Keyboard = {
 };
 
 window.addEventListener('DOMContentLoaded', function () {
-  Keyboard.init();
-  alert("Уважаемый проверяющий, огромная просьба отложить проверку моей работы до пятницы, субботы или воскресенья, так как я еще в очень активном процессе. Заранее большой респект за понимание и любезность)))");  
+  Keyboard.init();  
 });
 
-
-/*switch (key) {
-  case 'backspace':
-    keyElement.classList.add('keyboard__key_wide');
-    keyElement.innerHTML = createIconHTML('backspace');
-
-    keyElement.addEventListener('click', () => {
-      
-      this.properties.value = this.properties.value.substring(0, this.properties.value.length-1);
-      this._triggerEvent('oninput');
-    });
-    break;
-  
-  case 'caps':
-    keyElement.classList.add('keyboard__key_wide', 'keyboard__key_activatable');
-    keyElement.innerHTML = createIconHTML('keyboard_capslock');
-
-    keyElement.addEventListener('click', () => {
-      this._toggleCapsLock();
-      keyElement.classList.toggle('keyboard__key_active', this.properties.capsLock); 
-    });
-    break;
-  
-  case 'enter':
-    keyElement.classList.add('keyboard__key_wide');
-    keyElement.innerHTML = createIconHTML('keyboard_return');
-
-    keyElement.addEventListener('click', () => {
-      this.properties.value += '\n';
-      this._triggerEvent('oninput');
-    });
-    break;
-  
-  case 'space':
-    keyElement.classList.add('keyboard__key_extra-wide');
-    keyElement.innerHTML = createIconHTML('space_bar');
-
-    keyElement.addEventListener('click', () => {
-      this.properties.value += ' ';
-      this._triggerEvent('oninput');
-    });
-    break;
-  
-  case 'done':
-    keyElement.classList.add('keyboard__key_wide', 'keyboard__key_dark');
-    keyElement.innerHTML = createIconHTML('check_circle');
-
-    keyElement.addEventListener('click', () => {
-      this.close();
-      this._triggerEvent('onclose');
-    });
-    break;
-  
-  default:          
-    keyElement.textContent = key.toLowerCase();
-
-    keyElement.addEventListener('click', () => {
-      this.field.focus();
-      this.properties.value += this.properties.capsLock ? key.toUpperCase() : key.toLowerCase();
-      this._triggerEvent('oninput');
-    });
-    break;*/
 
 
 

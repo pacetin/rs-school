@@ -2,13 +2,19 @@
   box-sizing: border-box;
 }
 
+body { 
+  max-width: 1280px;
+  margin: 0 auto;  
+  background-image: url('assets/images/background.jpg');  
+}
+
 textarea {
   display: block;
   width: 90%;
   margin: 30px auto;
   padding: 10px;
   font-size: 20px;
-  height: calc(100vh - 360px);
+  height: calc(100vh - 370px);
   min-height: 200px;
 }
 
@@ -22,11 +28,13 @@ textarea {
 
 .keyboard {
   position: fixed;
-  left: 0;
+  transform:translateX(-50%);
+  left: 50%;
   bottom: 0;
-  width: 100%;  
+  width: 100%;
+  max-width: 900px;  
   padding: 5px;
-  background-color: teal;
+  background-color: #e7a6b6;
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
   user-select: none;
   transition: bottom 0.4s;
@@ -40,16 +48,22 @@ textarea {
   text-align: center;
 }
 
+.keyboard__row {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .keyboard__key {
   height: 45px;
-  width: 6%;
+  width: 8%;
   max-width: 90px;
   margin: 3px;
   border-radius: 4px;
-  border: none;
+  border: solid 1.5px #a1979a;
   background: rgba(255, 255, 255, 0.2);
-  color: white;
-  font-size: 1.05rem;
+  color: #dd1f4f;
+  font-size: 1rem;
   outline: none;
   cursor: pointer;
   display: inline-flex;
@@ -57,7 +71,7 @@ textarea {
   align-items: stretch;
   justify-content: center;
   vertical-align: top;
-  padding: 4px 7px;
+  padding: 2px 7px;
   -webkit-tap-highlight-color: transparent;
   position: relative;
 }
@@ -65,7 +79,7 @@ textarea {
 .sub {
   flex: 0 1 100%;
   text-align: left;  
-  color:rgba(255, 255, 255, 0.6);
+  color: #a1979a;
   font-size: 0.9rem;
 }
 
@@ -74,24 +88,38 @@ textarea {
   text-align: left;
 }
 
+.letter_big {
+  font-size: 1.125rem;
+}
+
 .keyboard__key:active {
   background: rgba(0, 0, 0, 0.12);
-  box-shadow: 0 0 10px 5px #95eaf0;
+  box-shadow: 0 0 10px 5px #e2edee;
 }
 
 .keyboard__key_wide {
-  width: 12%;
+  width: 14%;
+  vertical-align: center;
+}
+
+.keyboard__key_wide .letter {
+  text-align: center;
 }
 
 .keyboard__key_extra-wide {
   width: 36%;
+  vertical-align: center;
   max-width: 500px;
+}
+
+.keyboard__key_extra-wide .letter {
+  text-align: center;
 }
 
 .keyboard__key_activatable::after {
   content: '';
-  top: 10px;
-  right: 10px;
+  top: 5px;
+  right: 5px;
   position: absolute;
   width: 8px;
   height: 8px;
@@ -107,7 +135,7 @@ textarea {
   width: 8px;
   height: 8px;
   background: #08ff00;
-  box-shadow:0 0 2px 1px #95eaf0;
+  box-shadow:0 0 2px 1px #e2edee;
   border-radius: 50%;
 }
 
@@ -117,5 +145,35 @@ textarea {
 
 .keyboard__key_pressed {
   background: rgba(0, 0, 0, 0.12);
-  box-shadow:0 0 10px 5px #95eaf0;
+  box-shadow:0 0 10px 5px #e2edee;
+}
+
+.keyboard__key_colored {
+  background: #ee96ac;  
+}
+
+@media only all and (max-width: 650px) {
+  .keyboard__key {        
+    margin: 1px;
+    width: 8%;   
+  }
+
+  .keyboard__key_wide {
+    width: 14%;  
+  }
+
+  .keyboard__key_extra-wide {
+    width: 36%;  
+  }
+}
+
+@media only all and (max-width: 500px) {
+  .keyboard {
+    width: 500px;
+  }
+  
+  textarea {
+    width: 98%;
+  }
+  
 }
