@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.moves {
+  color: 'black';
+}
+
+.time {
+  color: 'black';
+}
+
+.field {
+  color: #9a8ceb;
+  color: #4e4d53;
+}
