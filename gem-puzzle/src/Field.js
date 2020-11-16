@@ -1,16 +1,17 @@
 'use strict';
 import Gem from './Gem.js';
+import * as storage from './storage.js';
 
 export default class PuzzleField {
   constructor() {
     this.fieldSize = null;
     this.gameStart = null;
-    this.time = '00 : 00';
-    this.timer = null;   
+    this.gameTime = 0;          
     this.moves = 0;
     this.gems = [];
-    this.field = null;
-    this.animation = false;
+
+    this.timer = null;
+    this.field = null;    
 
     this.gem = {};
     this.lw = 20; //толщина рамки поля
@@ -19,6 +20,9 @@ export default class PuzzleField {
     this.sounds = {chip: new Audio('./assets/sounds/chip.mp3'),
                    over: new Audio('./assets/sounds/level_completed.mp3'),};
     this.isSound = true;
+
+    this.isPuzzleDone = false;
+    this.animation = false;
   } 
 
   generate() {
@@ -59,6 +63,25 @@ export default class PuzzleField {
       soundButton.innerHTML = this.isSound ? `<i class="material-icons">music_note</i>` : `<i class="material-icons">music_off</i>`;
     });
 
+    exitButton.addEventListener('click', () => {      
+      let now = new Date().getTime();
+      this.gameTime = now - this.gameStart;
+      clearInterval(this.timer);
+      if (!this.isPuzzleDone) {
+        this.saveGame();
+      }          
+      document.querySelector('.menu').classList.remove('menu_hidden');
+      
+      this.gameStart = null;
+      this.gameTime = 0;          
+      this.moves = 0;
+      this.gems = [];
+      this.timer = null;      
+
+      this.isPuzzleDone = false;
+      this.animation = false;      
+    });
+
     document.body.prepend(buttonCont);
 
 
@@ -72,10 +95,9 @@ export default class PuzzleField {
     const timeLabel = document.createElement('div');
     timeLabel.classList.add('time');    
     cont.append(timeLabel);
-    timeLabel.textContent = `Time: ${this.time}`;
+    timeLabel.textContent = `Time: 00 : 00`;
 
     document.body.prepend(cont);    
-    
   }  
 
   applySettings(size=4) {
@@ -87,14 +109,35 @@ export default class PuzzleField {
   }
 
   startNewGame() {
+    this._setTime(0);
+    this._updateMoves();
+
+    this.gameStart = new Date().getTime();
+    this.timer = setInterval(this._updateTime.bind(this), 1000);    
+        
     this.gems = [];
     this._generateGemsArray();
     console.log(this.gems);
     this._renderField();
-    this.gameStart = new Date().getTime();
-    this.timer = setInterval(this._updateTime.bind(this), 1000);
+    
+    storage.del('Пятнашки');
   }
 
+  resumeGame() {
+    if (!storage.get('Пятнашки')) {
+      console.log('нет сохраненных игр')
+    }
+  }
+
+  saveGame() {
+    const savedModel = {
+      fieldSize: this.fieldSize,
+      time: this.gameTime,
+      moves: this.moves,
+      gems: this.gems,
+    }
+    storage.set('Пятнашки', savedModel);    
+  }
 
   _updateTime() {
     const now = new Date().getTime();
@@ -102,11 +145,18 @@ export default class PuzzleField {
     const min = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const sec = Math.floor((distance % (1000 * 60)) / 1000);  
     
-    document.querySelector('.time').textContent = `Time: ${addZero(min)} : ${addZero(sec)}`;
+    document.querySelector('.time').textContent = `Time: ${this._addZero(min)} : ${this._addZero(sec)}`;    
+  }
 
-    function addZero(n) {
-      return (parseInt(n, 10) < 10 ? '0' : '') + n;
-    }
+  _setTime(interval) {          
+    const min = Math.floor((interval % (1000 * 60 * 60)) / (1000 * 60));
+    const sec = Math.floor((interval % (1000 * 60)) / 1000);  
+    
+    document.querySelector('.time').textContent = `Time: ${this._addZero(min)} : ${this._addZero(sec)}`;
+  }
+
+  _addZero(n) {
+    return (parseInt(n, 10) < 10 ? '0' : '') + n;
   }
 
   _updateMoves() {
