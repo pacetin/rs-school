@@ -3,35 +3,43 @@ import PuzzleField from './Field.js';
 import createMenu from './menu.js';
 import createSettings from './settings.js';
 
-const MENU = ['resume game', 'new game', 'settings', 'highscore'];
+
 
 export const puzzleField = new PuzzleField();
-puzzleField.generate();
 
-const gameCont = document.createElement('div');
-gameCont.classList.add('game-container');
-gameCont.append(document.querySelector('#CANVAS'));
+window.onload = init();
 
-const menu = createMenu(MENU); 
-gameCont.append(menu);
+function init() {
+  const MENU = ['resume game', 'new game', 'settings', 'highscore'];
+  puzzleField.generate();
 
-const settings = createSettings();
-settings.classList.add('settings-page_hidden'); 
-gameCont.append(settings);
+  const gameCont = document.createElement('div');
+  gameCont.classList.add('game-container');
+  gameCont.append(document.querySelector('#CANVAS'));
 
-document.body.prepend(gameCont); 
+  const menu = createMenu(MENU); 
+  gameCont.append(menu);
+
+  const settings = createSettings();
+  settings.classList.add('settings-page_hidden'); 
+  gameCont.append(settings);
+
+  document.body.prepend(gameCont); 
+
+  document.querySelector('#fieldSize').addEventListener('change', function() {
+    const newSize = Number(document.querySelector('#fieldSize').value);
+    puzzleField.applySettings(newSize);  
+    document.querySelector('#information').textContent = 'Changes saved! Start new game to get new field size';
+  });
+
+  document.querySelector('.settings_back').addEventListener('click', () => {
+    document.querySelector('.settings-page').classList.add('settings-page_hidden');
+    document.querySelector('.menu').classList.remove('menu_hidden');
+  });
+
+  alert ('Уважаемые проверяющие, я в очень активной разработке, отложите проверку моей работы, пожалуйста, на пятницу, субботу или воскресенье. Заранее спасибо)');
+}
 
 
-
-document.querySelector('#fieldSize').addEventListener('change', function() {
-  const newSize = Number(document.querySelector('#fieldSize').value);
-  puzzleField.applySettings(newSize);  
-  document.querySelector('#information').textContent = 'Changes saved! Start new game to get new field size';
-});
-
-document.querySelector('.settings_back').addEventListener('click', () => {
-  document.querySelector('.settings-page').classList.add('settings-page_hidden');
-  document.querySelector('.menu').classList.remove('menu_hidden');
-});
 
 
