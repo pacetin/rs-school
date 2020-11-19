@@ -1,6 +1,7 @@
 'use strict';
 import Gem from './Gem.js';
 import * as storage from './storage.js';
+import debounceSeries from './utilities/debounce.js';
 
 export default class PuzzleField {
   constructor() {
@@ -15,24 +16,25 @@ export default class PuzzleField {
 
     this.gem = {};
     this.lw = 20; //толщина рамки поля
-    this.canvas = {width: 440, height: 440};
+    this.canvas = {width: 0, height: 0};
 
     this.sounds = {chip: new Audio('./assets/sounds/chip.mp3'),
                    over: new Audio('./assets/sounds/level_completed.mp3'),};
     this.isSound = true;
-
-    this.isPuzzleDone = false;
+    
     this.animation = false;
+
+    this.grabbedGem = null;
   } 
 
   generate() {
+    this._setCanvasSize();
+
     this.applySettings(4);
     this._generateGemsArray();
-    console.log(this.gems);        
+    //this._generateFakeArray();
+    console.log(this.gems);
 
-    this.field = document.querySelector('#CANVAS');    
-    //this.field.width = this.fieldSize*this.gem.width;
-    //this.field.height = this.fieldSize*this.gem.height;
     this.field.addEventListener('click', (e) => {      
       const gem = this._defineGem(e.offsetX, e.offsetY);      
       if (gem) {        
@@ -44,6 +46,20 @@ export default class PuzzleField {
       }
     });    
     
+    /*this.field.addEventListener('mousedown', (e) => { 
+      e.preventDefault();
+      this.grabbedGem = this._defineGem(e.offsetX, e.offsetY);      
+      this.field.addEventListener('mousemove', this._mouseMoveHandler.bind(this));
+      console.log('mousedown')
+    });     
+
+    this.field.addEventListener('mouseup', (e) => {
+      e.preventDefault();
+      this.grabbedGem = null;
+      this.field.removeEventListener('mousemove', this._mouseMoveHandler.bind(this)); 
+      console.log('mouseup')
+    });*/
+
     this._renderField();
     
     const buttonCont = document.createElement('div');     // button-container  
@@ -51,6 +67,7 @@ export default class PuzzleField {
     const exitButton = document.createElement('button');
     exitButton.classList.add('exit');
     exitButton.textContent = 'EXIT';
+    exitButton.disabled = true;
     buttonCont.append(exitButton);    
     
     const soundButton = document.createElement('button');
@@ -64,22 +81,10 @@ export default class PuzzleField {
     });
 
     exitButton.addEventListener('click', () => {      
-      let now = new Date().getTime();
-      this.gameTime = now - this.gameStart;
-      clearInterval(this.timer);
-      if (!this.isPuzzleDone) {
-        this.saveGame();
-      }          
+      this._stopTime();
+      this.saveGame();
       document.querySelector('.menu').classList.remove('menu_hidden');
-      
-      this.gameStart = null;
-      this.gameTime = 0;          
-      this.moves = 0;
-      this.gems = [];
-      this.timer = null;      
-
-      this.isPuzzleDone = false;
-      this.animation = false;      
+      document.querySelector('.exit').disabled = true;                        
     });
 
     document.body.prepend(buttonCont);
@@ -98,35 +103,88 @@ export default class PuzzleField {
     timeLabel.textContent = `Time: 00 : 00`;
 
     document.body.prepend(cont);    
-  }  
+    
+  }
 
-  applySettings(size=4) {
-    this.fieldSize = size;
+  /*_mouseMoveHandler(e) {    
+    if (this.grabbedGem) {        
+      let hole = this._defineGem(e.offsetX, e.offsetY);
+      console.log(this.grabbedGem, hole);   
+      
+      console.log('mousemove');
+    }    
+  }  */
+  
+  resize() {
+    console.log('resize');
+    this._setCanvasSize();
+    this._setGemProperties();
+    this._renderField();
+  }
+
+  _setCanvasSize() {
+    this.field = document.querySelector('#CANVAS');    
+    if (document.documentElement.clientWidth > 450) {
+      this.field.width = '440';
+      this.field.height = '440';
+      this.canvas.width = 440;
+      this.canvas.height = 440;
+      this.lw = 20;
+    } else {
+      this.field.width = '320';
+      this.field.height = '320';
+      this.lw = 10;
+      this.canvas.width = 320;
+      this.canvas.height = 320;    
+    }
+  }
+
+  _setGemProperties() {
     this.gem.width = (this.canvas.width - 2*this.lw)/this.fieldSize;
     this.gem.height = (this.canvas.height - 2*this.lw)/this.fieldSize;
     this.gem.speed = 0.2;
-    console.log(this.gem, this.fieldSize);
+  }
+
+  applySettings(size=4) {
+    this.fieldSize = size;
+    this._setGemProperties();    
+    console.log(this.gem, this.fieldSize, this.canvas);
   }
 
   startNewGame() {
+    this._resetGame();
     this._setTime(0);
     this._updateMoves();
 
     this.gameStart = new Date().getTime();
-    this.timer = setInterval(this._updateTime.bind(this), 1000);    
-        
-    this.gems = [];
+    this.timer = setInterval(this._updateTime.bind(this), 1000);        
+    
     this._generateGemsArray();
+    //this._generateFakeArray();
     console.log(this.gems);
     this._renderField();
     
     storage.del('Пятнашки');
+    document.querySelector('.exit').disabled = false;
   }
 
   resumeGame() {
-    if (!storage.get('Пятнашки')) {
-      console.log('нет сохраненных игр')
-    }
+    const savedGame = storage.get('Пятнашки');
+    this.fieldSize = savedGame.fieldSize;                 
+    this.moves = savedGame.moves;
+    this.gems = savedGame.gems;
+
+    this._setTime(savedGame.time);
+    this._updateMoves();
+
+    this.gameStart = new Date().getTime() - savedGame.time;
+    this.timer = setInterval(this._updateTime.bind(this), 1000);    
+    
+    console.log(this.gems);
+    this._renderField();
+    
+    storage.del('Пятнашки');
+    document.querySelector('.exit').disabled = false;
   }
 
   saveGame() {
@@ -139,20 +197,38 @@ export default class PuzzleField {
     storage.set('Пятнашки', savedModel);    
   }
 
+  _stopTime() {
+    let now = new Date().getTime();
+    this.gameTime = now - this.gameStart;
+    clearInterval(this.timer);
+  }
+
+  _resetGame() {
+    this.gameStart = null;
+    this.gameTime = 0;          
+    this.moves = 0;
+    this.gems = [];
+    this.timer = null;    
+    this.animation = false;
+  }
+
   _updateTime() {
     const now = new Date().getTime();
-    const distance = now - this.gameStart;        
-    const min = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const sec = Math.floor((distance % (1000 * 60)) / 1000);  
-    
+    const interval = now - this.gameStart;        
+    const [min, sec] = this._getMinSec(interval);    
     document.querySelector('.time').textContent = `Time: ${this._addZero(min)} : ${this._addZero(sec)}`;    
   }
 
   _setTime(interval) {          
-    const min = Math.floor((interval % (1000 * 60 * 60)) / (1000 * 60));
-    const sec = Math.floor((interval % (1000 * 60)) / 1000);  
-    
+    const [min, sec] = this._getMinSec(interval);    
     document.querySelector('.time').textContent = `Time: ${this._addZero(min)} : ${this._addZero(sec)}`;
+  }
+  
+  _getMinSec(interval) {
+    let array = [0,0];
+    array[0] = Math.floor((interval % (1000 * 60 * 60)) / (1000 * 60));
+    array[1] = Math.floor((interval % (1000 * 60)) / 1000); 
+    return array
   }
 
   _addZero(n) {
@@ -209,7 +285,10 @@ export default class PuzzleField {
         hole.x = gemX;
         gem.x = holeX;
         this.moves++;
-        this._updateMoves();      
+        this._updateMoves();
+        if (this._isGameOver()) {          
+          this._showGameOver();
+        };       
       }
     }
 
@@ -225,7 +304,10 @@ export default class PuzzleField {
         hole.x = gemX;
         gem.x = holeX;
         this.moves++;
-        this._updateMoves();      
+        this._updateMoves();
+        if (this._isGameOver()) {
+          this._showGameOver();
+        };        
       }
     }
 
@@ -241,7 +323,10 @@ export default class PuzzleField {
         hole.y = gemY;
         gem.y = holeY;
         this.moves++;
-        this._updateMoves();      
+        this._updateMoves();
+        if (this._isGameOver()) {
+          this._showGameOver();
+        };       
       }
     }
 
@@ -257,12 +342,14 @@ export default class PuzzleField {
         hole.y = gemY;
         gem.y = holeY;
         this.moves++;
-        this._updateMoves();      
+        this._updateMoves();
+        if (this._isGameOver()) {
+          this._showGameOver();
+        };        
       }
     }
 
   }
-
 
   _checkEmptyPlace(gem) {
     let empty = this.gems.find( item => item.x === gem.x+1 && item.y === gem.y && item.number === 0
@@ -270,6 +357,36 @@ export default class PuzzleField {
       || item.x === gem.x && item.y === gem.y+1 && item.number === 0 
       || item.x === gem.x && item.y === gem.y-1 && item.number === 0);
     return empty;
+  }
+
+  _showGameOver() {
+    this._stopTime();
+    this._soundPlay(this.sounds.over);
+    const [min, sec] = this._getMinSec(this.gameTime);    
+    document.querySelector('#congratulation').textContent = `You could solve this complicated puzzle for 
+      ${this._addZero(min)} : ${this._addZero(sec)} and made just ${this.moves} moves!`;
+    document.querySelector('.congrats-page').classList.remove('congrats-page_hidden');
+    document.querySelector('.exit').disabled = true;
+    this._saveInScore();
+    this._resetGame();
+    storage.del('Пятнашки');
+  }
+
+  _saveInScore() {
+    const score = storage.get('Рекорд');
+    const [min, sec] = this._getMinSec(this.gameTime);
+    if (!score) {
+      score = [];
+    }  
+    if (score.length < 10) {              
+      score.push({time: `${this._addZero(min)}:${this._addZero(sec)}`, moves: this.moves});
+      score.sort( (a,b) => a.moves-b.moves);
+    } else if (score.length >= 10 && this.moves < score[score.length-1].moves) {
+      score.pop();            
+      score.push({time: `${this._addZero(min)}:${this._addZero(sec)}`, moves: this.moves});
+      score.sort( (a,b) => a.moves-b.moves);
+    }
+    storage.set('Рекорд', score);    
   }
 
   _defineGem(clickX, clickY) {    
@@ -288,10 +405,49 @@ export default class PuzzleField {
         }
         while (randomNumber in used);
         
-        this.gems.push(new Gem (i, j, randomNumber));
+        this.gems.push(new Gem (j, i, randomNumber));
         used[randomNumber]  = true;       
       }
-    }    
+    }
+    if (!this._isSolvable()) {
+      console.log('is not solvable');
+      this._switchTwoGems();     
+    }   
+  }
+
+  /*_generateFakeArray() {
+    const fake = [1,2,3,4,5,6,7,0,8];
+    let k=0;
+    for (let i=0; i<this.fieldSize; i++) {      
+      for (let j=0; j<this.fieldSize; j++) {        
+        this.gems.push(new Gem (j, i, fake[k]));        
+        k++;       
+      }
+    }
+  }*/
+
+  _isSolvable() {    
+    let sum = this.gems.find( item => item.number === 0).y + 1;
+    console.log(this.gems.find( item => item.number === 0).y + 1)
+    for (let i=0; i<this.gems.length; i++) {
+      if (this.gems[i].number === 0) continue;
+      for (let j=i+1; j<this.gems.length; j++) {
+        if (this.gems[j].number === 0) continue;
+        if (this.gems[i].number > this.gems[j].number) {
+          sum++;
+        }
+      }
+    }
+    console.log(sum);
+    if (this.gems.length%2 === 0 && sum%2 === 0) {
+      return true
+    } else if (this.gems.length%2 === 1 && sum%2 === 1) {
+      return true
+    } else return false;
+  }
+  
+  _switchTwoGems() {
+    [this.gems[0].number, this.gems[1].number] = [this.gems[1].number, this.gems[0].number];
   }
 
   _renderField() {
@@ -343,7 +499,18 @@ export default class PuzzleField {
     this.isSound = !this.isSound;
   };
 
-  
+  _isGameOver() {    
+    const array = this.gems.slice(0);
+    array.sort(function (a,b) {
+      return 1 * (a.x > b.x ? 1 : a.x < b.x ? -1 : 0) + 2 * (a.y > b.y ? 1 : a.y < b.y ? -1 : 0)      
+    });
+    console.log('sort', array);
+    if (array[array.length-1].number !== 0 ) return false;
+    for (let i=0; i<array.length-2; i++) {
+      if (array[i].number > array[i+1].number) return false; 
+    }        
+    return true;    
+  }    
 
 };
 
