@@ -32,8 +32,7 @@ export default class PuzzleField {
 
     this.applySettings(4);
     this._generateGemsArray();
-    //this._generateFakeArray();
-    console.log(this.gems);
+    //this._generateFakeArray();    
 
     this.field.addEventListener('click', (e) => {      
       const gem = this._defineGem(e.offsetX, e.offsetY);      
@@ -106,14 +105,11 @@ export default class PuzzleField {
     
   }
 
-  /*_mouseMoveHandler(e) {    
+  _mouseMoveHandler(e) {    
     if (this.grabbedGem) {        
-      let hole = this._defineGem(e.offsetX, e.offsetY);
-      console.log(this.grabbedGem, hole);   
-      
-      console.log('mousemove');
+      let hole = this._defineGem(e.offsetX, e.offsetY);      
     }    
-  }  */
+  }
   
   resize() {
     console.log('resize');
@@ -148,7 +144,6 @@ export default class PuzzleField {
   applySettings(size=4) {
     this.fieldSize = size;
     this._setGemProperties();    
-    console.log(this.gem, this.fieldSize, this.canvas);
   }
 
   startNewGame() {
@@ -161,7 +156,7 @@ export default class PuzzleField {
     
     this._generateGemsArray();
     //this._generateFakeArray();
-    console.log(this.gems);
+    
     this._renderField();
     
     storage.del('Пятнашки');
@@ -180,7 +175,6 @@ export default class PuzzleField {
     this.gameStart = new Date().getTime() - savedGame.time;
     this.timer = setInterval(this._updateTime.bind(this), 1000);    
     
-    console.log(this.gems);
     this._renderField();
     
     storage.del('Пятнашки');
@@ -278,8 +272,7 @@ export default class PuzzleField {
       if (newX.toFixed(10) <=  hole.x) {         
         gem.x = newX;              
         this._renderField();      
-        RAF(moveRight.bind(this));
-        console.log(gem.x, hole.x);
+        RAF(moveRight.bind(this));        
       } else {
         this.animation = !this.animation;
         hole.x = gemX;
@@ -297,8 +290,7 @@ export default class PuzzleField {
       if (newX.toFixed(10) >=  hole.x) {         
         gem.x = newX;              
         this._renderField();      
-        RAF(moveLeft.bind(this));
-        console.log(gem.x, hole.x);
+        RAF(moveLeft.bind(this));        
       } else {
         this.animation = !this.animation;
         hole.x = gemX;
@@ -316,8 +308,7 @@ export default class PuzzleField {
       if (newY.toFixed(10) <=  hole.y) {         
         gem.y = newY;              
         this._renderField();      
-        RAF(moveDown.bind(this));
-        console.log(gem.y, hole.y);
+        RAF(moveDown.bind(this));        
       } else {
         this.animation = !this.animation;
         hole.y = gemY;
@@ -335,8 +326,7 @@ export default class PuzzleField {
       if (newY.toFixed(10) >=  hole.y) {         
         gem.y = newY;              
         this._renderField();      
-        RAF(moveUp.bind(this));
-        console.log(gem.y, hole.y);
+        RAF(moveUp.bind(this));        
       } else {
         this.animation = !this.animation;
         hole.y = gemY;
@@ -373,11 +363,12 @@ export default class PuzzleField {
   }
 
   _saveInScore() {
-    const score = storage.get('Рекорд');
+    let score = storage.get('Рекорд');
     const [min, sec] = this._getMinSec(this.gameTime);
     if (!score) {
       score = [];
-    }  
+    }
+
     if (score.length < 10) {              
       score.push({time: `${this._addZero(min)}:${this._addZero(sec)}`, moves: this.moves});
       score.sort( (a,b) => a.moves-b.moves);
@@ -409,13 +400,12 @@ export default class PuzzleField {
         used[randomNumber]  = true;       
       }
     }
-    if (!this._isSolvable()) {
-      console.log('is not solvable');
+    if (!this._isSolvable()) {      
       this._switchTwoGems();     
     }   
   }
 
-  /*_generateFakeArray() {
+  _generateFakeArray() {       //for test
     const fake = [1,2,3,4,5,6,7,0,8];
     let k=0;
     for (let i=0; i<this.fieldSize; i++) {      
@@ -424,11 +414,10 @@ export default class PuzzleField {
         k++;       
       }
     }
-  }*/
+  }
 
   _isSolvable() {    
-    let sum = this.gems.find( item => item.number === 0).y + 1;
-    console.log(this.gems.find( item => item.number === 0).y + 1)
+    let sum = this.gems.find( item => item.number === 0).y + 1;    
     for (let i=0; i<this.gems.length; i++) {
       if (this.gems[i].number === 0) continue;
       for (let j=i+1; j<this.gems.length; j++) {
@@ -438,7 +427,7 @@ export default class PuzzleField {
         }
       }
     }
-    console.log(sum);
+    
     if (this.gems.length%2 === 0 && sum%2 === 0) {
       return true
     } else if (this.gems.length%2 === 1 && sum%2 === 1) {
@@ -503,8 +492,7 @@ export default class PuzzleField {
     const array = this.gems.slice(0);
     array.sort(function (a,b) {
       return 1 * (a.x > b.x ? 1 : a.x < b.x ? -1 : 0) + 2 * (a.y > b.y ? 1 : a.y < b.y ? -1 : 0)      
-    });
-    console.log('sort', array);
+    });    
     if (array[array.length-1].number !== 0 ) return false;
     for (let i=0; i<array.length-2; i++) {
       if (array[i].number > array[i+1].number) return false; 
