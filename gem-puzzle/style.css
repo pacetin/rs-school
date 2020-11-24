@@ -236,8 +236,7 @@ button {
   font-weight: 900;
   font-size: 1.2rem;
   letter-spacing: 0.2em;
-  position: relative;
-  z-index: 1;
+  position: relative;  
   cursor: pointer;
   background: none;
   text-shadow: 3px 3px 10px rgba(0,0,0,.45);
@@ -251,8 +250,7 @@ button:before, button:after {
   transform: translateX(-50%) translateY(-50%);
   width: 7rem;
   height: 105%;
-  content: '';
-  z-index: -2;
+  content: '';  
   background-size: 400% 400%;
   background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
 }

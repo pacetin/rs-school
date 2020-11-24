@@ -1,5 +1,3 @@
-'use strict';
-
 export default function createSettings() {
   const cont = document.createElement('div');
   cont.classList.add('settings-page');
@@ -15,6 +13,5 @@ export default function createSettings() {
         </select>
         <p id="information"></p>
         <button class = "back settings_back"><i class="material-icons">arrow_back</i></button>`;
-    
-  return cont;  
+  return cont;
 }

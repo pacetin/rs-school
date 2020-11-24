@@ -1,17 +1,16 @@
-'use strict';
-import { puzzleField } from './script.js';
-import * as storage from './storage.js';
- 
+import { puzzleField } from './script';
+import * as storage from './storage';
+
 export default function createMenu(array) {
-  const cont = document.createElement('div');    
+  const cont = document.createElement('div');
   cont.classList.add('menu');
   const list = document.createElement('ul');
-  array.forEach( (item) => {
+  array.forEach((item) => {
     const li = document.createElement('li');
     li.classList.add(`${item.split(' ')[0]}`);
     li.textContent = item;
     list.append(li);
-    switch(item) {
+    switch (item) {
       case 'resume game':
         li.addEventListener('click', resumeGameHandler.bind(puzzleField));        
         break;
@@ -58,8 +57,4 @@ function resumeGameHandler() {
   } else {
     this.resumeGame();
   }
-  
-  
-  
 }
-
