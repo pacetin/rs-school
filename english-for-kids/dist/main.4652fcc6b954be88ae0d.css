@@ -216,43 +216,66 @@ main {
 }
 
 .toggle {
+  position: absolute;
+  top:0;
+  right:0;
   display: inline-block;
   width: 120px;
-  height: 40px;
+  height: 45px;
   padding: 3px;  
   vertical-align: top;
-  border-radius: 5px;  
-  background-image: linear-gradient(to right, #e66465, #9198e5);
+  border-radius: 5px;
+  box-shadow: inset 0 -1px #fff, inset 0 1px 1px rgba(0,0,0,.05);
+  background-image: linear-gradient(180deg,#eee,#fff 25px);
   cursor: pointer;
 }
 
 .toggle input {
+  position: absolute;
+  top: 0;
+  left:0;
   opacity: 0;
 }
 
 .toggle__placeholder {  
-  display: block;    
+  position: relative;
+  display: block;
+  height: 40px;
+  font-size: 18px;
+  line-height: 40px;
+  text-transform: uppercase;
+  background-image: linear-gradient(to right, #e66465, #9198e5);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,.12), inset 0 0 2px rgba(0,0,0,.15);
+  border-radius: inherit;   
   transition: .15s ease-out;
+  cursor:pointer;
 }
 
 .toggle__placeholder:before {
-  content: attr(data-off);
+  position: absolute;
+  top: 0;  
   right: 15px;
+  content: attr(data-off);
   color: #fff;
   text-shadow: 0 1px hsla(0,0%,100%,.5);
+  transition: inherit;
 }
 
 .toggle__placeholder:after {
-  content: attr(data-on);
+  position: absolute;
+  top: 0;
   left: 15px;
+  content: attr(data-on);
   color: #fff;
   text-shadow: 0 1px rgba(0,0,0,.2);
+  opacity: 0;
+  transition: inherit;
 }
 
 .toggle__handle {
   position: absolute;
-  top: 6px;
-  left: 6px;
+  top: 6.5px;
+  left: 5px;
   width: 33px;
   height: 33px;
   background: #fff;
@@ -260,7 +283,7 @@ main {
   box-shadow: 1px 1px 5px rgba(0,0,0,.2);  
   background-image: linear-gradient(180deg,#fff 40%,#f0f0f0);  
   transition: left .15s ease-out;
-}
+}  
 
 .toggle__handle::before {
   content: "";
@@ -276,6 +299,24 @@ main {
   background-image: linear-gradient(180deg,#eee,#fff);
 }
 
+.toggle input:checked~.toggle__placeholder {
+  background: linear-gradient(to right, #e6d364, #91e598);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,.15), inset 0 0 3px rgba(0,0,0,.2);
+}
+
+.toggle input:checked~.toggle__placeholder:before {
+  opacity: 0;
+}
+
+.toggle input:checked~.toggle__placeholder:after {
+  opacity: 1;
+}
+
+.toggle input:checked~.toggle__handle {
+  left: 83px;
+  box-shadow: -1px 1px 5px rgba(0,0,0,.2);
+}
+
 .section {
   width: 300px;
   height: 280px;
@@ -289,6 +330,10 @@ main {
   align-items: center;
   justify-content: center;
   transition: 0.3s;
+}
+
+.section_play-mode {
+  background: linear-gradient(to bottom, #e6d364, #91e598 40%, #ffffff 40%);
 }
 
 .section:hover {
@@ -331,6 +376,24 @@ main {
   justify-content: center; 
   align-items: center;
   transition: 0.3s;   
+}
+
+.card_play-mode .front .card__image {
+  height: 100%;
+  border-radius: 1rem 1rem;  
+}
+
+.card_play-mode .front .card__image img {
+  height: 100%;
+  border-radius: 1rem 1rem;
+}
+
+.card_play-mode .front .card__word {
+  display: none;
+}
+
+.card_play-mode .front .card__button {
+  display: none;
 }
 
 .front, .back {
@@ -408,6 +471,42 @@ main {
   transform: scale(1.07);
 }
 
+.button-container {
+  flex: 0 1 100%;
+  text-align: center;
+  font-size: 17.5px;
+}
+
+.game-button {
+  position: relative;
+	margin: .5em;
+	border: solid .125em transparent;
+	padding: 0;
+  width: 8.5em;
+  height: 2em;	
+	color: #fff;	
+	font: 900 1.5em roboto, cursive;
+	filter: contrast(.8);
+	transition: .2s ease-out;
+	cursor: pointer;
+	border-radius: 0.5em;
+	box-shadow: inset 0 1px 1px #9c9c9c;
+	background:		
+		linear-gradient(#fcf271, #5ccf19) content-box, 
+		linear-gradient(#f8f52f, #49aa23) border-box;
+		/*linear-gradient(#4e4e4e, #040404) content-box, 
+		linear-gradient(#292929, #010101) border-box;*/
+}
+
+button:hover, button:focus {
+	outline: none;
+	filter: none;
+}
+
+button:active {
+  transform: translateY(.125em);
+}
+
 footer {
   display: flex;
   justify-content: space-between;
@@ -458,7 +557,7 @@ footer {
   }
 
   .toggle-container {
-    order: 3;
+    order: 3;  
   }
 
   footer {

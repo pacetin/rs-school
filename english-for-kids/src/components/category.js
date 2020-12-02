@@ -68,5 +68,16 @@ export default function createCategory(array) {
       .append(back)
       .build();
   });
+  const buttonCont = new DomElementBuilder('div')
+    .addClass('button-container')
+    .append(fragment)
+    .build();
+  const button = new DomElementBuilder('button')
+    .addClass('game-button')
+    .append(buttonCont)
+    .inner('Start Game')
+    .build();
+  button.addEventListener('click', () => {
+  });
   return fragment;
 }

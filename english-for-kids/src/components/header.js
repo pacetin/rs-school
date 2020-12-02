@@ -1,8 +1,8 @@
 import DomElementBuilder from '../utilities/node_creator';
 import { showNav } from './navigation';
 
-const dataOn = 'Train';
-const dataOff = 'Play';
+const dataOn = 'Play';
+const dataOff = 'Train';
 
 export default function createHeader() {
   const header = new DomElementBuilder('header')
@@ -31,10 +31,11 @@ export default function createHeader() {
     .addClass('toggle')
     .append(toggleCont)
     .build();
-  new DomElementBuilder('input')
+  const input = new DomElementBuilder('input')
     .setAttr('type', 'checkbox')
     .append(label)
     .build();
+  input.addEventListener('change', toggleGameState);
   new DomElementBuilder('span')
     .addClass('toggle__placeholder')
     .setAttr('data-on', dataOn)
@@ -45,4 +46,13 @@ export default function createHeader() {
     .addClass('toggle__handle')
     .append(label)
     .build();
+}
+
+function toggleGameState() {
+  Array.from(document.querySelectorAll('.section')).forEach((element) => {
+    element.classList.toggle('section_play-mode');
+  });
+  Array.from(document.querySelectorAll('.card')).forEach((element) => {
+    element.classList.toggle('card_play-mode');
+  });
 }
