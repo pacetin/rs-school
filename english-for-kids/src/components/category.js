@@ -1,6 +1,5 @@
-import DomElementBuilder from '@models/node_creator';
-
-const buttonSrc = 'icons/rotation_button.svg';
+import DomElementBuilder from '../utilities/node_creator';
+import playAudio from './audio';
 
 export default function createCategory(array) {
   const fragment = document.createDocumentFragment();
@@ -9,16 +8,28 @@ export default function createCategory(array) {
       .addClass('card')
       .append(fragment)
       .build();
+    card.addEventListener('mouseleave', (e) => {
+      if (e.target.firstChild.classList.contains('front_active')) {
+        e.target.firstChild.classList.remove('front_active');
+        e.target.lastChild.classList.remove('back_active');
+      }
+    });
+
     const front = new DomElementBuilder('div')
       .addClass('front')
+      .addId(element.word)
       .append(card)
       .build();
+    front.addEventListener('click', () => {
+      playAudio(element.audioSrc);
+    });
+
     const frontImg = new DomElementBuilder('div')
       .addClass('card__image')
       .append(front)
       .build();
     new DomElementBuilder('img')
-      .setAttr('src', `img/${element.word}.jpg`)
+      .setAttr('src', element.image)
       .setAttr('alt', element.word)
       .append(frontImg)
       .build();
@@ -27,15 +38,17 @@ export default function createCategory(array) {
       .inner(element.word)
       .append(front)
       .build();
-    const button = new DomElementBuilder('button')
+
+    const cardButton = new DomElementBuilder('div')
       .addClass('card__button')
       .append(front)
       .build();
-    new DomElementBuilder('img')
-      .setAttr('src', buttonSrc)
-      .setAttr('alt', 'rotation_button')
-      .append(button)
-      .build();
+    cardButton.addEventListener('click', (e) => {
+      e.stopPropagation();
+      e.target.parentNode.classList.add('front_active');
+      e.target.parentNode.nextSibling.classList.add('back_active');
+    });
+
     const back = new DomElementBuilder('div')
       .addClass('back')
       .append(card)
@@ -45,7 +58,7 @@ export default function createCategory(array) {
       .append(back)
       .build();
     new DomElementBuilder('img')
-      .setAttr('src', `img/${element.word}.jpg`)
+      .setAttr('src', element.image)
       .setAttr('alt', element.word)
       .append(backImg)
       .build();
@@ -57,17 +70,3 @@ export default function createCategory(array) {
   });
   return fragment;
 }
-
-/* <div class="card">
-      <div class="front">
-        <div class="card__image"></div>
-        <div class="card__word">Giraffe</div>
-        <button class="card__button">
-          <img src="icons/rotation_button.svg" alt="rotation_button">  
-        </button>
-      </div>
-      <div class="back">
-        <div class="card__image"></div>
-        <div class="card__word">Жираф</div>
-      </div>
-    </div> */

@@ -1,4 +1,4 @@
-import DomElementBuilder from '@models/node_creator';
+import DomElementBuilder from '../utilities/node_creator';
 
 const logoLink = 'https://rs.school/js/';
 const logoImg = 'icons/rs_school_js.svg';

@@ -1,4 +1,5 @@
-import DomElementBuilder from '@models/node_creator';
+import DomElementBuilder from '../utilities/node_creator';
+import { showNav } from './navigation';
 
 const dataOn = 'Train';
 const dataOff = 'Play';
@@ -11,21 +12,11 @@ export default function createHeader() {
     .addClass('burger-button')
     .append(header)
     .build();
-  const burgerIcon = new DomElementBuilder('div')
-    .addClass('burger-icon')
+  burgerBtn.addEventListener('click', showNav);
+  new DomElementBuilder('img')
+    .setAttr('src', 'icons/burger.svg')
+    .setAttr('alt', 'burger')
     .append(burgerBtn)
-    .build();
-  new DomElementBuilder('span')
-    .addClass('first')
-    .append(burgerIcon)
-    .build();
-  new DomElementBuilder('span')
-    .addClass('second')
-    .append(burgerIcon)
-    .build();
-  new DomElementBuilder('span')
-    .addClass('third')
-    .append(burgerIcon)
     .build();
   new DomElementBuilder('h1')
     .addClass('title')

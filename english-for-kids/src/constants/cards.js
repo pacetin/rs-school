@@ -90,7 +90,7 @@ export const cards = [
     {
       word: 'fish',
       translation: 'рыба',
-      image: 'img/fish1.jpg',
+      image: 'img/fish.jpg',
       audioSrc: 'audio/fish.mp3',
     },
 
@@ -126,8 +126,8 @@ export const cards = [
     {
       word: 'lip',
       translation: 'губa',
-      image: 'img/lips.jpg',
-      audioSrc: 'audio/lips.mp3',
+      image: 'img/lip.jpg',
+      audioSrc: 'audio/lip.mp3',
     },
 
     {
@@ -382,8 +382,8 @@ export const cards = [
     {
       word: 'kick scooter',
       translation: 'самокат',
-      image: 'img/kick_scooter.jpg',
-      audioSrc: 'audio/kick_scooter.mp3',
+      image: 'img/kick-scooter.jpg',
+      audioSrc: 'audio/kick-scooter.mp3',
     },
   ],
   [

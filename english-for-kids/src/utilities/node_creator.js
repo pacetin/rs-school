@@ -20,6 +20,11 @@ export default class DomElementBuilder {
     return this;
   }
 
+  addId(id) {
+    this.id = id;
+    return this;
+  }
+
   prepend(parent) {
     this.parent = ['prepend', parent];
     return this;
@@ -51,6 +56,9 @@ export default class DomElementBuilder {
       this.className.forEach((item) => {
         element.classList.add(item);
       });
+    }
+    if (this.id) {
+      element.setAttribute('id', this.id);
     }
     if (this.parent) {
       if (this.parent[0] === 'append') {

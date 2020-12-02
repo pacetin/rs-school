@@ -1,14 +1,15 @@
-import DomElementBuilder from '@models/node_creator';
+import DomElementBuilder from '../utilities/node_creator';
 
-export default function createMainSection(array) {
-  const main = new DomElementBuilder('main')
-    .prepend(document.body)
-    .build();
+export default function createAllCategories(array) {
+  const fragment = document.createDocumentFragment();
   array.forEach((category) => {
     const section = new DomElementBuilder('div')
       .addClass('section')
-      .append(main)
+      .append(fragment)
       .build();
+    section.addEventListener('click', () => {
+      window.location.hash = `Category_${category}`;
+    });
     const sectionImg = new DomElementBuilder('div')
       .addClass('section__image')
       .append(section)
@@ -24,4 +25,5 @@ export default function createMainSection(array) {
       .append(section)
       .build();
   });
+  return fragment;
 }

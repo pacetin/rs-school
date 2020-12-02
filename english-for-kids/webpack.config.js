@@ -31,7 +31,7 @@ module.exports = {
     port: 4200,
     hot: isDev,
   },
-  devtool: isDev ? 'source-map' : '',
+  devtool: isDev ? 'source-map' : false,
   plugins: [
     new HTMLWebpackPlugin({
       template: './index.html',
@@ -46,6 +46,10 @@ module.exports = {
         {
           from: path.resolve(__dirname, 'src/assets/img'),
           to: path.resolve(__dirname, 'dist/img'),
+        },
+        {
+          from: path.resolve(__dirname, 'src/assets/audio'),
+          to: path.resolve(__dirname, 'dist/audio'),
         },
         {
           from: path.resolve(__dirname, 'src/assets/favicon.ico'),
