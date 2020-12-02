@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Roboto';
-  src: url(/dist/03523cf578d69fa923226ff457b92d90.ttf) format('truetype');
+  src: url(./03523cf578d69fa923226ff457b92d90.ttf) format('truetype');
 }
 :root {
   font-size: 10px;
@@ -395,7 +395,7 @@ main {
 .card__button {
   width: 3rem;
   height: 3rem;
-  background-image: url(/dist/5dcf48e382e34958035a543c431b811f.svg);
+  background-image: url(./5dcf48e382e34958035a543c431b811f.svg);
   background-size: 3rem;  
   position: absolute;
   right: 15px;
