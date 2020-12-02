@@ -1,4 +1,3 @@
-@import "~normalize.css";
 @import "roboto.css";
 
 :root {
@@ -394,7 +393,7 @@ main {
 .card__button {
   width: 3rem;
   height: 3rem;
-  background-image: url(@/assets/icons/rotation_button.svg);
+  background-image: url('../assets/icons/rotation_button.svg');
   background-size: 3rem;  
   position: absolute;
   right: 15px;

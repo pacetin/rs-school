@@ -17,13 +17,11 @@ module.exports = {
   output: {
     filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/',
+    publicPath: '/dist/',
   },
   resolve: {
-    extensions: ['.js', '.json', '.png'],
+    extensions: ['.js', '.json'],
     alias: {
-      '@models': path.resolve(__dirname, 'src/models'),
-      '@': path.resolve(__dirname, 'src'),
     },
   },
   devServer: {
