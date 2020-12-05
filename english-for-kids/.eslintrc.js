@@ -1,5 +1,5 @@
 module.exports = {
-    env: {
+  env: {
     browser: true,
     es2021: true,
   },
@@ -11,7 +11,7 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
-    "linebreak-style": [2, "windows"],
+    "linebreak-style": ["error", (require("os").EOL === "\r\n" ? "windows" : "unix")],
     "allowForLoopAfterthoughts": 0,
     "no-use-before-define": ["error", { "functions": false, "classes": true, "variables": true }]
   },

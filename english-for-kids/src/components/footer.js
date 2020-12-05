@@ -1,44 +1,22 @@
-import DomElementBuilder from '../utilities/node_creator';
+import DomBuilder from '../utilities/node_creator';
 
 const logoLink = 'https://rs.school/js/';
 const logoImg = 'icons/rs_school_js.svg';
 const authorLink = 'https://github.com/rolling-scopes-school/pacetin-JS2020Q3';
 const target = '_blank';
+const creator = 'Palina Cetin';
 
 export default function createFooter() {
-  const footer = new DomElementBuilder('footer')
-    .prepend(document.body)
+  const footer = new DomBuilder('footer').prepend(document.body).build();
+  const logo = new DomBuilder('div').class('logo').append(footer).build();
+  const logoA = new DomBuilder('a').attr('href', logoLink).attr('target', target).append(logo)
     .build();
-  const logo = new DomElementBuilder('div')
-    .addClass('logo')
-    .append(footer)
+  new DomBuilder('img').attr('src', logoImg).attr('alt', 'logo').append(logoA)
     .build();
-  const logoA = new DomElementBuilder('a')
-    .setAttr('href', logoLink)
-    .setAttr('target', target)
-    .append(logo)
-    .build();
-  new DomElementBuilder('img')
-    .setAttr('src', logoImg)
-    .setAttr('alt', 'logo')
-    .append(logoA)
-    .build();
-  const author = new DomElementBuilder('div')
-    .addClass('author')
-    .append(footer)
-    .build();
-  new DomElementBuilder('span')
-    .inner('Created by:')
+  const author = new DomBuilder('div').class('author').append(footer).build();
+  new DomBuilder('span').inner('Created by:').append(author).build();
+  new DomBuilder('a').attr('href', authorLink).attr('target', target).inner(creator)
     .append(author)
     .build();
-  new DomElementBuilder('a')
-    .setAttr('href', authorLink)
-    .setAttr('target', target)
-    .inner('Palina Cetin')
-    .append(author)
-    .build();
-  new DomElementBuilder('span')
-    .inner(', 2020')
-    .append(author)
-    .build();
+  new DomBuilder('span').inner(', 2020').append(author).build();
 }

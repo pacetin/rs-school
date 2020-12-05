@@ -66,6 +66,12 @@ main {
 .burger-button img {
   width: 40px;
   height: 40px;
+  transition: transform 0.25s ease-in;
+}
+
+.burger-button:hover {
+  cursor: pointer;
+  transform: scale(1.08);
 }
 
 .burger-button_hidden {
@@ -75,13 +81,15 @@ main {
 .hamburger-menu {
   width: 320px;
   height: 100vh;
+  padding: 1rem 0;
   display: block;
   position: absolute;
   top: 0;
   left: -320px;
   z-index: 9;
+  overflow-y: auto;
   background-color: #4f59e2;
-  transition: transform 0.4s ease;
+  transition: transform 0.4s ease-in-out;
 }
 
 .hamburger-menu .list {
@@ -92,8 +100,7 @@ main {
   justify-content: stretch;
   align-items: center;
   list-style: none;
-  font-size: 0px;
-  margin-top: 1rem;  
+  font-size: 0px;    
 }
 
 .list__item {
@@ -211,6 +218,7 @@ main {
 
 .toggle-container {
   position: relative;
+  top: -2.2rem;
 }
 
 .toggle {
@@ -222,9 +230,8 @@ main {
   height: 45px;
   padding: 3px;  
   vertical-align: top;
-  border-radius: 5px;
-  box-shadow: inset 0 -1px #fff, inset 0 1px 1px rgba(0,0,0,.05);
-  background-image: linear-gradient(180deg,#eee,#fff 25px);
+  border-radius: 5px;  
+  background-image: linear-gradient(to top,#4f59e2,#989ef3 30px, #ffffff);
   cursor: pointer;
 }
 
@@ -254,7 +261,7 @@ main {
   top: 0;  
   right: 15px;
   content: attr(data-off);
-  color: #fff;
+  color: #ffffff;
   text-shadow: 0 1px hsla(0,0%,100%,.5);
   transition: inherit;
 }
@@ -264,33 +271,33 @@ main {
   top: 0;
   left: 15px;
   content: attr(data-on);
-  color: #fff;
+  color: #ffffff;
   text-shadow: 0 1px rgba(0,0,0,.2);
   opacity: 0;
   transition: inherit;
 }
 
 .toggle__handle {
+  width: 35px;
+  height: 35px;
   position: absolute;
-  top: 6.5px;
+  top: 5px;
   left: 5px;
-  width: 33px;
-  height: 33px;
   background: #fff;
-  border-radius: 5px;
+  border-radius: 50%;
   box-shadow: 1px 1px 5px rgba(0,0,0,.2);  
-  background-image: linear-gradient(180deg,#fff 40%,#f0f0f0);  
+  background-image: linear-gradient(180deg,#fff 10%,#f1dd26);  
   transition: left .15s ease-out;
 }  
 
 .toggle__handle::before {
-  content: "";
+  width: 12px;
+  height: 12px;
   position: absolute;
+  content: "";
   top: 50%;
   left: 50%;
   margin: -6px 0 0 -6px;
-  width: 12px;
-  height: 12px;
   background: #f9f9f9;
   border-radius: 6px;
   box-shadow: inset 0 1px rgba(0,0,0,.02);  
@@ -311,7 +318,7 @@ main {
 }
 
 .toggle input:checked~.toggle__handle {
-  left: 83px;
+  left: 80px;
   box-shadow: -1px 1px 5px rgba(0,0,0,.2);
 }
 
@@ -359,6 +366,29 @@ main {
   line-height: 36px;
   font-weight: 400;
   text-align: center;
+}
+
+.star-container {
+  width: 750px;
+  display: flex;
+  justify-content: flex-end;
+  column-gap: 1rem;  
+  height: 4rem;  
+  overflow-x: hidden;
+  margin-bottom: 1rem;
+}
+
+.star {
+  flex-shrink: 0;
+  width: 4rem;
+  height: 4rem;
+  background-image: url('../assets/icons/star.svg');
+  background-position: center;
+  background-size: 4rem;
+}
+
+.star_error {
+  filter: grayscale(1);
 }
 
 .card {
@@ -428,6 +458,16 @@ main {
   transform: rotateY(180deg);  
 }
 
+.front_inactive {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.front_inactive:hover {
+  box-shadow:  none;
+  cursor: default;
+}
+
 .back_active {
   transform: rotateY(360deg);
 }
@@ -471,13 +511,13 @@ main {
 
 .button-container {
   flex: 0 1 100%;
+  height: 6rem;
   text-align: center;
   font-size: 17.5px;
 }
 
 .game-button {
-  position: relative;
-	margin: .5em;
+  position: relative;	
 	border: solid .125em transparent;
 	padding: 0;
   width: 8.5em;
@@ -496,6 +536,21 @@ main {
 		linear-gradient(#292929, #010101) border-box;*/
 }
 
+.game-button_hidden {
+  display:  none;
+}
+
+.game-button_repeat {
+  width: 6rem;
+  height: 6rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../assets/icons/repeat.svg');
+  background-size: 5.3rem;
+  border-radius: 50%;
+  box-shadow: none;		 
+}
+
 button:hover, button:focus {
 	outline: none;
 	filter: none;
@@ -503,6 +558,29 @@ button:hover, button:focus {
 
 button:active {
   transform: translateY(.125em);
+}
+
+.result {
+  width: 400px;
+  height: 400px;
+  background-image: url('../assets/icons/happy.svg');
+  background-size: 100%;
+  background-position: center;
+}
+
+.result_failure {
+  background-image: url('../assets/icons/sad.svg');
+}
+
+.congrats {
+  width: 100%;
+  text-align: center;
+  font-family: 'Lora', serif;
+  font-size: 2.4rem;
+  font-style: normal;  
+  font-weight: 400;
+  color:#212529;
+  margin-bottom: 2rem;
 }
 
 footer {
@@ -547,7 +625,8 @@ footer {
     order: 1;
     text-align: center;
     flex: 0 1 100%;  
-    font-size: 5.4rem; 
+    font-size: 5.4rem;
+    margin-bottom: 2rem; 
   }  
   
   .burger-button {
@@ -556,6 +635,10 @@ footer {
 
   .toggle-container {
     order: 3;  
+  }
+
+  .star-container {
+    width: 450px;
   }
 
   footer {
@@ -568,4 +651,19 @@ footer {
   .author {
     margin-left: 0rem;  
   }  
+}
+
+@media only all and (max-width: 500px) {
+  .star-container {
+    width: 300px;
+  }
+  
+  main {
+    padding: 2rem 1rem;
+  }
+
+  .result {
+    width: 300px;
+    height: 300px; 
+  }
 }

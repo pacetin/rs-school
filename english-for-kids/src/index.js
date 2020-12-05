@@ -3,7 +3,7 @@ import { categories, cards } from './constants/cards';
 import createHeader from './components/header';
 import createFooter from './components/footer';
 import createNavigation from './components/navigation';
-import createAllCategories from './components/all_categories';
+import createAllCategories from './components/sections';
 import createCategory from './components/category';
 import createMain from './components/main';
 
