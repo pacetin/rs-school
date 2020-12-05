@@ -380,10 +380,10 @@ export const cards = [
     },
 
     {
-      word: 'kick scooter',
+      word: 'scooter',
       translation: 'самокат',
-      image: 'img/kick-scooter.jpg',
-      audioSrc: 'audio/kick-scooter.mp3',
+      image: 'img/scooter.jpg',
+      audioSrc: 'audio/scooter.mp3',
     },
   ],
   [
@@ -437,10 +437,10 @@ export const cards = [
     },
 
     {
-      word: 'peas',
+      word: 'pea',
       translation: 'горох',
-      image: 'img/peas.jpg',
-      audioSrc: 'audio/peas.mp3',
+      image: 'img/pea.jpg',
+      audioSrc: 'audio/pea.mp3',
     },
   ],
 ];

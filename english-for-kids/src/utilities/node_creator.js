@@ -5,18 +5,13 @@
 * @param  {String} text
 */
 
-export default class DomElementBuilder {
+export default class DomBuilder {
   constructor(tagName) {
     this.tagName = tagName;
   }
 
-  addClass(className) {
-    if (this.className) {
-      this.className.push(className);
-    } else {
-      this.className = [];
-      this.className[0] = className;
-    }
+  class(className) {
+    this.className = className.split(' ');
     return this;
   }
 
@@ -40,12 +35,12 @@ export default class DomElementBuilder {
     return this;
   }
 
-  setAttr(attrName, attrString) {
-    if (this.attr) {
-      this.attr.push([attrName, attrString]);
+  attr(attrName, attrString) {
+    if (this.attribute) {
+      this.attribute.push([attrName, attrString]);
     } else {
-      this.attr = [];
-      this.attr[0] = [attrName, attrString];
+      this.attribute = [];
+      this.attribute[0] = [attrName, attrString];
     }
     return this;
   }
@@ -70,8 +65,8 @@ export default class DomElementBuilder {
     if (this.text) {
       element.textContent = this.text;
     }
-    if (this.attr) {
-      this.attr.forEach((item) => {
+    if (this.attribute) {
+      this.attribute.forEach((item) => {
         element.setAttribute(item[0], item[1]);
       });
     }

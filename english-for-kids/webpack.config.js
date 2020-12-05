@@ -12,7 +12,6 @@ module.exports = {
   mode: 'development',
   entry: {
     main: './index.js',
-    analytics: './analytics.js'
   },
   output: {
     filename: '[name].[contenthash].js',
@@ -81,6 +80,6 @@ module.exports = {
         test: /\.(ttf|woff|woff2|eot)$/,
         use: ['file-loader'],
       },
-    ]
-  }
-}
+    ],
+  },
+};

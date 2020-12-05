@@ -1,7 +1,5 @@
-import DomElementBuilder from '../utilities/node_creator';
+import DomBuilder from '../utilities/node_creator';
 
 export default function createMain() {
-  new DomElementBuilder('main')
-    .prepend(document.body)
-    .build();
+  new DomBuilder('main').prepend(document.body).build();
 }
