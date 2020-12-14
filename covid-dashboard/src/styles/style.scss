@@ -1,0 +1,43 @@
+@import 'poppins.css';
+
+$color-primary: #F1CDB3;
+$color-primary-light: #FDDCC4;
+
+@mixin h1 {
+  font: {
+  family: 'Poppins', sans-serif;
+  size: 4.4rem;  
+  weight: 700;
+  }
+  font-style: normal;
+  line-height: 5.75rem;
+}
+
+:root {
+  font-size: 10px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #9bc9f8;
+}
+
+h1 {
+  @include h1;
+  color: $color-primary; 
+}
+
+.logo {
+  width: 15rem;
+  height: 10rem;
+  background-image: url('../assets/icons/rs_school_logo.svg');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
