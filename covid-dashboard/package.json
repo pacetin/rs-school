@@ -1,0 +1,50 @@
+{
+  "name": "covid-dashboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack --mode development",
+    "build": "cross-env NODE_ENV=production webpack --mode production",
+    "watch": "cross-env NODE_ENV=development webpack --mode development --watch",
+    "start": "cross-env NODE_ENV=development webpack-cli serve --mode development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pacetin/covid-dashboard.git"
+  },
+  "keywords": [
+    "javaScript"
+  ],
+  "author": "Palina Cetin fpe@tut.by",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pacetin/covid-dashboard/issues"
+  },
+  "homepage": "https://github.com/pacetin/covid-dashboard#readme",
+  "devDependencies": {
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^7.0.0",
+    "cross-env": "^7.0.3",
+    "css-loader": "^5.0.1",
+    "eslint": "^7.15.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-webpack-plugin": "^2.4.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^4.5.0",
+    "leaflet": "^1.7.1",
+    "mapbox-gl": "^2.0.0",
+    "mapbox-gl-leaflet": "0.0.14",
+    "mini-css-extract-plugin": "^1.3.3",
+    "node-sass": "^5.0.0",
+    "npm": "^6.14.10",
+    "sass-loader": "^10.1.0",
+    "webpack": "^5.10.1",
+    "webpack-cli": "^4.2.0",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "chart.js": "^2.9.4"
+  }
+}
