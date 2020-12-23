@@ -1,4 +1,7 @@
 @import 'poppins.css';
+@import 'list.scss';
+@import 'table.scss';
+@import 'keyboard.css';
 
 $color-primary: #F1CDB3;
 $color-primary-light: #FDDCC4;
@@ -24,8 +27,7 @@ $color-primary-light: #FDDCC4;
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
-  background-color: #9bc9f8;
+  font-family: 'Poppins', sans-serif; 
 }
 
 h1 {

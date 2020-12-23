@@ -1,0 +1,82 @@
+$color-light-l: #F6F6F6;
+$color-dark-xl: #4C4C4C;
+
+.table-container {
+  width: 400px;
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.country {
+  flex: 0 1 100%;
+  font-size: 2.4rem;
+  font-weight: 900;
+  img {
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+.cases, .deaths, .recovered {
+  flex: 0 1 100px;
+  background-color: $color-light-l;
+  padding: 1rem 1rem;  
+}
+
+.cases {
+  color: red;
+}
+
+.deaths {
+  color: black;
+}
+
+.recovered {
+  color: green;
+}
+
+.amount {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.today {
+  color: $color-dark-xl;
+  font-size: 1.6rem;
+}
+
+.button-container {
+  span {
+    display: inline-block;
+    vertical-align: middle;    
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+  select {
+    height: 30px;
+    position: relative;
+    outline: none;
+    top: 2px;
+  }
+
+}
+
+.arrow-left {
+  transform: rotate(180deg);
+  background-color: $color-dark-xl;
+  background-image: url(../assets/icons/arrow.svg);
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: center; 
+}
+
+.arrow-right {  
+  background-color: $color-dark-xl;
+  background-image: url(../assets/icons/arrow.svg);
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
