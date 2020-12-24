@@ -1,17 +1,13 @@
 import NodeBuilder from '../utilities/nodeBuilder';
 import { get } from '../services/storage';
-import { storageDataKey } from '../constants/common';
+import { storageDataKey, states } from '../constants/common';
 import ControlBar from '../models/ControlBar';
 import Keyboard from '../models/Keyboard';
+import getFieldAccordingState from '../services/usefulFunctions';
 
 const flag = 'list__image';
 const countryName = 'list__country';
 const amount = 'list__amount';
-const states = [
-  ['absolute', 'per 100K'],
-  ['cases', 'deaths', 'recovered', 'cases (daily increase)', 'deaths (daily increase)', 'recovered (daily increase)'],
-];
-
 export default class List {
   constructor(container) {
     this.list = container;
@@ -159,34 +155,4 @@ export default class List {
 
 function getSortedData(field, array) {
   return array.sort((a, b) => b[field] - a[field]);
-}
-
-function getFieldAccordingState(stateArray) {
-  const isRelative = (stateArray[0] !== 'absolute');
-  const indicator = stateArray[1];
-  let field;
-  switch (indicator) {
-    case states[1][0]:
-      field = isRelative ? 'casesPer100K' : 'cases';
-      break;
-    case states[1][1]:
-      field = isRelative ? 'deathsPer100K' : 'deaths';
-      break;
-    case states[1][2]:
-      field = isRelative ? 'recoveredPer100K' : 'recovered';
-      break;
-    case states[1][3]:
-      field = isRelative ? 'todayCasesPer100K' : 'todayCases';
-      break;
-    case states[1][4]:
-      field = isRelative ? 'todayDeathsPer100K' : 'todayDeaths';
-      break;
-    case states[1][5]:
-      field = isRelative ? 'todayRecoveredPer100K' : 'todayRecovered';
-      break;
-    default:
-      // no default case
-      break;
-  }
-  return field;
 }

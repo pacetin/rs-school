@@ -1,16 +1,20 @@
 import List from './List';
 import Table from './Table';
+import Map from './Map';
 import createDate from './date';
 import Keyboard from '../models/Keyboard';
 
 const listCont = document.querySelector('.list-container');
 const tableCont = document.querySelector('.table-container');
+const mapCont = document.querySelector('.map-container');
 
 export default function createMainLayout(data, date) {
   const list = new List(listCont);
   list.init(data);
   const table = new Table(tableCont);
   table.init(data);
+  const map = new Map(mapCont);
+  map.init(data);
   createDate(date);
   list.subscribe(table.synchronizeTable.bind(table));
 

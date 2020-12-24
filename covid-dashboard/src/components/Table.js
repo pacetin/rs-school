@@ -135,6 +135,6 @@ export default class Table {
   }
 
   static relativeValue(value, population) {
-    return ((value / population) * 100000).toFixed(1);
+    return ((value / population) * 100000).toFixed(4);
   }
 }
