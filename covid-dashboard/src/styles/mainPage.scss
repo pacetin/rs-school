@@ -1,6 +1,11 @@
+body {
+    height: 100vh;
+    overflow-x:hidden;
+    overflow-y:hidden;
+}
 .header {
-    height: 5rem;
-    width: auto;
+    height: 5.5rem;
+    width: 100vw;
     background-color: rgb(36, 34, 34);
     justify-content: center;
 
@@ -15,116 +20,235 @@
     display: flex;
     background-color: black;
     justify-content: center;
-    overflow-y: hidden;
+    width: 100vw;   
+    height: 82%;
+}
 
-    .fullscreenCountry.opened, .fullscreenGlobal.opened, .fullscreenMap.opened, .fullscreenChart.opened {
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+
+.fullscreenCountry.opened {
+    position: absolute;
+    width: 100%;
+    height: 83%;
+    left: 50%;
+    top: 49%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+
+    .btn {
+        top: 0;
+        right: 2px;
+        background-image: url(../assets/icons/exit-fullscreen.svg);
+        background-size: 20px;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+  }
+
+  .fullscreenGlobal.opened {
+    position: absolute;
+    width: 100%;
+    height: 83%;
+    left: 50%;
+    top: 49%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+
+    .btn {
+        top: 0;
+        right: 2px;
+        background-image: url(../assets/icons/exit-fullscreen.svg);
+        background-size: 20px;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .table-container {
+        width: 1000px;
+        height: auto;
+       
+        .cases, .deaths, .recovered {
+            flex: 0 1 250px;
+            font-size: 25px;
+        }
+    }
+  }
+
+  .fullscreenMap.opened{
+    position: absolute;
+    width: 100%;
+    height: 83%;
+    left: 50%;
+    top: 49%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    
+    .btn {
+        top: 0;
+        right: 2px;
+        background-image: url(../assets/icons/exit-fullscreen.svg);
+        background-size: 20px;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+  }
+
+  .fullscreenChart.opened {
+    position: absolute;
+    width: 100%;
+    height: 83%;
+    left: 50%;
+    top: 49%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    
+    .btn {
+        top: 0;
+        right: 2px;
+        background-image: url(../assets/icons/exit-fullscreen.svg);
+        background-size: 20px;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    // canvas {
+    //     width: 1000px;
+    //     height: auto;
+    // }
+}
+
+.box {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    border: solid;
+    border-color: red;
+    border-radius: 5px;
+}
+
+.Cases_by, .Global_Death, .schedule, .map {
+    margin: 2px;
+    background-color: rgb(59, 56, 56);
+
+    .btn {
+        opacity: 0;
         position: absolute;
-        width: 100%;
-        height: 100%;
-        left: 49.5%;
-        top: 56%;
-        transform: translate(-50%, -50%);
-
-        .btn {
-            top: 0;
-            background-image: url(../assets/icons/exit-fullscreen.svg);
-        }
-      }
-
-    .box {
-        display: grid;
-        justify-content: center;
-        align-items: center;
-        border: solid;
-        border-color: red;
-        border-radius: 5px;
-    }
-    
-    .Cases_by, .Global_Death, .schedule, .map {
-        margin: 6px;
-        background-color: rgb(59, 56, 56);
-
-        .btn {
-            opacity: 0;
-            position: absolute;
-            width: 3rem;
-            height: 3rem;
-            background:gray;
-            color:#fff;
-            transition: opacity .3s;
-            background-image: url(../assets/icons/fullscreen.svg);
-        }
-
-        .loader {
-            width: 50px;
-            height:50px;
-            border: 4px solid lighten(black, 30%);
-            border-top-color: black;
-            border-radius: 50%;
-            animation: rotate 1.1s linear infinite;
-        }
-          
-        @keyframes rotate {
-            100% {
-              transform: rotate(360deg);
-            }
-        }
-        
+        right: 2px;  
+        width: 3rem;
+        height: 3rem;
+        color:#fff;
+        transition: opacity .3s;
+        background-size: 20px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-color:gray;
+        background-image: url(../assets/icons/fullscreen.svg);
     }
 
-    .Global_Cases {
-        justify-content: center;
-        text-align: center;  
-        padding-top: 3.5rem;
-        width: 25rem;
-        height: 15rem;
-        margin: 6px;
-        background-color: rgb(59, 56, 56);
-        font-size: 24px;
-        font-weight: 600;
-        color: darkred;
+    .loader {
+        width: 50px;
+        height:50px;
+        position: absolute;
+        top: calc(50% - 25px);
+        left: calc(50% - 25px);            
+        border: 4px solid lighten(black, 30%);
+        border-top-color: black;
+        border-radius: 50%;
+        animation: rotate 1.1s linear infinite;
     }
-    
-    .Cases_by {
-        width: 25rem;
-        height: 45rem;
-
-        ul {
-            list-style-type: none;
-            padding-left: 7rem;
+      
+    @keyframes rotate {
+        100% {
+          transform: rotate(360deg);
         }
     }
     
-    .map {
-        width: 66rem;
-        height: 60.5rem;
-    }
-    
-    .Global_Death {
-        width: 40rem;
-        height: 35rem;
-    }
-    
-    .schedule {
-        width: 40rem;
-        height: 25rem;
-    }
-    
+}
+
+.section1 {
+    position: relative;
+    width: 23%;
+    height: 100%;
+}
+
+.section2 {
+    position: relative;
+    width: 50%;
+    height: 100%;
+}
+
+.section3 {
+    width: 27%;
+    height: 100%;
+}
+
+.Global_Cases {
+    justify-content: center;
+    text-align: center;  
+    padding-top: 1.5rem;
+    height: 19%;
+    //margin: 2px;
+    background-color: rgb(59, 56, 56);
+    font-size: 200%;
+    font-weight: 600;
+    color: darkred;
+}
+
+.Cases_by {
+    height: 80%;
+}
+
+.map {
+    height: 99.5%;
+}
+
+#MAP {
+    z-index: 1;
+}
+
+.Global_Death {
+    height: 40%;
+}
+
+.schedule {
+    height: 59%;
 }
 
 footer {
     display: flex;
     justify-content: space-around;
-    padding-top: 15px;
+    padding-top: 10px;
     background-color: gray;
     font-size: 2rem;
     color: black;
 
     .rsschool {
-        width: 120px;
+        width: 100px;
         height: 40px;
         cursor: pointer;
     }
+  }
+
+.Cases_by:hover button {
+    opacity: 1;
+    transition: opacity .3s;
+    cursor: pointer;
+}
+
+.map:hover button {
+    opacity: 1;
+    transition: opacity .3s;
+    cursor: pointer;
+}
 
     h4 {
         color: black;
@@ -147,7 +271,6 @@ footer {
         display: flex;
         margin-right: 3rem;
     }
-}
 
   /* button {
     
@@ -199,6 +322,9 @@ footer {
             .loader {
                 width: 40px;
                 height: 40px;
+                position: absolute;
+                top: calc(50% - 20px);
+                left: calc(50% - 20px);
                 border: 4px solid lighten(black, 30%);
                 border-top-color: black;
             }
@@ -243,7 +369,7 @@ footer {
     
     
     footer {
-        padding-top: 15px;
+        padding-top: 5px;
         font-size: 1rem;
     
         .rsschool {

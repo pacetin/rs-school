@@ -1,20 +1,17 @@
 import NodeBuilder from '../utilities/nodeBuilder';
 import { get } from '../services/storage';
-import { storageDataKey } from '../constants/common';
+import { storageDataKey, states } from '../constants/common';
 import ControlBar from '../models/ControlBar';
 import Keyboard from '../models/Keyboard';
+import { getFieldAccordingState, getSelectElement } from '../services/usefulFunctions';
 
 const flag = 'list__image';
 const countryName = 'list__country';
 const amount = 'list__amount';
-const states = [
-  ['absolute', 'per 100K'],
-  ['cases', 'deaths', 'recovered', 'cases (daily increase)', 'deaths (daily increase)', 'recovered (daily increase)'],
-];
-
 export default class List {
   constructor(container) {
     this.list = container;
+    this.selectField = [];
     this.currentCountry = undefined;
     this.currentState = ['absolute', 'cases'];
     this.listeners = [];
@@ -144,6 +141,21 @@ export default class List {
     this.notifyAll();
   }
 
+  synchronizeList(stateArray) {
+    stateArray.forEach((item, index) => {
+      if (item) {
+        this.currentState[index] = item;
+      }
+    });
+    const select1 = getSelectElement(this.currentState[0], this.selectField);
+    const select2 = getSelectElement(this.currentState[1], this.selectField);
+    [select1.value, select2.value] = this.currentState;
+    const data = get(storageDataKey);
+    const indicator = getFieldAccordingState(this.currentState);
+    const sortedData = getSortedData(indicator, data);
+    this.updateList(sortedData);
+  }
+
   subscribe(listener) {
     this.listeners.push(listener);
   }
@@ -153,40 +165,10 @@ export default class List {
   }
 
   notifyAll() {
-    this.listeners.forEach((subs) => subs(this.currentCountry, this.currentState));
+    this.listeners.forEach((subs) => subs(this.currentState, this.currentCountry));
   }
 }
 
 function getSortedData(field, array) {
   return array.sort((a, b) => b[field] - a[field]);
-}
-
-function getFieldAccordingState(stateArray) {
-  const isRelative = (stateArray[0] !== 'absolute');
-  const indicator = stateArray[1];
-  let field;
-  switch (indicator) {
-    case states[1][0]:
-      field = isRelative ? 'casesPer100K' : 'cases';
-      break;
-    case states[1][1]:
-      field = isRelative ? 'deathsPer100K' : 'deaths';
-      break;
-    case states[1][2]:
-      field = isRelative ? 'recoveredPer100K' : 'recovered';
-      break;
-    case states[1][3]:
-      field = isRelative ? 'todayCasesPer100K' : 'todayCases';
-      break;
-    case states[1][4]:
-      field = isRelative ? 'todayDeathsPer100K' : 'todayDeaths';
-      break;
-    case states[1][5]:
-      field = isRelative ? 'todayRecoveredPer100K' : 'todayRecovered';
-      break;
-    default:
-      // no default case
-      break;
-  }
-  return field;
 }
