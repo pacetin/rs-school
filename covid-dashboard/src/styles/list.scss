@@ -1,21 +1,38 @@
 .list-container {
-  height: 500px;
-  overflow: auto;
+  position: relative;
+  display: flex;
+  flex-wrap:wrap;
+  align-items: space-between;
+  width: 100%;
+  height: 100%;
+
+  ul {
+    height: 310px;
+    overflow-y: auto;
+    margin-top: 1rem;
+  }
+}
+
+.list__item {
+  border-bottom: 1px solid black;
 }
 
 .list__image {
-  width: 3rem;
+  margin: 0.5rem 0rem 0rem 1rem;
+  width: 2.5rem;
+  height: 2rem;
+  object-fit: fill;
 }
 
 .list__country {
-  font-size: 2.4rem;
+  font-size: 150%;
   color: green;
   font-weight: 700;
-  margin-left: 2rem;
+  margin-left: 1rem;  
 }
 
 .list__amount {
-  font-size: 2.4rem;
+  font-size: 150%;
   color: black;
-  margin-left: 2rem;
+  margin-left: 1rem;
 }

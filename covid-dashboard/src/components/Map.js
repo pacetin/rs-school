@@ -2,7 +2,7 @@ import NodeBuilder from '../utilities/nodeBuilder';
 import { get } from '../services/storage';
 import { storageDataKey, states } from '../constants/common';
 import ControlBar from '../models/ControlBar';
-import getFieldAccordingState from '../services/usefulFunctions';
+import { getFieldAccordingState, getSelectElement } from '../services/usefulFunctions';
 
 const colors = [
   ['#fee5d9', '#fcbba1', '#fc9272', '#fb6a4a', '#de2d26', '#a50f15'],
@@ -24,6 +24,7 @@ export default class Map {
   constructor(container) {
     this.map = container;
     this.myMap = undefined;
+    this.selectField = [];
     this.currentState = ['absolute', 'cases'];
     this.listeners = [];
   }
@@ -41,7 +42,7 @@ export default class Map {
     control2.init();
 
     /* eslint-disable new-cap */
-    this.myMap = new L.map('MAP').setView([53, 28], 2);
+    this.myMap = new L.map('MAP').setView([12, 28], 2);
     const mapboxAccessToken = 'pk.eyJ1IjoicGFjZXRpbiIsImEiOiJja2l5aGd2NzYzb2JrMzNwM2drMGs1enYyIn0.cYc_YwCtm_PoQqzAYmYtiA';
 
     L.tileLayer(`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=${mapboxAccessToken}`, {
@@ -164,6 +165,19 @@ export default class Map {
     this.notifyAll();
   }
 
+  synchronizeMap(stateArray) {
+    stateArray.forEach((item, index) => {
+      if (item) {
+        this.currentState[index] = item;
+      }
+    });
+    const data = get(storageDataKey);
+    const select1 = getSelectElement(this.currentState[0], this.selectField);
+    const select2 = getSelectElement(this.currentState[1], this.selectField);
+    [select1.value, select2.value] = this.currentState;
+    this.updateMap(data);
+  }
+
   subscribe(listener) {
     this.listeners.push(listener);
   }
@@ -173,7 +187,7 @@ export default class Map {
   }
 
   notifyAll() {
-    this.listeners.forEach((subs) => subs(this.currentCountry, this.currentState));
+    this.listeners.forEach((subs) => subs(this.currentState, this.currentCountry));
   }
 }
 

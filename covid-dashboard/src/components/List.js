@@ -3,7 +3,7 @@ import { get } from '../services/storage';
 import { storageDataKey, states } from '../constants/common';
 import ControlBar from '../models/ControlBar';
 import Keyboard from '../models/Keyboard';
-import getFieldAccordingState from '../services/usefulFunctions';
+import { getFieldAccordingState, getSelectElement } from '../services/usefulFunctions';
 
 const flag = 'list__image';
 const countryName = 'list__country';
@@ -11,6 +11,7 @@ const amount = 'list__amount';
 export default class List {
   constructor(container) {
     this.list = container;
+    this.selectField = [];
     this.currentCountry = undefined;
     this.currentState = ['absolute', 'cases'];
     this.listeners = [];
@@ -140,6 +141,21 @@ export default class List {
     this.notifyAll();
   }
 
+  synchronizeList(stateArray) {
+    stateArray.forEach((item, index) => {
+      if (item) {
+        this.currentState[index] = item;
+      }
+    });
+    const select1 = getSelectElement(this.currentState[0], this.selectField);
+    const select2 = getSelectElement(this.currentState[1], this.selectField);
+    [select1.value, select2.value] = this.currentState;
+    const data = get(storageDataKey);
+    const indicator = getFieldAccordingState(this.currentState);
+    const sortedData = getSortedData(indicator, data);
+    this.updateList(sortedData);
+  }
+
   subscribe(listener) {
     this.listeners.push(listener);
   }
@@ -149,7 +165,7 @@ export default class List {
   }
 
   notifyAll() {
-    this.listeners.forEach((subs) => subs(this.currentCountry, this.currentState));
+    this.listeners.forEach((subs) => subs(this.currentState, this.currentCountry));
   }
 }
 

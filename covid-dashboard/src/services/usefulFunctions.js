@@ -1,6 +1,6 @@
 import { states } from '../constants/common';
 
-export default function getFieldAccordingState(stateArray) {
+export function getFieldAccordingState(stateArray) {
   const isRelative = (stateArray[0] !== 'absolute');
   const indicator = stateArray[1];
   let field;
@@ -28,4 +28,12 @@ export default function getFieldAccordingState(stateArray) {
       break;
   }
   return field;
+}
+
+export function getSelectElement(optionText, selectFields) {
+  /* eslint-disable arrow-body-style */
+  const element = selectFields.find((item) => {
+    return Array.from(item.options).some((option) => option.value === optionText);
+  });
+  return element;
 }

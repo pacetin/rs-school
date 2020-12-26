@@ -29,6 +29,6 @@ export default class ControlBar {
     const buttonRight = new NodeBuilder('span').class('arrow-right').app(this.container).build();
     buttonRight.addEventListener('click', this.view.changeStateFromButton.bind(this.view));
 
-    this.view.selectField = select;
+    this.view.selectField.push(select);
   }
 }

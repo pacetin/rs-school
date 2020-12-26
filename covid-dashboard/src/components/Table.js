@@ -10,9 +10,10 @@ export default class Table {
   constructor(container) {
     this.container = container;
     this.global = null;
-    this.selectField = undefined;
-    this.currentCountry = undefined;
+    this.selectField = [];
+    this.currentCountry = 'Global';
     this.currentState = 'absolute';
+    this.listeners = [];
   }
 
   init(array) {
@@ -120,18 +121,33 @@ export default class Table {
     }
     this.currentState = states[index];
     this.updateTable(this.currentCountry, this.currentState);
+    this.notifyAll();
   }
 
   changeStateFromSelect(e) {
     this.currentState = e.target.value;
     this.updateTable(this.currentCountry, this.currentState);
+    this.notifyAll();
   }
 
-  synchronizeTable(country = 'Global', stateArray) {
+  synchronizeTable(stateArray, country = this.currentCountry) {
     this.currentCountry = country;
     [this.currentState] = stateArray;
     this.updateTable(this.currentCountry, this.currentState);
-    this.selectField.value = this.currentState;
+    this.selectField[0].value = this.currentState;
+  }
+
+  subscribe(listener) {
+    this.listeners.push(listener);
+  }
+
+  unsubscribe(listener) {
+    this.listeners.filter((el) => !(el instanceof listener));
+  }
+
+  notifyAll() {
+    const array = [this.currentState, undefined];
+    this.listeners.forEach((subs) => subs(array, this.currentCountry));
   }
 
   static relativeValue(value, population) {
