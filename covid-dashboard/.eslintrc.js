@@ -10,7 +10,7 @@ module.exports = {
         "ecmaVersion": 12,
         "sourceType": "module"
     },
-    "rules": {
+    rules: {
       "linebreak-style": ["error", (require("os").EOL === "\r\n" ? "windows" : "unix")],
       "allowForLoopAfterthoughts": 0,
       "no-use-before-define": ["error", { "functions": false, "classes": true, "variables": true }],

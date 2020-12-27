@@ -22,22 +22,6 @@ class AutoNews {
   }
 }
 
-/* class Jack {
-  inform(obj) {
-    console.log(`${obj}`);
-  }
-};
-
-class Max {
-  inform(obj) {
-    console.log(`${obj}`);
-  }
-};
-
-autoNews.register(new Jack());
-autoNews.register(new Max());
-*/
-
 const autoNews = new AutoNews();
 
 autoNews.setCountry('Belarus');

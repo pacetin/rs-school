@@ -15,13 +15,17 @@ let globalInfoDay;
 const urlGlobalDay = 'https://disease.sh/v3/covid-19/historical/all?lastdays=400';
 
 export default async function globalInfo() {
-  const resultGlobalDay = await fetch(urlGlobalDay);
-  const dataGlobalDay = await resultGlobalDay.json();
-  globalInfoDay = dataGlobalDay;
-  obj = globalInfoDay.cases;
-  date = Object.keys(obj);
-  kol = Object.values(obj);
-  a();
+  try {
+    const resultGlobalDay = await fetch(urlGlobalDay);
+    const dataGlobalDay = await resultGlobalDay.json();
+    globalInfoDay = dataGlobalDay;
+    obj = globalInfoDay.cases;
+    date = Object.keys(obj);
+    kol = Object.values(obj);
+    a();
+  } catch {
+    window.alert('Oops, something goes wrong, update your page');
+  }
 }
 
 function a() {

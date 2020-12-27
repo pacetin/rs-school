@@ -3,6 +3,7 @@ import { get } from '../services/storage';
 import { storageDataKey, states } from '../constants/common';
 import ControlBar from '../models/ControlBar';
 import { getFieldAccordingState, getSelectElement } from '../services/usefulFunctions';
+import L from '../leaflet/leaflet';
 
 const colors = [
   ['#fee5d9', '#fcbba1', '#fc9272', '#fb6a4a', '#de2d26', '#a50f15'],
@@ -17,9 +18,6 @@ const ranking = [
   [0, 10, 100, 500, 750, 1000],
   [0, 100, 1000, 5000, 10000, 25000],
 ];
-
-const L = require('../leaflet/leaflet.js');
-
 export default class Map {
   constructor(container) {
     this.map = container;

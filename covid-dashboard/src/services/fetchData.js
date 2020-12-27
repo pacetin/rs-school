@@ -39,7 +39,8 @@ export default function getCovidData() {
     .then((data) => {
       set(storageDataKey, data);
       createMainLayout(data, now);
-    });
+    })
+    .catch(() => window.alert('Ooops, something goes wrong, update page...'));
 }
 
 getCovidData();
