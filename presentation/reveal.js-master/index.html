@@ -1,0 +1,210 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>TypeScript</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css" id="theme">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<a href="https://www.typescriptlang.org/">
+						<img src="https://miro.medium.com/max/1050/1*9eMyWLYOqU5aqBtVoFoi3Q.jpeg" alt="typescript logo" style="height: 180px; margin: 0 auto 4rem auto; background: transparent;" class="demo-logo">
+					</a>
+					<h3>Introduction to TypeScript</h3>
+					<p>
+						<small>Created by <a href="http://github.com/pacetin">Palina Cetin</a></small>
+					</p>
+				</section>
+
+				<section>
+					<section>
+						<h3>What is TypeScript?</h3>
+						<p>Additional layer on JavaScript language</p>						
+						<br>
+						<a href="#" class="navigate-down">
+							<img class="r-frame" style="background: rgba(255,255,255,0.1);" width="100" height="170" data-src="https://static.slid.es/reveal/arrow.png" alt="Down arrow">
+						</a>
+					</section>
+					<section>
+						<h3>Why it is helpful?</h3>
+						<p>With TypeScript easier to catch bugs during development.</p>
+					</section>
+					<section>
+						<h3>How it works?</h3>
+						<p>TypeScript extends JavaScript by adding types to the language.</p>
+						<br>
+						<a href="#/2">
+							<img class="r-frame" style="background: rgba(255,255,255,0.1); transform: rotate(180deg);" width="100" height="170" data-src="https://static.slid.es/reveal/arrow.png" alt="Up arrow">
+						</a>
+					</section>
+				</section>
+				<section>
+					<h3 data-id="code-title">Usage example</h3>
+					<pre data-id="code-animation"><code class="language-typeScript" data-trim data-line-numbers>					
+						// Boolean type
+
+						let isCompleted: boolean = false;
+
+						isCompleted = 42;  // Type 42 is not assignable to type boolean
+						isCompleted = 'a';  // Type 'a' is not assignable to type boolean
+						isCompleted = true;
+					</code></pre>					
+				</section>
+				<section data-auto-animate>
+					<h3 data-id="code-title">Other types of variables</h3>
+					<pre data-id="code-animation"><code class="language-typeScript" data-trim data-line-numbers>					
+						let age: number = 34;
+						let name: string = 'Palina';
+						let y: undefined = undefined;
+						let z: null = null;
+						const person: object = {name: 'Artem', surname: 'Grib'};						
+						const myArray: number[] = [1, 2, 3, 4];
+					</code></pre>					
+				</section>
+				<section data-auto-animate>
+					<h3 data-id="code-title">Other types of variables</h3>
+					<pre data-id="code-animation"><code class="language-typeScript" data-trim data-line-numbers>					
+						let age: number = 34;
+						let name: string = 'Palina';
+						let y: undefined = undefined;
+						let z: null = null;
+						const person: object = {name: 'Artem', surname: 'Grib'};
+						const myArray: number[] = [1, 2, 3, 4];
+						
+						// Tuple type
+						const contact: [string, number] = ['Palina', 42];
+
+						// Any
+						let variable: any = 42;
+						variable = true;
+					</code></pre>					
+				</section>				
+				<section>
+					<h3 data-id="code-title">Assigning types in functions</h3>
+					<pre data-id="code-animation"><code class="language-typeScript" data-trim data-line-numbers>					
+						const sum = (a: number, b: number): number => a + b;
+					</code></pre>					
+				</section>
+				<section>
+					<h3 data-id="code-title">Assigning types in functions</h3>
+					<pre data-id="code-animation"><code class="language-typeScript" data-trim data-line-numbers>					
+						// optional argument
+
+						const createPassword = (name: string, age?: number): string => {
+							return `${name}${age}`;
+						}
+					</code></pre>					
+				</section>
+				<section>
+					<h3 data-id="code-title">Assigning types in functions</h3>
+					<pre data-id="code-animation"><code class="language-typeScript" data-trim data-line-numbers>					
+						// void
+
+						const greetUser = (name: string): void => {
+							alert(`Hello, ${name}`);
+						}
+					</code></pre>					
+				</section>
+				<section data-auto-animate>
+					<h3 data-id="code-title">Assigning types in functions</h3>
+					<pre data-id="code-animation"><code class="language-typeScript" data-trim data-line-numbers="|3-5|7-9">					
+						// never
+
+						const infiniteLoop = (): never => {
+							while (true) {
+							}
+						}
+
+						const error = (msg: string): never => {
+							throw new Error();
+						}
+					</code></pre>					
+				</section>
+				<section data-auto-animate>
+					<h3 data-id="code-title">Interfaces to describe object</h3>
+					<pre data-id="code-animation"><code class="language-typeScript" data-trim data-line-numbers>					
+						interface Student {
+							name: string,
+							major: string,
+							graduationYear: number
+						}
+					</code></pre>					
+				</section>
+				<section data-auto-animate>
+					<h3 data-id="code-title">Interfaces to describe object</h3>
+					<pre data-id="code-animation"><code class="language-typeScript" data-trim data-line-numbers="|10-11">					
+						interface Student {
+							name: string,
+							major: string,
+							graduationYear: number
+						}
+
+						const bestStudent: Student = {
+							name: 'Bob Roy',
+							major: 'History',
+							// Types of property 'graduationYear' are incompatible.
+							graduationYear: '2018'
+						}													 
+					</code></pre>					
+				</section>
+				<section>
+					<h3 data-id="code-title">Defining classes</h3>
+					<pre data-id="code-animation"><code class="language-typeScript" data-trim data-line-numbers>					
+						class User {
+
+							private age: number = 20;
+
+							constructor (public name: string) {}
+
+							setAge(age: number) {
+								this.age = age;
+							}
+
+						}											 
+					</code></pre>					
+				</section>
+				<section>
+					<h3>Advanced features of TypeScript</h3>
+					<ol>
+						<li>inheritance</li>
+						<li>decorators</li>
+						<li>abstract classes</li>
+						<li>enum</li>
+						<li>generic types</li>
+						<li>guards</li>
+						<li>utility types, etc.</li>						
+					</ol>
+				</section>
+				<section>
+					<h1>Thank you!</h1>				
+				</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
