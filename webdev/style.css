@@ -57,7 +57,7 @@ p {
 }
 
 header {
-  height: 744px;   /*!!!!*/
+  height: 744px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
