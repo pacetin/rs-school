@@ -28,6 +28,10 @@
   font-style: normal;
 }
 
+:root {
+  --z-keyboard: 21;
+}
+
 .keyboard {
   position: fixed;
   transform:translateX(-50%);
@@ -40,7 +44,7 @@
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
   user-select: none;
   transition: bottom 0.4s;
-  z-index: 21;
+  z-index: var(--z-keyboard);
 }
 
 .keyboard_hidden {
